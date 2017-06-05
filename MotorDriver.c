@@ -6,7 +6,11 @@ static uint8_t LookUP_TABLE_SEN[32]={24,69,113,153,188,216,237,250,250,237,216,1
 
 static int8_t Microstep;
 
+static int8_t Direccion;
+
+
 typedef enum{
+    STATE0,
     STATE1,
     STATE2,
     STATE3,    
@@ -16,12 +20,24 @@ typedef enum{
 t_STATEMEF EstadoActual;
 
 void StateMEF_ini( void ){
-     EstadoActual = STATE1;
-     Microstep=0;
+    if (Direccion == FORWARD)
+    {
+        EstadoActual = STATE1;
+        Microstep=0;
+    }
+    else{
+        EstadoActual = STATE4;
+        Microstep = 31;
+    }
 }
 
 void StateMEF_act( void ){
      switch(EstadoActual) {
+         case STATE0:
+             PSTR1CON = 0x00; PSTR2CON = 0x00;
+             INA_OFF(); INB_OFF();INC_OFF(); IND_OFF();
+             EstadoActual = STATE1;
+             break;
          case STATE1:
                  PSTR1CON = 0x01; PSTR2CON = 0x01;
                  INB_OFF(); IND_OFF(); 
@@ -29,10 +45,10 @@ void StateMEF_act( void ){
                  if (Microstep<8){
                      EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
                      EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);                     
-                     if (Microstep==7){
-                         EstadoActual = STATE2;
+                     if (Microstep==7){            
+                         EstadoActual = STATE2;                  
                      }
-                     Microstep++;
+                        Microstep++;                    
                  }
              break;
          case STATE2:
@@ -43,9 +59,9 @@ void StateMEF_act( void ){
                      EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
                      EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
                      if (Microstep==15){
-                         EstadoActual = STATE3;
+                         EstadoActual = STATE3;      
                      }
-                     Microstep++;
+                        Microstep++;                    
                  }
              break;
          case STATE3:                 
@@ -58,7 +74,7 @@ void StateMEF_act( void ){
                      if (Microstep==23){
                          EstadoActual = STATE4;
                      }
-                     Microstep++;
+                        Microstep++;
                  }
              break;
          case STATE4:
@@ -69,10 +85,10 @@ void StateMEF_act( void ){
                      EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
                      EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
                      if (Microstep==31){
-                         EstadoActual = STATE1;
+                         EstadoActual = STATE0;
                          Microstep=-1;
                      }
-                     Microstep++;
+                        Microstep++; 
                  }
              break;
          default:
