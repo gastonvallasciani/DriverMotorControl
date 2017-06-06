@@ -6792,9 +6792,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.c: 81: PIR1bits.TMR2IF = 0;
 "81
 [e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
-[; ;tmr2.c: 84: if (++CountCallBack >= 16)
+[; ;tmr2.c: 84: if (++CountCallBack >= 1)
 "84
-[e $ ! >= =+ F7016 -> -> 1 `i `ui -> -> 16 `i `ui 856  ]
+[e $ ! >= =+ F7016 -> -> 1 `i `ui -> -> 1 `i `ui 856  ]
 [; ;tmr2.c: 85: {
 "85
 {

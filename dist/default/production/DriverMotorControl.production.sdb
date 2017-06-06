@@ -11,8 +11,8 @@ channel_CTMU 29
 channel_DAC 30
 channel_FVRBuf2 31
 ]
-"20 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
-[e E7086 . `uc
+"30 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
+[e E7092 . `uc
 STATE0 0
 STATE1 1
 STATE2 2
@@ -39,7 +39,7 @@ STATE4 4
 [v ___flmul __flmul `(d  1 e 3 0 ]
 "15 C:\Program Files\Microchip\xc8\v1.41\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
-"24 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\main.c
+"17 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\main.c
 [v _main main `(v  1 e 1 0 ]
 "58 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/adc.c
 [v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
@@ -91,10 +91,12 @@ STATE4 4
 [v _TMR6_SetInterruptHandler TMR6_SetInterruptHandler `(v  1 e 1 0 ]
 "138
 [v _TMR6_DefaultInterruptHandler TMR6_DefaultInterruptHandler `(v  1 e 1 0 ]
-"22 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
+"32 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
 [v _StateMEF_ini StateMEF_ini `(v  1 e 1 0 ]
-"34
+"37
 [v _StateMEF_act StateMEF_act `(v  1 e 1 0 ]
+"103
+[v _StepMove StepMove `(v  1 e 1 0 ]
 "49 C:\Program Files\Microchip\xc8\v1.41\include\pic18f46k22.h
 [v _ANSELA ANSELA `VEuc  1 e 1 @3896 ]
 "93
@@ -205,7 +207,7 @@ STATE4 4
 [v _LATBbits LATBbits `VES875  1 e 1 @3978 ]
 "7697
 [v _LATC LATC `VEuc  1 e 1 @3979 ]
-[s S949 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S948 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -215,7 +217,7 @@ STATE4 4
 `uc 1 LATC7 1 0 :1:7 
 ]
 "7724
-[s S958 . 1 `uc 1 LC0 1 0 :1:0 
+[s S957 . 1 `uc 1 LC0 1 0 :1:0 
 `uc 1 LC1 1 0 :1:1 
 `uc 1 LC2 1 0 :1:2 
 `uc 1 LC3 1 0 :1:3 
@@ -224,11 +226,11 @@ STATE4 4
 `uc 1 LC6 1 0 :1:6 
 `uc 1 LC7 1 0 :1:7 
 ]
-[u S967 . 1 `S949 1 . 1 0 `S958 1 . 1 0 ]
-[v _LATCbits LATCbits `VES967  1 e 1 @3979 ]
+[u S966 . 1 `S948 1 . 1 0 `S957 1 . 1 0 ]
+[v _LATCbits LATCbits `VES966  1 e 1 @3979 ]
 "7808
 [v _LATD LATD `VEuc  1 e 1 @3980 ]
-[s S989 . 1 `uc 1 LATD0 1 0 :1:0 
+[s S988 . 1 `uc 1 LATD0 1 0 :1:0 
 `uc 1 LATD1 1 0 :1:1 
 `uc 1 LATD2 1 0 :1:2 
 `uc 1 LATD3 1 0 :1:3 
@@ -238,7 +240,7 @@ STATE4 4
 `uc 1 LATD7 1 0 :1:7 
 ]
 "7835
-[s S998 . 1 `uc 1 LD0 1 0 :1:0 
+[s S997 . 1 `uc 1 LD0 1 0 :1:0 
 `uc 1 LD1 1 0 :1:1 
 `uc 1 LD2 1 0 :1:2 
 `uc 1 LD3 1 0 :1:3 
@@ -247,8 +249,8 @@ STATE4 4
 `uc 1 LD6 1 0 :1:6 
 `uc 1 LD7 1 0 :1:7 
 ]
-[u S1007 . 1 `S989 1 . 1 0 `S998 1 . 1 0 ]
-[v _LATDbits LATDbits `VES1007  1 e 1 @3980 ]
+[u S1006 . 1 `S988 1 . 1 0 `S997 1 . 1 0 ]
+[v _LATDbits LATDbits `VES1006  1 e 1 @3980 ]
 "7919
 [v _LATE LATE `VEuc  1 e 1 @3981 ]
 "7970
@@ -498,40 +500,40 @@ STATE4 4
 ]
 [u S617 . 1 `S595 1 . 1 0 `S604 1 . 1 0 `S613 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES617  1 e 1 @4082 ]
-"19 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\main.c
-[v _Timer2Tick_count Timer2Tick_count `i  1 e 2 0 ]
-"20
-[v _StepCount StepCount `i  1 e 2 0 ]
 "10 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/tmr2.c
 [v _Timer2Ticked Timer2Ticked `VEuc  1 e 1 0 ]
 "12
 [v _TMR2_InterruptHandler TMR2_InterruptHandler `*.37(v  1 e 2 0 ]
 "57 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/tmr6.c
 [v _TMR6_InterruptHandler TMR6_InterruptHandler `*.37(v  1 e 2 0 ]
-"4 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
-[v _LookUP_TABLE_COS LookUP_TABLE_COS `[32]uc  1 s 32 LookUP_TABLE_COS ]
-"5
-[v _LookUP_TABLE_SEN LookUP_TABLE_SEN `[32]uc  1 s 32 LookUP_TABLE_SEN ]
-"7
-[v _Microstep Microstep `c  1 s 1 Microstep ]
+"8 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
+[v _LookUP_TABLE_COS LookUP_TABLE_COS `[64]uc  1 s 64 LookUP_TABLE_COS ]
 "9
-[v _Direccion Direccion `c  1 s 1 Direccion ]
-"20
-[v _EstadoActual EstadoActual `E7086  1 e 1 0 ]
-"24 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\main.c
+[v _LookUP_TABLE_SEN LookUP_TABLE_SEN `[64]uc  1 s 64 LookUP_TABLE_SEN ]
+"10
+[v _Microstep Microstep `c  1 s 1 Microstep ]
+"14
+[v _StepCount StepCount `ui  1 s 2 StepCount ]
+"16
+[v _Timer2Tick_count Timer2Tick_count `ui  1 s 2 Timer2Tick_count ]
+"30
+[v _EstadoActual EstadoActual `E7092  1 e 1 0 ]
+"17 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"52
+"33
 } 0
-"22 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
-[v _StateMEF_ini StateMEF_ini `(v  1 e 1 0 ]
+"103 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
+[v _StepMove StepMove `(v  1 e 1 0 ]
 {
-"32
+[v StepMove@StepNumber StepNumber `ui  1 p 2 19 ]
+[v StepMove@Velocidad Velocidad `uc  1 p 1 21 ]
+"120
 } 0
-"34
+"37
 [v _StateMEF_act StateMEF_act `(v  1 e 1 0 ]
 {
-"98
+"101
 } 0
 "96 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/eusart1.c
 [v _EUSART1_Write EUSART1_Write `(v  1 e 1 0 ]
@@ -552,6 +554,11 @@ STATE4 4
 {
 [v EPWM1_LoadDutyValue@dutyValue dutyValue `ui  1 p 2 14 ]
 "97
+} 0
+"32 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
+[v _StateMEF_ini StateMEF_ini `(v  1 e 1 0 ]
+{
+"35
 } 0
 "111 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]

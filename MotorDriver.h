@@ -8,8 +8,11 @@
 #ifndef MOTORDRIVER_H
 #define	MOTORDRIVER_H
 
+#include "mcc_generated_files/mcc.h"
+
 void StateMEF_ini( void );
 void StateMEF_act( void );
+void StepMove( uint16_t StepNumber, uint8_t Velocidad );
 
 // INA(P1A) --> RC2 --> PSTR2CON STRA
 // INB(P1B) --> RD5 --> PSTR1CON STRB

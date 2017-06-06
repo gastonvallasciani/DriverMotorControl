@@ -8686,24 +8686,19 @@ void SYSTEM_Initialize(void);
 # 88
 void OSCILLATOR_Initialize(void);
 
-# 11 "MotorDriver.h"
+# 13 "MotorDriver.h"
 void StateMEF_ini( void );
 void StateMEF_act( void );
+void StepMove( uint16_t StepNumber, uint8_t Velocidad );
 
-# 18 "main.c"
-extern unsigned char Timer2Ticked;
-int Timer2Tick_count;
-int StepCount;
-
-# 24
+# 17 "main.c"
 void main(void)
 {
 
 SYSTEM_Initialize();
 StateMEF_ini();
 do { LATBbits.LATB6 = 1; } while(0);
-Timer2Tick_count=0;
-StepCount=0;
+
 
 (INTCONbits.GIE = 1);
 
@@ -8711,18 +8706,7 @@ StepCount=0;
 (INTCONbits.PEIE = 1);
 while (1)
 {
-if (StepCount<500)
-{
-if (Timer2Ticked){
-Timer2Tick_count++;
-if (Timer2Tick_count==5){
-StateMEF_act();
-StepCount++;
-Timer2Tick_count=0;
-}
-Timer2Ticked = 0;
-}
-}
+StepMove(1400,1);
 }
 }
 

@@ -8645,7 +8645,7 @@ static volatile unsigned int CountCallBack = 0;
 PIR1bits.TMR2IF = 0;
 
 
-if (++CountCallBack >= 16)
+if (++CountCallBack >= 1)
 {
 
 TMR2_CallBack();

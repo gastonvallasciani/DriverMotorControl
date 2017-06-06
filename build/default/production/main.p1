@@ -2,7 +2,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
 "75 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
-"11 MotorDriver.h
+"13 MotorDriver.h
 [v _StateMEF_ini `(v ~T0 @X0 0 ef ]
 "7592 C:\Program Files\Microchip\xc8\v1.41\include\pic18f46k22.h
 [s S378 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -29,10 +29,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S820 . . . . ]
 "16770
 [v _INTCONbits `VS820 ~T0 @X0 0 e@4082 ]
-"18 main.c
-[v _Timer2Ticked `uc ~T0 @X0 0 e ]
-"12 MotorDriver.h
-[v _StateMEF_act `(v ~T0 @X0 0 ef ]
+"15 MotorDriver.h
+[v _StepMove `(v ~T0 @X0 0 ef2`ui`uc ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -6679,103 +6677,53 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 361: void TMR6_DefaultInterruptHandler(void);
 [; ;mcc.h: 75: void SYSTEM_Initialize(void);
 [; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
-[; ;MotorDriver.h: 11: void StateMEF_ini( void );
-[; ;MotorDriver.h: 12: void StateMEF_act( void );
-[; ;main.c: 18: extern unsigned char Timer2Ticked;
-"19 main.c
-[v _Timer2Tick_count `i ~T0 @X0 1 e ]
-[; ;main.c: 19: int Timer2Tick_count;
-"20
-[v _StepCount `i ~T0 @X0 1 e ]
-[; ;main.c: 20: int StepCount;
-"24
+[; ;MotorDriver.h: 13: void StateMEF_ini( void );
+[; ;MotorDriver.h: 14: void StateMEF_act( void );
+[; ;MotorDriver.h: 15: void StepMove( uint16_t StepNumber, uint8_t Velocidad );
+"17 main.c
 [v _main `(v ~T0 @X0 1 ef ]
-"25
+"18
 {
-[; ;main.c: 24: void main(void)
-[; ;main.c: 25: {
+[; ;main.c: 17: void main(void)
+[; ;main.c: 18: {
 [e :U _main ]
 [f ]
-[; ;main.c: 27: SYSTEM_Initialize();
-"27
+[; ;main.c: 20: SYSTEM_Initialize();
+"20
 [e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 28: StateMEF_ini();
-"28
+[; ;main.c: 21: StateMEF_ini();
+"21
 [e ( _StateMEF_ini ..  ]
-[; ;main.c: 29: do { LATBbits.LATB6 = 1; } while(0);
-"29
+[; ;main.c: 22: do { LATBbits.LATB6 = 1; } while(0);
+"22
 [e :U 853 ]
 {
 [e = . . _LATBbits 0 6 -> -> 1 `i `uc ]
 }
 [e :U 852 ]
-[; ;main.c: 30: Timer2Tick_count=0;
-"30
-[e = _Timer2Tick_count -> 0 `i ]
-[; ;main.c: 31: StepCount=0;
-"31
-[e = _StepCount -> 0 `i ]
-[; ;main.c: 33: (INTCONbits.GIE = 1);
-"33
+[; ;main.c: 25: (INTCONbits.GIE = 1);
+"25
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 36: (INTCONbits.PEIE = 1);
-"36
+[; ;main.c: 28: (INTCONbits.PEIE = 1);
+"28
 [e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-[; ;main.c: 37: while (1)
-"37
+[; ;main.c: 29: while (1)
+"29
 [e :U 855 ]
-[; ;main.c: 38: {
-"38
+[; ;main.c: 30: {
+"30
 {
-[; ;main.c: 39: if (StepCount<500)
-"39
-[e $ ! < _StepCount -> 500 `i 857  ]
-[; ;main.c: 40: {
-"40
-{
-[; ;main.c: 41: if (Timer2Ticked){
-"41
-[e $ ! != -> _Timer2Ticked `i -> -> -> 0 `i `uc `i 858  ]
-{
-[; ;main.c: 42: Timer2Tick_count++;
-"42
-[e ++ _Timer2Tick_count -> 1 `i ]
-[; ;main.c: 43: if (Timer2Tick_count==5){
-"43
-[e $ ! == _Timer2Tick_count -> 5 `i 859  ]
-{
-[; ;main.c: 44: StateMEF_act();
-"44
-[e ( _StateMEF_act ..  ]
-[; ;main.c: 45: StepCount++;
-"45
-[e ++ _StepCount -> 1 `i ]
-[; ;main.c: 46: Timer2Tick_count=0;
-"46
-[e = _Timer2Tick_count -> 0 `i ]
-"47
-}
-[e :U 859 ]
-[; ;main.c: 47: }
-[; ;main.c: 48: Timer2Ticked = 0;
-"48
-[e = _Timer2Ticked -> -> 0 `i `uc ]
-"49
-}
-[e :U 858 ]
-"50
-}
-[e :U 857 ]
-"51
+[; ;main.c: 31: StepMove(1400,1);
+"31
+[e ( _StepMove (2 , -> -> 1400 `i `ui -> -> 1 `i `uc ]
+"32
 }
 [e :U 854 ]
-"37
+"29
 [e $U 855  ]
 [e :U 856 ]
-[; ;main.c: 49: }
-[; ;main.c: 50: }
-[; ;main.c: 51: }
-[; ;main.c: 52: }
-"52
+[; ;main.c: 32: }
+[; ;main.c: 33: }
+"33
 [e :UE 850 ]
 }
