@@ -1,24 +1,29 @@
 /*
   Description:
     Generation Information :
-        Product Revision  :  MPLAB(c) Code Configurator - 4.15
+        Product Revision  :  MPLAB(c) Code  - 4.15
         Device            :  PIC18F46K22
         Driver Version    :  2.00
     The generated drivers are tested against the following:
         Compiler          :  XC8 1.35
         MPLAB             :  MPLAB X 3.40
  * 
- * bug: Falta realimentación de corriente, control de dirección y de velocidad.  
+ * bug:  
  * 
 */
 #include "mcc_generated_files/mcc.h"
 #include "MotorDriver.h"
+
+uint16_t ANALOG_0;
+uint8_t ADRESLH[2];
+extern unsigned char Timer2Ticked; 
 
 void main(void)
 {
     // Initialize the device
     SYSTEM_Initialize();
     StateMEF_ini();
+    Timer2Ticked=0;
     LTest_SetHigh();
 
     // Enable the Global Interrupts
@@ -28,7 +33,17 @@ void main(void)
     INTERRUPT_PeripheralInterruptEnable();
     while (1)
     {      
-      StepMove(1400,1);
+      StepMove(500,5,16);    // numero de pasos, velocidad, numero de micropasos
+      /*if (Timer2Ticked){
+          
+        ANALOG_0 = ADC_Conversion(0);
+
+        ADRESLH[0]=ADRESL;
+        ADRESLH[1]=ADRESH;
+        EUSART1_Write(ADRESLH[0]);
+        EUSART1_Write(ADRESLH[1]);
+      }*/
+      
     }
 }
 /**

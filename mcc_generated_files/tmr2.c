@@ -1,14 +1,60 @@
 /**
+  TMR2 Generated Driver File
+
+  @Company
+    Microchip Technology Inc.
+
+  @File Name
+    tmr2.c
+
+  @Summary
+    This is the generated driver implementation file for the TMR2 driver using MPLAB(c) Code Configurator
+
+  @Description
+    This source file provides APIs for TMR2.
+    Generation Information :
+        Product Revision  :  MPLAB(c) Code Configurator - 4.15
+        Device            :  PIC18F46K22
+        Driver Version    :  2.00
+    The generated drivers are tested against the following:
+        Compiler          :  XC8 1.35
+        MPLAB             :  MPLAB X 3.40
+*/
+
+/*
+    (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
+    software and any derivatives exclusively with Microchip products.
+
+    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
+    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
+    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
+    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
+
+    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
+    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
+    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+
+    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
+    TERMS.
+*/
+
+/**
   Section: Included Files
 */
 
 #include <xc.h>
 #include "tmr2.h"
-//#include "MotorDriver.h"
 
-/////////////////  Section: Global Variables Definitions
 volatile unsigned char Timer2Ticked;
-/////////////////////////////////////////////////////////
+/**
+  Section: Global Variables Definitions
+*/
+
 void (*TMR2_InterruptHandler)(void);
 
 /**
@@ -19,14 +65,14 @@ void TMR2_Initialize(void)
 {
     // Set TMR2 to the options selected in the User Interface
 
-    // T2CKPS 1:16; T2OUTPS 1:1; TMR2ON off; 
-    T2CON = 0x02;
+    // T2CKPS 1:1; T2OUTPS 1:2; TMR2ON off; 
+    T2CON = 0x08;
 
-    // PR2 18; 
-    PR2 = 0x12;
+    // PR2 ; 
+    PR2 = 0xF9;
 
     // TMR2 0; 
-    TMR2 = 0x00;
+    TMR2 = 0x4E;
 
     // Clearing IF flag before enabling the interrupt.
     PIR1bits.TMR2IF = 0;
@@ -75,27 +121,20 @@ void TMR2_LoadPeriodRegister(uint8_t periodVal)
 
 void TMR2_ISR(void)
 {
-    static volatile unsigned int CountCallBack = 0;
 
     // clear the TMR2 interrupt flag
     PIR1bits.TMR2IF = 0;
 
-    // callback function - called every 16th pass (75 useg aproximadamente))
-    if (++CountCallBack >= TMR2_INTERRUPT_TICKER_FACTOR)
-    {
-        // ticker function call
-        TMR2_CallBack();
-
-        // reset ticker counter
-        CountCallBack = 0;
-    }
+    // ticker function call;
+    // ticker is 1 -> Callback function gets called everytime this ISR executes
+    TMR2_CallBack();
 }
 
 void TMR2_CallBack(void)
 {
+    Timer2Ticked=1;
     // Add your custom callback code here
     // this code executes every TMR2_INTERRUPT_TICKER_FACTOR periods of TMR2
-    Timer2Ticked = 1;
     if(TMR2_InterruptHandler)
     {
         TMR2_InterruptHandler();

@@ -8614,27 +8614,6 @@ void interrupt INTERRUPT_InterruptManager(void);
 # 122
 void INTERRUPT_Initialize (void);
 
-# 94 "mcc_generated_files/eusart1.h"
-void EUSART1_Initialize(void);
-
-# 114
-uint8_t EUSART1_Read(void);
-
-# 134
-void EUSART1_Write(uint8_t txData);
-
-# 95 "mcc_generated_files/epwm2.h"
-void EPWM2_Initialize(void);
-
-# 121
-void EPWM2_LoadDutyValue(uint16_t dutyValue);
-
-# 95 "mcc_generated_files/epwm1.h"
-void EPWM1_Initialize(void);
-
-# 121
-void EPWM1_LoadDutyValue(uint16_t dutyValue);
-
 # 103 "mcc_generated_files/tmr2.h"
 void TMR2_Initialize(void);
 
@@ -8670,6 +8649,36 @@ void TMR2_DefaultInterruptHandler(void);
 
 # 58 "mcc_generated_files/ccp5.h"
 void CCP5_Initialize(void);
+
+# 102 "mcc_generated_files/tmr6.h"
+void TMR6_Initialize(void);
+
+# 131
+void TMR6_StartTimer(void);
+
+# 163
+void TMR6_StopTimer(void);
+
+# 198
+uint8_t TMR6_ReadTimer(void);
+
+# 237
+void TMR6_WriteTimer(uint8_t timerVal);
+
+# 289
+void TMR6_LoadPeriodRegister(uint8_t periodVal);
+
+# 307
+void TMR6_ISR(void);
+
+# 325
+void TMR6_SetInterruptHandler(void *InterruptHandler);
+
+# 343
+extern void (*TMR6_InterruptHandler)(void);
+
+# 361
+void TMR6_DefaultInterruptHandler(void);
 
 # 71 "mcc_generated_files/adc.h"
 typedef uint16_t adc_result_t;
@@ -8712,35 +8721,26 @@ adc_result_t ADC_GetConversion(adc_channel_t channel);
 # 305
 void ADC_ISR(void);
 
-# 102 "mcc_generated_files/tmr6.h"
-void TMR6_Initialize(void);
+# 94 "mcc_generated_files/eusart1.h"
+void EUSART1_Initialize(void);
 
-# 131
-void TMR6_StartTimer(void);
+# 114
+uint8_t EUSART1_Read(void);
 
-# 163
-void TMR6_StopTimer(void);
+# 134
+void EUSART1_Write(uint8_t txData);
 
-# 198
-uint8_t TMR6_ReadTimer(void);
+# 95 "mcc_generated_files/epwm1.h"
+void EPWM1_Initialize(void);
 
-# 237
-void TMR6_WriteTimer(uint8_t timerVal);
+# 121
+void EPWM1_LoadDutyValue(uint16_t dutyValue);
 
-# 289
-void TMR6_LoadPeriodRegister(uint8_t periodVal);
+# 95 "mcc_generated_files/epwm2.h"
+void EPWM2_Initialize(void);
 
-# 307
-void TMR6_ISR(void);
-
-# 325
-void TMR6_SetInterruptHandler(void *InterruptHandler);
-
-# 343
-extern void (*TMR6_InterruptHandler)(void);
-
-# 361
-void TMR6_DefaultInterruptHandler(void);
+# 121
+void EPWM2_LoadDutyValue(uint16_t dutyValue);
 
 # 75 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);

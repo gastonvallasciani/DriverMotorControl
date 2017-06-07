@@ -4,6 +4,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
 "13 MotorDriver.h
 [v _StateMEF_ini `(v ~T0 @X0 0 ef ]
+"19 main.c
+[v _Timer2Ticked `uc ~T0 @X0 0 e ]
 "7592 C:\Program Files\Microchip\xc8\v1.41\include\pic18f46k22.h
 [s S378 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S378 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
@@ -29,8 +31,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S820 . . . . ]
 "16770
 [v _INTCONbits `VS820 ~T0 @X0 0 e@4082 ]
-"15 MotorDriver.h
-[v _StepMove `(v ~T0 @X0 0 ef2`ui`uc ]
+"16 MotorDriver.h
+[v _StepMove `(v ~T0 @X0 0 ef3`ui`uc`uc ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -6625,13 +6627,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;interrupt_manager.h: 110: void interrupt INTERRUPT_InterruptManager(void);
 [; ;interrupt_manager.h: 122: void INTERRUPT_Initialize (void);
-[; ;eusart1.h: 94: void EUSART1_Initialize(void);
-[; ;eusart1.h: 114: uint8_t EUSART1_Read(void);
-[; ;eusart1.h: 134: void EUSART1_Write(uint8_t txData);
-[; ;epwm2.h: 95: void EPWM2_Initialize(void);
-[; ;epwm2.h: 121: void EPWM2_LoadDutyValue(uint16_t dutyValue);
-[; ;epwm1.h: 95: void EPWM1_Initialize(void);
-[; ;epwm1.h: 121: void EPWM1_LoadDutyValue(uint16_t dutyValue);
 [; ;tmr2.h: 103: void TMR2_Initialize(void);
 [; ;tmr2.h: 132: void TMR2_StartTimer(void);
 [; ;tmr2.h: 164: void TMR2_StopTimer(void);
@@ -6644,6 +6639,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.h: 361: extern void (*TMR2_InterruptHandler)(void);
 [; ;tmr2.h: 379: void TMR2_DefaultInterruptHandler(void);
 [; ;ccp5.h: 58: void CCP5_Initialize(void);
+[; ;tmr6.h: 102: void TMR6_Initialize(void);
+[; ;tmr6.h: 131: void TMR6_StartTimer(void);
+[; ;tmr6.h: 163: void TMR6_StopTimer(void);
+[; ;tmr6.h: 198: uint8_t TMR6_ReadTimer(void);
+[; ;tmr6.h: 237: void TMR6_WriteTimer(uint8_t timerVal);
+[; ;tmr6.h: 289: void TMR6_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr6.h: 307: void TMR6_ISR(void);
+[; ;tmr6.h: 325: void TMR6_SetInterruptHandler(void *InterruptHandler);
+[; ;tmr6.h: 343: extern void (*TMR6_InterruptHandler)(void);
+[; ;tmr6.h: 361: void TMR6_DefaultInterruptHandler(void);
 [; ;adc.h: 71: typedef uint16_t adc_result_t;
 [; ;adc.h: 76: typedef struct
 [; ;adc.h: 77: {
@@ -6665,65 +6670,74 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 258: adc_result_t ADC_GetConversionResult(void);
 [; ;adc.h: 288: adc_result_t ADC_GetConversion(adc_channel_t channel);
 [; ;adc.h: 305: void ADC_ISR(void);
-[; ;tmr6.h: 102: void TMR6_Initialize(void);
-[; ;tmr6.h: 131: void TMR6_StartTimer(void);
-[; ;tmr6.h: 163: void TMR6_StopTimer(void);
-[; ;tmr6.h: 198: uint8_t TMR6_ReadTimer(void);
-[; ;tmr6.h: 237: void TMR6_WriteTimer(uint8_t timerVal);
-[; ;tmr6.h: 289: void TMR6_LoadPeriodRegister(uint8_t periodVal);
-[; ;tmr6.h: 307: void TMR6_ISR(void);
-[; ;tmr6.h: 325: void TMR6_SetInterruptHandler(void *InterruptHandler);
-[; ;tmr6.h: 343: extern void (*TMR6_InterruptHandler)(void);
-[; ;tmr6.h: 361: void TMR6_DefaultInterruptHandler(void);
+[; ;eusart1.h: 94: void EUSART1_Initialize(void);
+[; ;eusart1.h: 114: uint8_t EUSART1_Read(void);
+[; ;eusart1.h: 134: void EUSART1_Write(uint8_t txData);
+[; ;epwm1.h: 95: void EPWM1_Initialize(void);
+[; ;epwm1.h: 121: void EPWM1_LoadDutyValue(uint16_t dutyValue);
+[; ;epwm2.h: 95: void EPWM2_Initialize(void);
+[; ;epwm2.h: 121: void EPWM2_LoadDutyValue(uint16_t dutyValue);
 [; ;mcc.h: 75: void SYSTEM_Initialize(void);
 [; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
 [; ;MotorDriver.h: 13: void StateMEF_ini( void );
-[; ;MotorDriver.h: 14: void StateMEF_act( void );
-[; ;MotorDriver.h: 15: void StepMove( uint16_t StepNumber, uint8_t Velocidad );
+[; ;MotorDriver.h: 14: void State8MEF_act( void );
+[; ;MotorDriver.h: 15: void State16MEF_act( void );
+[; ;MotorDriver.h: 16: void StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number );
+[; ;MotorDriver.h: 17: uint16_t ADC_Conversion( uint8_t channel );
 "17 main.c
-[v _main `(v ~T0 @X0 1 ef ]
+[v _ANALOG_0 `ui ~T0 @X0 1 e ]
+[; ;main.c: 17: uint16_t ANALOG_0;
 "18
+[v _ADRESLH `uc ~T0 @X0 -> 2 `i e ]
+[; ;main.c: 18: uint8_t ADRESLH[2];
+[; ;main.c: 19: extern unsigned char Timer2Ticked;
+"21
+[v _main `(v ~T0 @X0 1 ef ]
+"22
 {
-[; ;main.c: 17: void main(void)
-[; ;main.c: 18: {
+[; ;main.c: 21: void main(void)
+[; ;main.c: 22: {
 [e :U _main ]
 [f ]
-[; ;main.c: 20: SYSTEM_Initialize();
-"20
+[; ;main.c: 24: SYSTEM_Initialize();
+"24
 [e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 21: StateMEF_ini();
-"21
+[; ;main.c: 25: StateMEF_ini();
+"25
 [e ( _StateMEF_ini ..  ]
-[; ;main.c: 22: do { LATBbits.LATB6 = 1; } while(0);
-"22
+[; ;main.c: 26: Timer2Ticked=0;
+"26
+[e = _Timer2Ticked -> -> 0 `i `uc ]
+[; ;main.c: 27: do { LATBbits.LATB6 = 1; } while(0);
+"27
 [e :U 853 ]
 {
 [e = . . _LATBbits 0 6 -> -> 1 `i `uc ]
 }
 [e :U 852 ]
-[; ;main.c: 25: (INTCONbits.GIE = 1);
-"25
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 28: (INTCONbits.PEIE = 1);
-"28
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-[; ;main.c: 29: while (1)
-"29
-[e :U 855 ]
-[; ;main.c: 30: {
+[; ;main.c: 30: (INTCONbits.GIE = 1);
 "30
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+[; ;main.c: 33: (INTCONbits.PEIE = 1);
+"33
+[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
+[; ;main.c: 34: while (1)
+"34
+[e :U 855 ]
+[; ;main.c: 35: {
+"35
 {
-[; ;main.c: 31: StepMove(1400,1);
-"31
-[e ( _StepMove (2 , -> -> 1400 `i `ui -> -> 1 `i `uc ]
-"32
+[; ;main.c: 36: StepMove(500,5,16);
+"36
+[e ( _StepMove (3 , , -> -> 500 `i `ui -> -> 5 `i `uc -> -> 16 `i `uc ]
+"47
 }
 [e :U 854 ]
-"29
+"34
 [e $U 855  ]
 [e :U 856 ]
-[; ;main.c: 32: }
-[; ;main.c: 33: }
-"33
+[; ;main.c: 47: }
+[; ;main.c: 48: }
+"48
 [e :UE 850 ]
 }

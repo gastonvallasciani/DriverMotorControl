@@ -8573,24 +8573,25 @@ extern void (*TMR2_InterruptHandler)(void);
 # 379
 void TMR2_DefaultInterruptHandler(void);
 
-# 10 "mcc_generated_files/tmr2.c"
+# 53 "mcc_generated_files/tmr2.c"
 volatile unsigned char Timer2Ticked;
 
+# 58
 void (*TMR2_InterruptHandler)(void);
 
-# 18
+# 64
 void TMR2_Initialize(void)
 {
 
 
 
-T2CON = 0x02;
+T2CON = 0x08;
 
 
-PR2 = 0x12;
+PR2 = 0xF9;
 
 
-TMR2 = 0x00;
+TMR2 = 0x4E;
 
 
 PIR1bits.TMR2IF = 0;
@@ -8639,27 +8640,20 @@ PR2 = periodVal;
 
 void TMR2_ISR(void)
 {
-static volatile unsigned int CountCallBack = 0;
 
 
 PIR1bits.TMR2IF = 0;
 
 
-if (++CountCallBack >= 1)
-{
 
 TMR2_CallBack();
-
-
-CountCallBack = 0;
-}
 }
 
 void TMR2_CallBack(void)
 {
+Timer2Ticked=1;
 
 
-Timer2Ticked = 1;
 if(TMR2_InterruptHandler)
 {
 TMR2_InterruptHandler();
