@@ -20,7 +20,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S432 . . . ]
 "9339
 [v _PIE1bits `VS432 ~T0 @X0 0 e@3997 ]
-"82 mcc_generated_files/adc.c
+"85 mcc_generated_files/adc.c
 [c E6986 0 1 29 30 31 .. ]
 [n E6986 . AN_A AN_B channel_CTMU channel_DAC channel_FVRBuf2  ]
 "13482 C:\Program Files\Microchip\xc8\v1.41\include\pic18f46k22.h
@@ -52,7 +52,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S642 . . . . . . . . . ]
 "13521
 [v _ADCON0bits `VS642 ~T0 @X0 0 e@4034 ]
-"9399
+"134 mcc_generated_files/eusart1.h
+[v _EUSART1_Write `(v ~T0 @X0 0 ef1`uc ]
+"9399 C:\Program Files\Microchip\xc8\v1.41\include\pic18f46k22.h
 [s S436 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S436 . TMR1IF TMR2IF CCP1IF SSP1IF TX1IF RC1IF ADIF ]
 "9408
@@ -6674,158 +6676,203 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 258: adc_result_t ADC_GetConversionResult(void);
 [; ;adc.h: 288: adc_result_t ADC_GetConversion(adc_channel_t channel);
 [; ;adc.h: 305: void ADC_ISR(void);
-"58 mcc_generated_files/adc.c
+[; ;adc.h: 307: uint16_t ADC_Conversion( uint8_t channel );
+[; ;eusart1.h: 94: void EUSART1_Initialize(void);
+[; ;eusart1.h: 114: uint8_t EUSART1_Read(void);
+[; ;eusart1.h: 134: void EUSART1_Write(uint8_t txData);
+"59 mcc_generated_files/adc.c
+[v _ANALOG_0 `ui ~T0 @X0 1 e ]
+[v _ANALOG_1 `ui ~T0 @X0 1 e ]
+[; ;adc.c: 59: uint16_t ANALOG_0,ANALOG_1;
+"61
 [v _ADC_Initialize `(v ~T0 @X0 1 ef ]
-"59
+"62
 {
-[; ;adc.c: 58: void ADC_Initialize(void)
-[; ;adc.c: 59: {
+[; ;adc.c: 61: void ADC_Initialize(void)
+[; ;adc.c: 62: {
 [e :U _ADC_Initialize ]
 [f ]
-[; ;adc.c: 63: ADCON0 = 0x01;
-"63
-[e = _ADCON0 -> -> 1 `i `uc ]
-[; ;adc.c: 66: ADCON1 = 0x00;
+[; ;adc.c: 66: ADCON0 = 0x01;
 "66
-[e = _ADCON1 -> -> 0 `i `uc ]
-[; ;adc.c: 69: ADCON2 = 0x05;
+[e = _ADCON0 -> -> 1 `i `uc ]
+[; ;adc.c: 69: ADCON1 = 0x00;
 "69
-[e = _ADCON2 -> -> 5 `i `uc ]
-[; ;adc.c: 72: ADRESL = 0x00;
+[e = _ADCON1 -> -> 0 `i `uc ]
+[; ;adc.c: 72: ADCON2 = 0x05;
 "72
-[e = _ADRESL -> -> 0 `i `uc ]
-[; ;adc.c: 75: ADRESH = 0x00;
+[e = _ADCON2 -> -> 5 `i `uc ]
+[; ;adc.c: 75: ADRESL = 0x00;
 "75
-[e = _ADRESH -> -> 0 `i `uc ]
-[; ;adc.c: 78: PIE1bits.ADIE = 1;
+[e = _ADRESL -> -> 0 `i `uc ]
+[; ;adc.c: 78: ADRESH = 0x00;
 "78
+[e = _ADRESH -> -> 0 `i `uc ]
+[; ;adc.c: 81: PIE1bits.ADIE = 1;
+"81
 [e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
-[; ;adc.c: 79: }
-"79
+[; ;adc.c: 82: }
+"82
 [e :UE 850 ]
 }
-"81
-[v _ADC_SelectChannel `(v ~T0 @X0 1 ef1`E6986 ]
-"82
-{
-[; ;adc.c: 81: void ADC_SelectChannel(adc_channel_t channel)
-[; ;adc.c: 82: {
-[e :U _ADC_SelectChannel ]
-"81
-[v _channel `E6986 ~T0 @X0 1 r1 ]
-"82
-[f ]
-[; ;adc.c: 84: ADCON0bits.CHS = channel;
 "84
-[e = . . _ADCON0bits 1 2 -> _channel `uc ]
-[; ;adc.c: 86: ADCON0bits.ADON = 1;
-"86
-[e = . . _ADCON0bits 1 0 -> -> 1 `i `uc ]
-[; ;adc.c: 87: }
+[v _ADC_SelectChannel `(v ~T0 @X0 1 ef1`E6986 ]
+"85
+{
+[; ;adc.c: 84: void ADC_SelectChannel(adc_channel_t channel)
+[; ;adc.c: 85: {
+[e :U _ADC_SelectChannel ]
+"84
+[v _channel `E6986 ~T0 @X0 1 r1 ]
+"85
+[f ]
+[; ;adc.c: 87: ADCON0bits.CHS = channel;
 "87
+[e = . . _ADCON0bits 1 2 -> _channel `uc ]
+[; ;adc.c: 89: ADCON0bits.ADON = 1;
+"89
+[e = . . _ADCON0bits 1 0 -> -> 1 `i `uc ]
+[; ;adc.c: 90: }
+"90
 [e :UE 851 ]
 }
-"89
+"92
 [v _ADC_StartConversion `(v ~T0 @X0 1 ef ]
-"90
+"93
 {
-[; ;adc.c: 89: void ADC_StartConversion()
-[; ;adc.c: 90: {
+[; ;adc.c: 92: void ADC_StartConversion()
+[; ;adc.c: 93: {
 [e :U _ADC_StartConversion ]
 [f ]
-[; ;adc.c: 92: ADCON0bits.GO_nDONE = 1;
-"92
+[; ;adc.c: 95: ADCON0bits.GO_nDONE = 1;
+"95
 [e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
-[; ;adc.c: 93: }
-"93
+[; ;adc.c: 96: }
+"96
 [e :UE 852 ]
 }
-"96
+"99
 [v _ADC_IsConversionDone `(uc ~T0 @X0 1 ef ]
-"97
+"100
 {
-[; ;adc.c: 96: bool ADC_IsConversionDone()
-[; ;adc.c: 97: {
+[; ;adc.c: 99: bool ADC_IsConversionDone()
+[; ;adc.c: 100: {
 [e :U _ADC_IsConversionDone ]
 [f ]
-[; ;adc.c: 99: return (!ADCON0bits.GO_nDONE);
-"99
+[; ;adc.c: 102: return (!ADCON0bits.GO_nDONE);
+"102
 [e ) -> -> ! != -> . . _ADCON0bits 1 1 `i -> -> -> 0 `i `Vuc `i `i `uc ]
 [e $UE 853  ]
-[; ;adc.c: 100: }
-"100
+[; ;adc.c: 103: }
+"103
 [e :UE 853 ]
 }
-"102
+"105
 [v _ADC_GetConversionResult `(ui ~T0 @X0 1 ef ]
-"103
+"106
 {
-[; ;adc.c: 102: adc_result_t ADC_GetConversionResult(void)
-[; ;adc.c: 103: {
+[; ;adc.c: 105: adc_result_t ADC_GetConversionResult(void)
+[; ;adc.c: 106: {
 [e :U _ADC_GetConversionResult ]
 [f ]
-[; ;adc.c: 105: return ((ADRESH << 8) + ADRESL);
-"105
+[; ;adc.c: 108: return ((ADRESH << 8) + ADRESL);
+"108
 [e ) -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `ui ]
 [e $UE 854  ]
-[; ;adc.c: 106: }
-"106
+[; ;adc.c: 109: }
+"109
 [e :UE 854 ]
 }
-"108
-[v _ADC_GetConversion `(ui ~T0 @X0 1 ef1`E6986 ]
-"109
-{
-[; ;adc.c: 108: adc_result_t ADC_GetConversion(adc_channel_t channel)
-[; ;adc.c: 109: {
-[e :U _ADC_GetConversion ]
-"108
-[v _channel `E6986 ~T0 @X0 1 r1 ]
-"109
-[f ]
-[; ;adc.c: 111: ADCON0bits.CHS = channel;
 "111
-[e = . . _ADCON0bits 1 2 -> _channel `uc ]
-[; ;adc.c: 114: ADCON0bits.ADON = 1;
+[v _ADC_GetConversion `(ui ~T0 @X0 1 ef1`E6986 ]
+"112
+{
+[; ;adc.c: 111: adc_result_t ADC_GetConversion(adc_channel_t channel)
+[; ;adc.c: 112: {
+[e :U _ADC_GetConversion ]
+"111
+[v _channel `E6986 ~T0 @X0 1 r1 ]
+"112
+[f ]
+[; ;adc.c: 114: ADCON0bits.CHS = channel;
 "114
-[e = . . _ADCON0bits 1 0 -> -> 1 `i `uc ]
-[; ;adc.c: 117: ADCON0bits.GO_nDONE = 1;
+[e = . . _ADCON0bits 1 2 -> _channel `uc ]
+[; ;adc.c: 117: ADCON0bits.ADON = 1;
 "117
-[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
-[; ;adc.c: 120: while (ADCON0bits.GO_nDONE)
+[e = . . _ADCON0bits 1 0 -> -> 1 `i `uc ]
+[; ;adc.c: 120: ADCON0bits.GO_nDONE = 1;
 "120
+[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
+[; ;adc.c: 123: while (ADCON0bits.GO_nDONE)
+"123
 [e $U 856  ]
 [e :U 857 ]
-[; ;adc.c: 121: {
-"121
+[; ;adc.c: 124: {
+"124
 {
-"122
+"125
 }
 [e :U 856 ]
-"120
+"123
 [e $ != -> . . _ADCON0bits 1 1 `i -> -> -> 0 `i `Vuc `i 857  ]
 [e :U 858 ]
-[; ;adc.c: 122: }
-[; ;adc.c: 124: return ((ADRESH << 8) + ADRESL);
-"124
+[; ;adc.c: 125: }
+[; ;adc.c: 127: return ((ADRESH << 8) + ADRESL);
+"127
 [e ) -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `ui ]
 [e $UE 855  ]
-[; ;adc.c: 126: }
-"126
+[; ;adc.c: 129: }
+"129
 [e :UE 855 ]
 }
-"129
-[v _ADC_ISR `(v ~T0 @X0 1 ef ]
-"130
+"131
+[v _ADC_Conversion `(ui ~T0 @X0 1 ef1`uc ]
 {
-[; ;adc.c: 129: void ADC_ISR(void)
-[; ;adc.c: 130: {
+[; ;adc.c: 131: uint16_t ADC_Conversion( uint8_t channel ){
+[e :U _ADC_Conversion ]
+[v _channel `uc ~T0 @X0 1 r1 ]
+[f ]
+"132
+[v _VALUE `ui ~T0 @X0 1 a ]
+[; ;adc.c: 132: uint16_t VALUE;
+[; ;adc.c: 134: ADC_SelectChannel(channel);
+"134
+[e ( _ADC_SelectChannel (1 -> _channel `E6986 ]
+[; ;adc.c: 135: ADC_StartConversion();
+"135
+[e ( _ADC_StartConversion ..  ]
+[; ;adc.c: 136: while(!ADC_IsConversionDone());
+"136
+[e $U 860  ]
+[e :U 861 ]
+[e :U 860 ]
+[e $ ! != -> ( _ADC_IsConversionDone ..  `i -> -> -> 0 `i `uc `i 861  ]
+[e :U 862 ]
+[; ;adc.c: 137: VALUE = ADC_GetConversionResult();
+"137
+[e = _VALUE ( _ADC_GetConversionResult ..  ]
+[; ;adc.c: 138: EUSART1_Write(VALUE);
+"138
+[e ( _EUSART1_Write (1 -> _VALUE `uc ]
+[; ;adc.c: 140: return(VALUE);
+"140
+[e ) _VALUE ]
+[e $UE 859  ]
+[; ;adc.c: 141: }
+"141
+[e :UE 859 ]
+}
+"144
+[v _ADC_ISR `(v ~T0 @X0 1 ef ]
+"145
+{
+[; ;adc.c: 144: void ADC_ISR(void)
+[; ;adc.c: 145: {
 [e :U _ADC_ISR ]
 [f ]
-[; ;adc.c: 132: PIR1bits.ADIF = 0;
-"132
+[; ;adc.c: 149: PIR1bits.ADIF = 0;
+"149
 [e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-[; ;adc.c: 133: }
-"133
-[e :UE 859 ]
+[; ;adc.c: 150: }
+"150
+[e :UE 863 ]
 }

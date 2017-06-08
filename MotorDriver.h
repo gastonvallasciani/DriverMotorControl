@@ -14,8 +14,9 @@ void StateMEF_ini( void );
 void State8MEF_act( void );
 void State16MEF_act( void );
 void StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number );
-uint16_t ADC_Conversion( uint8_t channel );
-//uint8_t control (uint8_t LookUp);
+uint8_t controlador1(uint8_t LookUp,uint16_t An_Acquisition);
+uint8_t controlador2(uint8_t LookUp,uint16_t An_Acquisition);
+
 // INA(P1A) --> RC2 --> PSTR2CON STRA
 // INB(P1B) --> RD5 --> PSTR1CON STRB
 // INC(P2A) --> RC1 --> PSTR1CON STRA

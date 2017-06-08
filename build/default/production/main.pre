@@ -8659,6 +8659,8 @@ adc_result_t ADC_GetConversion(adc_channel_t channel);
 # 305
 void ADC_ISR(void);
 
+uint16_t ADC_Conversion( uint8_t channel );
+
 # 94 "mcc_generated_files/eusart1.h"
 void EUSART1_Initialize(void);
 
@@ -8691,11 +8693,10 @@ void StateMEF_ini( void );
 void State8MEF_act( void );
 void State16MEF_act( void );
 void StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number );
-uint16_t ADC_Conversion( uint8_t channel );
+uint8_t controlador1(uint8_t LookUp,uint16_t An_Acquisition);
+uint8_t controlador2(uint8_t LookUp,uint16_t An_Acquisition);
 
-# 17 "main.c"
-uint16_t ANALOG_0;
-uint8_t ADRESLH[2];
+# 19 "main.c"
 extern unsigned char Timer2Ticked;
 
 void main(void)
@@ -8713,9 +8714,9 @@ do { LATBbits.LATB6 = 1; } while(0);
 (INTCONbits.PEIE = 1);
 while (1)
 {
-StepMove(500,5,16);
+StepMove(3000,1,16);
 
-# 47
+# 48
 }
 }
 

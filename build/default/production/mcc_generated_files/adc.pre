@@ -8581,7 +8581,20 @@ adc_result_t ADC_GetConversion(adc_channel_t channel);
 # 305
 void ADC_ISR(void);
 
-# 58 "mcc_generated_files/adc.c"
+uint16_t ADC_Conversion( uint8_t channel );
+
+# 94 "mcc_generated_files/eusart1.h"
+void EUSART1_Initialize(void);
+
+# 114
+uint8_t EUSART1_Read(void);
+
+# 134
+void EUSART1_Write(uint8_t txData);
+
+# 59 "mcc_generated_files/adc.c"
+uint16_t ANALOG_0,ANALOG_1;
+
 void ADC_Initialize(void)
 {
 
@@ -8652,9 +8665,23 @@ return ((ADRESH << 8) + ADRESL);
 
 }
 
+uint16_t ADC_Conversion( uint8_t channel ){
+uint16_t VALUE;
+
+ADC_SelectChannel(channel);
+ADC_StartConversion();
+while(!ADC_IsConversionDone());
+VALUE = ADC_GetConversionResult();
+EUSART1_Write(VALUE);
+
+return(VALUE);
+}
+
 
 void ADC_ISR(void)
 {
+
+
 
 PIR1bits.ADIF = 0;
 }

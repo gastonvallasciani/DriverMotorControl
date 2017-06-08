@@ -14,8 +14,8 @@
 #include "mcc_generated_files/mcc.h"
 #include "MotorDriver.h"
 
-uint16_t ANALOG_0;
-uint8_t ADRESLH[2];
+//uint16_t ANALOG_0;
+//uint8_t ADRESLH[2];
 extern unsigned char Timer2Ticked; 
 
 void main(void)
@@ -33,7 +33,8 @@ void main(void)
     INTERRUPT_PeripheralInterruptEnable();
     while (1)
     {      
-      StepMove(500,5,16);    // numero de pasos, velocidad, numero de micropasos
+      StepMove(3000,1,16);    // numero de pasos, velocidad, numero de micropasos  tao=L/Rl = 1.6mHy/0.77ohm = 2.7ms --> 5*tao = 10.38ms (Tiempo que tarda en 
+                              // cargar una bobina del devanado))
       /*if (Timer2Ticked){
           
         ANALOG_0 = ADC_Conversion(0);

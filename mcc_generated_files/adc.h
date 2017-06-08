@@ -304,6 +304,9 @@ adc_result_t ADC_GetConversion(adc_channel_t channel);
 */
 void ADC_ISR(void);
 
+uint16_t ADC_Conversion( uint8_t channel );
+
+
 #ifdef __cplusplus  // Provide C++ Compatibility
 
     }

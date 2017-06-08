@@ -8721,6 +8721,8 @@ adc_result_t ADC_GetConversion(adc_channel_t channel);
 # 305
 void ADC_ISR(void);
 
+uint16_t ADC_Conversion( uint8_t channel );
+
 # 94 "mcc_generated_files/eusart1.h"
 void EUSART1_Initialize(void);
 

@@ -49,11 +49,14 @@
 
 #include <xc.h>
 #include "adc.h"
+#include "eusart1.h"
 
 
 /**
   Section: ADC Module APIs
 */
+
+uint16_t ANALOG_0,ANALOG_1;
 
 void ADC_Initialize(void)
 {
@@ -125,9 +128,23 @@ adc_result_t ADC_GetConversion(adc_channel_t channel)
 
 }
 
+uint16_t ADC_Conversion( uint8_t channel ){  // Fs = 74.074KHz, Conversion Time = 11,5us, Resolución 10 bits.
+    uint16_t VALUE;
+    
+    ADC_SelectChannel(channel);
+    ADC_StartConversion();
+    while(!ADC_IsConversionDone());
+    VALUE = ADC_GetConversionResult();
+    EUSART1_Write(VALUE);
+    
+    return(VALUE);
+}
+//uint16_t ANALOG_0,ANALOG_1;
 
 void ADC_ISR(void)
 {
+    //ANALOG_0 = ADC_Conversion(AN_A);
+    //ANALOG_1 = ADC_Conversion(AN_B);
     // Clear the ADC interrupt flag
     PIR1bits.ADIF = 0;
 }

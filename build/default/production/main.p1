@@ -6670,6 +6670,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 258: adc_result_t ADC_GetConversionResult(void);
 [; ;adc.h: 288: adc_result_t ADC_GetConversion(adc_channel_t channel);
 [; ;adc.h: 305: void ADC_ISR(void);
+[; ;adc.h: 307: uint16_t ADC_Conversion( uint8_t channel );
 [; ;eusart1.h: 94: void EUSART1_Initialize(void);
 [; ;eusart1.h: 114: uint8_t EUSART1_Read(void);
 [; ;eusart1.h: 134: void EUSART1_Write(uint8_t txData);
@@ -6683,15 +6684,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MotorDriver.h: 14: void State8MEF_act( void );
 [; ;MotorDriver.h: 15: void State16MEF_act( void );
 [; ;MotorDriver.h: 16: void StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number );
-[; ;MotorDriver.h: 17: uint16_t ADC_Conversion( uint8_t channel );
-"17 main.c
-[v _ANALOG_0 `ui ~T0 @X0 1 e ]
-[; ;main.c: 17: uint16_t ANALOG_0;
-"18
-[v _ADRESLH `uc ~T0 @X0 -> 2 `i e ]
-[; ;main.c: 18: uint8_t ADRESLH[2];
+[; ;MotorDriver.h: 17: uint8_t controlador1(uint8_t LookUp,uint16_t An_Acquisition);
+[; ;MotorDriver.h: 18: uint8_t controlador2(uint8_t LookUp,uint16_t An_Acquisition);
 [; ;main.c: 19: extern unsigned char Timer2Ticked;
-"21
+"21 main.c
 [v _main `(v ~T0 @X0 1 ef ]
 "22
 {
@@ -6727,17 +6723,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 35: {
 "35
 {
-[; ;main.c: 36: StepMove(500,5,16);
+[; ;main.c: 36: StepMove(3000,1,16);
 "36
-[e ( _StepMove (3 , , -> -> 500 `i `ui -> -> 5 `i `uc -> -> 16 `i `uc ]
-"47
+[e ( _StepMove (3 , , -> -> 3000 `i `ui -> -> 1 `i `uc -> -> 16 `i `uc ]
+"48
 }
 [e :U 854 ]
 "34
 [e $U 855  ]
 [e :U 856 ]
-[; ;main.c: 47: }
 [; ;main.c: 48: }
-"48
+[; ;main.c: 49: }
+"49
 [e :UE 850 ]
 }
