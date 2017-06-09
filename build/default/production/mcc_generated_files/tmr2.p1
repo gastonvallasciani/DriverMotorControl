@@ -6648,9 +6648,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.h: 343: void TMR2_SetInterruptHandler(void *InterruptHandler);
 [; ;tmr2.h: 361: extern void (*TMR2_InterruptHandler)(void);
 [; ;tmr2.h: 379: void TMR2_DefaultInterruptHandler(void);
-"53 mcc_generated_files/tmr2.c
+"56 mcc_generated_files/tmr2.c
 [v _Timer2Ticked `Vuc ~T0 @X0 1 e ]
-[; ;tmr2.c: 53: volatile unsigned char Timer2Ticked;
+[i _Timer2Ticked
+-> -> 0 `i `uc
+]
+[; ;tmr2.c: 56: volatile unsigned char Timer2Ticked=0;
 "58
 [v _TMR2_InterruptHandler `*F7000 ~T0 @X0 1 e ]
 [; ;tmr2.c: 58: void (*TMR2_InterruptHandler)(void);
@@ -6662,15 +6665,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.c: 65: {
 [e :U _TMR2_Initialize ]
 [f ]
-[; ;tmr2.c: 69: T2CON = 0x08;
+[; ;tmr2.c: 69: T2CON = 0x02;
 "69
-[e = _T2CON -> -> 8 `i `uc ]
-[; ;tmr2.c: 72: PR2 = 0xF9;
+[e = _T2CON -> -> 2 `i `uc ]
+[; ;tmr2.c: 72: PR2 = 0x0C;
 "72
-[e = _PR2 -> -> 249 `i `uc ]
-[; ;tmr2.c: 75: TMR2 = 0x4E;
+[e = _PR2 -> -> 12 `i `uc ]
+[; ;tmr2.c: 75: TMR2 = 0x00;
 "75
-[e = _TMR2 -> -> 78 `i `uc ]
+[e = _TMR2 -> -> 0 `i `uc ]
 [; ;tmr2.c: 78: PIR1bits.TMR2IF = 0;
 "78
 [e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
@@ -6801,8 +6804,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.c: 134: {
 [e :U _TMR2_CallBack ]
 [f ]
-[; ;tmr2.c: 135: Timer2Ticked=1;
-"135
+[; ;tmr2.c: 136: Timer2Ticked=1;
+"136
 [e = _Timer2Ticked -> -> 1 `i `uc ]
 [; ;tmr2.c: 138: if(TMR2_InterruptHandler)
 "138

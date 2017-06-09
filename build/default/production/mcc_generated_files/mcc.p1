@@ -9,10 +9,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR6_Initialize `(v ~T0 @X0 0 ef ]
 "95 mcc_generated_files/epwm2.h
 [v _EPWM2_Initialize `(v ~T0 @X0 0 ef ]
-"58 mcc_generated_files/ccp5.h
-[v _CCP5_Initialize `(v ~T0 @X0 0 ef ]
 "136 mcc_generated_files/adc.h
 [v _ADC_Initialize `(v ~T0 @X0 0 ef ]
+"58 mcc_generated_files/ccp5.h
+[v _CCP5_Initialize `(v ~T0 @X0 0 ef ]
 "95 mcc_generated_files/epwm1.h
 [v _EPWM1_Initialize `(v ~T0 @X0 0 ef ]
 "103 mcc_generated_files/tmr2.h
@@ -6708,7 +6708,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.h: 343: void TMR2_SetInterruptHandler(void *InterruptHandler);
 [; ;tmr2.h: 361: extern void (*TMR2_InterruptHandler)(void);
 [; ;tmr2.h: 379: void TMR2_DefaultInterruptHandler(void);
-[; ;ccp5.h: 58: void CCP5_Initialize(void);
 [; ;tmr6.h: 102: void TMR6_Initialize(void);
 [; ;tmr6.h: 131: void TMR6_StartTimer(void);
 [; ;tmr6.h: 163: void TMR6_StopTimer(void);
@@ -6719,6 +6718,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 325: void TMR6_SetInterruptHandler(void *InterruptHandler);
 [; ;tmr6.h: 343: extern void (*TMR6_InterruptHandler)(void);
 [; ;tmr6.h: 361: void TMR6_DefaultInterruptHandler(void);
+[; ;epwm2.h: 95: void EPWM2_Initialize(void);
+[; ;epwm2.h: 121: void EPWM2_LoadDutyValue(uint16_t dutyValue);
 [; ;adc.h: 71: typedef uint16_t adc_result_t;
 [; ;adc.h: 76: typedef struct
 [; ;adc.h: 77: {
@@ -6741,13 +6742,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 288: adc_result_t ADC_GetConversion(adc_channel_t channel);
 [; ;adc.h: 305: void ADC_ISR(void);
 [; ;adc.h: 307: uint16_t ADC_Conversion( uint8_t channel );
+[; ;epwm1.h: 95: void EPWM1_Initialize(void);
+[; ;epwm1.h: 121: void EPWM1_LoadDutyValue(uint16_t dutyValue);
+[; ;ccp5.h: 58: void CCP5_Initialize(void);
 [; ;eusart1.h: 94: void EUSART1_Initialize(void);
 [; ;eusart1.h: 114: uint8_t EUSART1_Read(void);
 [; ;eusart1.h: 134: void EUSART1_Write(uint8_t txData);
-[; ;epwm1.h: 95: void EPWM1_Initialize(void);
-[; ;epwm1.h: 121: void EPWM1_LoadDutyValue(uint16_t dutyValue);
-[; ;epwm2.h: 95: void EPWM2_Initialize(void);
-[; ;epwm2.h: 121: void EPWM2_LoadDutyValue(uint16_t dutyValue);
 [; ;mcc.h: 75: void SYSTEM_Initialize(void);
 [; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
 "111 mcc_generated_files/mcc.c
@@ -6773,12 +6773,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;mcc.c: 118: EPWM2_Initialize();
 "118
 [e ( _EPWM2_Initialize ..  ]
-[; ;mcc.c: 119: CCP5_Initialize();
+[; ;mcc.c: 119: ADC_Initialize();
 "119
-[e ( _CCP5_Initialize ..  ]
-[; ;mcc.c: 120: ADC_Initialize();
-"120
 [e ( _ADC_Initialize ..  ]
+[; ;mcc.c: 120: CCP5_Initialize();
+"120
+[e ( _CCP5_Initialize ..  ]
 [; ;mcc.c: 121: EPWM1_Initialize();
 "121
 [e ( _EPWM1_Initialize ..  ]

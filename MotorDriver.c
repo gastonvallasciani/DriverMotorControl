@@ -49,17 +49,18 @@ void State8MEF_act( void ){
                  INB_OFF(); IND_OFF();                  
                  if (Microstep<8){
                      //EUSART1_Write(Microstep);
-                     ANALOG_0 = ADC_GetConversion(AN_A);
+                     
+                    /*ANALOG_0 = ADC_GetConversion(AN_A);
                      ANALOG_1 = ADC_GetConversion(AN_B);
                      PWM1 = controlador1(LookUP_TABLE_COS[Microstep], ANALOG_0);
                      PWM2 = controlador2(LookUP_TABLE_SEN[Microstep], ANALOG_1);
-                     LookUP_TABLE_COS[Microstep]=PWM1;
-                     LookUP_TABLE_SEN[Microstep]=PWM2;
+                     //LookUP_TABLE_COS[Microstep]=PWM1;
+                     //LookUP_TABLE_SEN[Microstep]=PWM2;
                      EPWM1_LoadDutyValue(PWM1);
-                     EPWM2_LoadDutyValue(PWM2); 
+                     EPWM2_LoadDutyValue(PWM2);*/ 
                      
-                     //EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
-                     //EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);                     
+                     EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
+                     EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);                     
                      if (Microstep==7){
                          EstadoActual = STATE2;                  
                      }
@@ -70,15 +71,16 @@ void State8MEF_act( void ){
                  PSTR1CON = 0x02; PSTR2CON = 0x01;
                  INA_OFF(); IND_OFF();
                  if ((Microstep<16)&&(Microstep>7)){
+                     
                      //EUSART1_Write(Microstep);
-                     ANALOG_0 = ADC_GetConversion(AN_A);
+                     /*ANALOG_0 = ADC_GetConversion(AN_A);
                      ANALOG_1 = ADC_GetConversion(AN_B);
                      PWM1 = controlador1(LookUP_TABLE_COS[Microstep], ANALOG_0);
                      PWM2 = controlador2(LookUP_TABLE_SEN[Microstep], ANALOG_1);
-                     LookUP_TABLE_COS[Microstep]=PWM1;
-                     LookUP_TABLE_SEN[Microstep]=PWM2;
+                     //LookUP_TABLE_COS[Microstep]=PWM1;
+                     //LookUP_TABLE_SEN[Microstep]=PWM2;
                      EPWM1_LoadDutyValue(PWM1);
-                     EPWM2_LoadDutyValue(PWM2); 
+                     EPWM2_LoadDutyValue(PWM2);*/ 
                      
                      //EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
                      //EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]); 
@@ -94,17 +96,18 @@ void State8MEF_act( void ){
                  INA_OFF(); INC_OFF();
                  if ((Microstep<24)&&(Microstep>15)){
                      //EUSART1_Write(Microstep);
-                     ANALOG_0 = ADC_GetConversion(AN_A);
+                     
+                     /*ANALOG_0 = ADC_GetConversion(AN_A);
                      ANALOG_1 = ADC_GetConversion(AN_B);
                      PWM1 = controlador1(LookUP_TABLE_COS[Microstep], ANALOG_0);
                      PWM2 = controlador2(LookUP_TABLE_SEN[Microstep], ANALOG_1);
-                     LookUP_TABLE_COS[Microstep]=PWM1;
-                     LookUP_TABLE_SEN[Microstep]=PWM2;
+                     //LookUP_TABLE_COS[Microstep]=PWM1;
+                     //LookUP_TABLE_SEN[Microstep]=PWM2;
                      EPWM1_LoadDutyValue(PWM1);
-                     EPWM2_LoadDutyValue(PWM2); 
+                     EPWM2_LoadDutyValue(PWM2);*/ 
                      
-                     //EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
-                     //EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]); 
+                     EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
+                     EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]); 
                      
                      if (Microstep==23){
                          EstadoActual = STATE4;
@@ -117,17 +120,18 @@ void State8MEF_act( void ){
                  INB_OFF(); INC_OFF();
                  if ((Microstep<32)&&(Microstep>23)){
                      //EUSART1_Write(Microstep);
-                     ANALOG_0 = ADC_GetConversion(AN_A);
+                     
+                     /*ANALOG_0 = ADC_GetConversion(AN_A);
                      ANALOG_1 = ADC_GetConversion(AN_B);
                      PWM1 = controlador1(LookUP_TABLE_COS[Microstep], ANALOG_0);
                      PWM2 = controlador2(LookUP_TABLE_SEN[Microstep], ANALOG_1);
-                     LookUP_TABLE_COS[Microstep]=PWM1;
-                     LookUP_TABLE_SEN[Microstep]=PWM2;
+                     //LookUP_TABLE_COS[Microstep]=PWM1;
+                     //LookUP_TABLE_SEN[Microstep]=PWM2;
                      EPWM1_LoadDutyValue(PWM1);
-                     EPWM2_LoadDutyValue(PWM2); 
+                     EPWM2_LoadDutyValue(PWM2);*/ 
                      
-                     //EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
-                     //EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]); 
+                     EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
+                     EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]); 
                      
                      if (Microstep==31){
                          EstadoActual = STATE0;

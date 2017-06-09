@@ -33,7 +33,7 @@ void main(void)
     INTERRUPT_PeripheralInterruptEnable();
     while (1)
     {      
-      StepMove(3000,1,16);    // numero de pasos, velocidad, numero de micropasos  tao=L/Rl = 1.6mHy/0.77ohm = 2.7ms --> 5*tao = 10.38ms (Tiempo que tarda en 
+      StepMove(2500,8,16);    // numero de pasos, velocidad, numero de micropasos  tao=L/Rl = 1.6mHy/0.77ohm = 2.07ms --> 5*tao = 10.38ms (Tiempo que tarda en 
                               // cargar una bobina del devanado))
       /*if (Timer2Ticked){
           

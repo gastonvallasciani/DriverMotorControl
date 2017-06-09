@@ -50,10 +50,10 @@
 #include <xc.h>
 #include "tmr2.h"
 
-volatile unsigned char Timer2Ticked;
 /**
   Section: Global Variables Definitions
 */
+volatile unsigned char Timer2Ticked=0;
 
 void (*TMR2_InterruptHandler)(void);
 
@@ -65,14 +65,14 @@ void TMR2_Initialize(void)
 {
     // Set TMR2 to the options selected in the User Interface
 
-    // T2CKPS 1:1; T2OUTPS 1:2; TMR2ON off; 
-    T2CON = 0x08;
+    // T2CKPS 1:16; T2OUTPS 1:1; TMR2ON off; 
+    T2CON = 0x02;
 
-    // PR2 ; 
-    PR2 = 0xF9;
+    // PR2 12; 
+    PR2 = 0x0C;
 
     // TMR2 0; 
-    TMR2 = 0x4E;
+    TMR2 = 0x00;
 
     // Clearing IF flag before enabling the interrupt.
     PIR1bits.TMR2IF = 0;
@@ -132,8 +132,8 @@ void TMR2_ISR(void)
 
 void TMR2_CallBack(void)
 {
-    Timer2Ticked=1;
     // Add your custom callback code here
+    Timer2Ticked=1;
     // this code executes every TMR2_INTERRUPT_TICKER_FACTOR periods of TMR2
     if(TMR2_InterruptHandler)
     {

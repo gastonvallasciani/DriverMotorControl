@@ -19,14 +19,6 @@ STATE2 2
 STATE3 3
 STATE4 4
 ]
-"52
-[e E7041 . `uc
-AN_A 0
-AN_B 1
-channel_CTMU 29
-channel_DAC 30
-channel_FVRBuf2 31
-]
 "62 C:\Program Files\Microchip\xc8\v1.41\sources\common\float.c
 [v ___ftpack __ftpack `(f  1 e 3 0 ]
 "86 C:\Program Files\Microchip\xc8\v1.41\sources\common\ftadd.c
@@ -63,8 +55,6 @@ channel_FVRBuf2 31
 [v _ADC_IsConversionDone ADC_IsConversionDone `(uc  1 e 1 0 ]
 "105
 [v _ADC_GetConversionResult ADC_GetConversionResult `(ui  1 e 2 0 ]
-"111
-[v _ADC_GetConversion ADC_GetConversion `(ui  1 e 2 0 ]
 "144
 [v _ADC_ISR ADC_ISR `(v  1 e 1 0 ]
 "57 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/ccp5.c
@@ -117,14 +107,10 @@ channel_FVRBuf2 31
 [v _StateMEF_ini StateMEF_ini `(v  1 e 1 0 ]
 "38
 [v _State8MEF_act State8MEF_act `(v  1 e 1 0 ]
-"145
+"149
 [v _State16MEF_act State16MEF_act `(v  1 e 1 0 ]
-"211
+"215
 [v _StepMove StepMove `(v  1 e 1 0 ]
-"233
-[v _controlador1 controlador1 `(uc  1 e 1 0 ]
-"254
-[v _controlador2 controlador2 `(uc  1 e 1 0 ]
 "49 C:\Program Files\Microchip\xc8\v1.41\include\pic18f46k22.h
 [v _ANSELA ANSELA `VEuc  1 e 1 @3896 ]
 "93
@@ -528,7 +514,7 @@ channel_FVRBuf2 31
 ]
 [u S630 . 1 `S608 1 . 1 0 `S617 1 . 1 0 `S626 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES630  1 e 1 @4082 ]
-"53 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/tmr2.c
+"56 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/tmr2.c
 [v _Timer2Ticked Timer2Ticked `VEuc  1 e 1 0 ]
 "58
 [v _TMR2_InterruptHandler TMR2_InterruptHandler `*.37(v  1 e 2 0 ]
@@ -555,111 +541,23 @@ channel_FVRBuf2 31
 {
 "49
 } 0
-"211 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
+"215 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
 [v _StepMove StepMove `(v  1 e 1 0 ]
 {
-[v StepMove@StepNumber StepNumber `ui  1 p 2 55 ]
-[v StepMove@Velocidad Velocidad `uc  1 p 1 57 ]
-[v StepMove@microstep_number microstep_number `uc  1 p 1 58 ]
-"230
+[v StepMove@StepNumber StepNumber `ui  1 p 2 19 ]
+[v StepMove@Velocidad Velocidad `uc  1 p 1 21 ]
+[v StepMove@microstep_number microstep_number `uc  1 p 1 22 ]
+"234
 } 0
 "38
 [v _State8MEF_act State8MEF_act `(v  1 e 1 0 ]
 {
-"39
-[v State8MEF_act@ANALOG_1 ANALOG_1 `ui  1 a 2 51 ]
-[v State8MEF_act@ANALOG_0 ANALOG_0 `ui  1 a 2 49 ]
-[v State8MEF_act@PWM2 PWM2 `uc  1 a 1 54 ]
-[v State8MEF_act@PWM1 PWM1 `uc  1 a 1 53 ]
-"143
+"147
 } 0
-"254
-[v _controlador2 controlador2 `(uc  1 e 1 0 ]
-{
-[v controlador2@LookUp LookUp `uc  1 a 1 wreg ]
-"257
-[v controlador2@Vref Vref `f  1 a 3 44 ]
-[v controlador2@An_float An_float `f  1 a 3 40 ]
-"256
-[v controlador2@error error `c  1 a 1 47 ]
-[v controlador2@output output `c  1 a 1 43 ]
-"254
-[v controlador2@LookUp LookUp `uc  1 a 1 wreg ]
-[v controlador2@An_Acquisition An_Acquisition `ui  1 p 2 37 ]
-"259
-[v controlador2@LookUp LookUp `uc  1 a 1 48 ]
-"273
-} 0
-"233
-[v _controlador1 controlador1 `(uc  1 e 1 0 ]
-{
-[v controlador1@LookUp LookUp `uc  1 a 1 wreg ]
-"236
-[v controlador1@An_float An_float `f  1 a 3 43 ]
-[v controlador1@Vref Vref `f  1 a 3 40 ]
-"235
-[v controlador1@error error `c  1 a 1 47 ]
-[v controlador1@output output `c  1 a 1 46 ]
-"233
-[v controlador1@LookUp LookUp `uc  1 a 1 wreg ]
-[v controlador1@An_Acquisition An_Acquisition `ui  1 p 2 37 ]
-"238
-[v controlador1@LookUp LookUp `uc  1 a 1 48 ]
-"252
-} 0
-"28 C:\Program Files\Microchip\xc8\v1.41\sources\common\lwtoft.c
-[v ___lwtoft __lwtoft `(f  1 e 3 0 ]
-{
-[v ___lwtoft@c c `ui  1 p 2 22 ]
-"31
-} 0
-"44 C:\Program Files\Microchip\xc8\v1.41\sources\common\fttol.c
-[v ___fttol __fttol `(l  1 e 4 0 ]
-{
-"47
-[v ___fttol@lval lval `ul  1 a 4 24 ]
-"46
-[v ___fttol@exp1 exp1 `uc  1 a 1 28 ]
-[v ___fttol@sign1 sign1 `uc  1 a 1 23 ]
-"44
-[v ___fttol@f1 f1 `f  1 p 3 14 ]
-"73
-} 0
-"54 C:\Program Files\Microchip\xc8\v1.41\sources\common\ftdiv.c
-[v ___ftdiv __ftdiv `(f  1 e 3 0 ]
-{
-"60
-[v ___ftdiv@f3 f3 `f  1 a 3 32 ]
-"59
-[v ___ftdiv@sign sign `uc  1 a 1 36 ]
-[v ___ftdiv@exp exp `uc  1 a 1 35 ]
-[v ___ftdiv@cntr cntr `uc  1 a 1 31 ]
-"54
-[v ___ftdiv@f1 f1 `f  1 p 3 22 ]
-[v ___ftdiv@f2 f2 `f  1 p 3 25 ]
-"86
-} 0
-"62 C:\Program Files\Microchip\xc8\v1.41\sources\common\float.c
-[v ___ftpack __ftpack `(f  1 e 3 0 ]
-{
-[v ___ftpack@arg arg `um  1 p 3 14 ]
-[v ___ftpack@exp exp `uc  1 p 1 17 ]
-[v ___ftpack@sign sign `uc  1 p 1 18 ]
-"86
-} 0
-"111 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/adc.c
-[v _ADC_GetConversion ADC_GetConversion `(ui  1 e 2 0 ]
-{
-[v ADC_GetConversion@channel channel `E6986  1 a 1 wreg ]
-[v ADC_GetConversion@channel channel `E6986  1 a 1 wreg ]
-"114
-[v ADC_GetConversion@channel channel `E6986  1 a 1 18 ]
-"129
-} 0
-"145 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
+"149
 [v _State16MEF_act State16MEF_act `(v  1 e 1 0 ]
 {
-"209
+"213
 } 0
 "96 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/eusart1.c
 [v _EUSART1_Write EUSART1_Write `(v  1 e 1 0 ]

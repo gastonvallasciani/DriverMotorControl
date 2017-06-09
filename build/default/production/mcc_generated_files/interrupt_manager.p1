@@ -6688,7 +6688,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.h: 343: void TMR2_SetInterruptHandler(void *InterruptHandler);
 [; ;tmr2.h: 361: extern void (*TMR2_InterruptHandler)(void);
 [; ;tmr2.h: 379: void TMR2_DefaultInterruptHandler(void);
-[; ;ccp5.h: 58: void CCP5_Initialize(void);
 [; ;tmr6.h: 102: void TMR6_Initialize(void);
 [; ;tmr6.h: 131: void TMR6_StartTimer(void);
 [; ;tmr6.h: 163: void TMR6_StopTimer(void);
@@ -6699,6 +6698,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 325: void TMR6_SetInterruptHandler(void *InterruptHandler);
 [; ;tmr6.h: 343: extern void (*TMR6_InterruptHandler)(void);
 [; ;tmr6.h: 361: void TMR6_DefaultInterruptHandler(void);
+[; ;epwm2.h: 95: void EPWM2_Initialize(void);
+[; ;epwm2.h: 121: void EPWM2_LoadDutyValue(uint16_t dutyValue);
 [; ;adc.h: 71: typedef uint16_t adc_result_t;
 [; ;adc.h: 76: typedef struct
 [; ;adc.h: 77: {
@@ -6721,13 +6722,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 288: adc_result_t ADC_GetConversion(adc_channel_t channel);
 [; ;adc.h: 305: void ADC_ISR(void);
 [; ;adc.h: 307: uint16_t ADC_Conversion( uint8_t channel );
+[; ;epwm1.h: 95: void EPWM1_Initialize(void);
+[; ;epwm1.h: 121: void EPWM1_LoadDutyValue(uint16_t dutyValue);
+[; ;ccp5.h: 58: void CCP5_Initialize(void);
 [; ;eusart1.h: 94: void EUSART1_Initialize(void);
 [; ;eusart1.h: 114: uint8_t EUSART1_Read(void);
 [; ;eusart1.h: 134: void EUSART1_Write(uint8_t txData);
-[; ;epwm1.h: 95: void EPWM1_Initialize(void);
-[; ;epwm1.h: 121: void EPWM1_LoadDutyValue(uint16_t dutyValue);
-[; ;epwm2.h: 95: void EPWM2_Initialize(void);
-[; ;epwm2.h: 121: void EPWM2_LoadDutyValue(uint16_t dutyValue);
 [; ;mcc.h: 75: void SYSTEM_Initialize(void);
 [; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
 "51 mcc_generated_files/interrupt_manager.c
