@@ -67,8 +67,8 @@ void TMR6_Initialize(void)
     // T6CKPS 1:4; T6OUTPS 1:1; TMR6ON off; 
     T6CON = 0x01;
 
-    // PR6 70;        // frec pwm 14k khz resol = 8
-    PR6 = 0x3C;
+    // PR6 69; 
+    PR6 = 0x45;
 
     // TMR6 0; 
     TMR6 = 0x00;

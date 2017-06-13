@@ -8573,12 +8573,12 @@ extern void (*TMR2_InterruptHandler)(void);
 # 379
 void TMR2_DefaultInterruptHandler(void);
 
-# 56 "mcc_generated_files/tmr2.c"
+# 57 "mcc_generated_files/tmr2.c"
 volatile unsigned char Timer2Ticked=0;
 
 void (*TMR2_InterruptHandler)(void);
 
-# 64
+# 65
 void TMR2_Initialize(void)
 {
 

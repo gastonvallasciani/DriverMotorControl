@@ -8585,6 +8585,18 @@ extern void (*TMR2_InterruptHandler)(void);
 # 379
 void TMR2_DefaultInterruptHandler(void);
 
+# 94 "mcc_generated_files/eusart1.h"
+void EUSART1_Initialize(void);
+
+# 114
+uint8_t EUSART1_Read(void);
+
+# 134
+void EUSART1_Write(uint8_t txData);
+
+# 58 "mcc_generated_files/ccp5.h"
+void CCP5_Initialize(void);
+
 # 102 "mcc_generated_files/tmr6.h"
 void TMR6_Initialize(void);
 
@@ -8614,12 +8626,6 @@ extern void (*TMR6_InterruptHandler)(void);
 
 # 361
 void TMR6_DefaultInterruptHandler(void);
-
-# 95 "mcc_generated_files/epwm2.h"
-void EPWM2_Initialize(void);
-
-# 121
-void EPWM2_LoadDutyValue(uint16_t dutyValue);
 
 # 71 "mcc_generated_files/adc.h"
 typedef uint16_t adc_result_t;
@@ -8670,17 +8676,11 @@ void EPWM1_Initialize(void);
 # 121
 void EPWM1_LoadDutyValue(uint16_t dutyValue);
 
-# 58 "mcc_generated_files/ccp5.h"
-void CCP5_Initialize(void);
+# 95 "mcc_generated_files/epwm2.h"
+void EPWM2_Initialize(void);
 
-# 94 "mcc_generated_files/eusart1.h"
-void EUSART1_Initialize(void);
-
-# 114
-uint8_t EUSART1_Read(void);
-
-# 134
-void EUSART1_Write(uint8_t txData);
+# 121
+void EPWM2_LoadDutyValue(uint16_t dutyValue);
 
 # 75 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
@@ -8692,28 +8692,31 @@ void OSCILLATOR_Initialize(void);
 void StateMEF_ini( void );
 void State8MEF_act( void );
 void State16MEF_act( void );
-void StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number );
+void StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
+void State16MEF_act_Backward( void );
+void State8MEF_act_Backward( void );
 uint8_t controlador1(uint8_t LookUp,uint16_t An_Acquisition);
 uint8_t controlador2(uint8_t LookUp,uint16_t An_Acquisition);
 
 # 5 "MotorDriver.c"
-static uint8_t LookUP_TABLE_COS[32]={250,237,216,188,153,113,69,24,24,69,113,153,188,216,237,250,250,237,216,188,153,113,69,24,24,69,113,153,188,216,237,250};
-static uint8_t LookUP_TABLE_SEN[32]={24,69,113,153,188,216,237,250,250,237,216,188,153,113,69,24,24,69,113,153,188,216,237,250,250,237,216,188,153,113,69,24};
+static uint8_t LookUP_TABLE_COS[32]={125,118,108,94,77,57,34,12,12,34,57,77,94,108,118,125,125,118,108,94,77,57,34,12,12,34,57,77,94,108,118,125};
+static uint8_t LookUP_TABLE_SEN[32]={12,34,57,77,94,108,118,125,125,118,108,94,77,57,34,12,12,34,57,77,94,108,118,125,125,118,108,94,77,57,34,12};
 
-static uint8_t LookUP_TABLE_COS_16[64]={254,250,244,236,226,214,200,184,166,147,127,106,83,60,36,12,12,36,60,83,106,127,147,166,184,200,214,226,236,244,250,254,254,250,244,236,226,214,200,184,166,147,127,106,83,60,36,12,12,36,60,83,106,127,147,166,184,200,214,226,236,244,250,254};
-static uint8_t LookUP_TABLE_SEN_16[64]={12,36,60,83,106,127,147,166,184,200,214,226,236,244,250,254,254,250,244,236,226,214,200,184,166,147,127,106,83,60,36,12,12,36,60,83,106,127,147,166,184,200,214,226,236,244,250,254,254,250,244,236,226,214,200,184,166,147,127,106,83,60,36,12};
+static uint8_t LookUP_TABLE_COS_16[64]={126,124,121,117,112,106,99,91,83,73,63,53,42,29,18,6,6,18,29,42,53,63,73,83,91,99,106,112,117,121,124,126,126,124,121,117,112,106,99,91,83,73,63,53,42,29,18,6,6,18,29,42,53,63,73,83,91,99,106,112,117,121,124,126};
+static uint8_t LookUP_TABLE_SEN_16[64]={6,18,29,42,53,63,73,83,91,99,106,112,117,121,124,126,126,124,121,117,112,106,99,91,83,73,63,53,42,29,18,6,6,18,29,42,53,63,73,83,91,99,106,112,117,121,124,126,126,124,121,117,112,106,99,91,83,73,63,53,42,29,18,6};
 
 static int8_t Microstep;
-
-static int8_t Direccion;
 
 static uint16_t StepCount=0;
 
 static uint16_t Timer2Tick_count;
 
-extern uint16_t ANALOG_0,ANALOG_1;
+static uint8_t MoveDone;
+
 
 extern unsigned char Timer2Ticked;
+
+static void limitar_corriente( void );
 
 typedef enum{
 STATE0,
@@ -8726,13 +8729,13 @@ STATE4
 t_STATEMEF EstadoActual;
 
 void StateMEF_ini( void ){
+
 EstadoActual = STATE1;
 Microstep=0;
 }
 
 void State8MEF_act( void ){
-uint8_t PWM1,PWM2;
-uint16_t ANALOG_0,ANALOG_1;
+
 switch(EstadoActual) {
 case STATE0:
 PSTR1CON = 0x00; PSTR2CON = 0x00;
@@ -8744,7 +8747,8 @@ PSTR1CON = 0x01; PSTR2CON = 0x01;
 do { LATDbits.LATD5 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
 if (Microstep<8){
 
-# 62
+
+limitar_corriente();
 EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
 EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
 if (Microstep==7){
@@ -8758,7 +8762,10 @@ PSTR1CON = 0x02; PSTR2CON = 0x01;
 do { LATCbits.LATC2 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
 if ((Microstep<16)&&(Microstep>7)){
 
-# 88
+limitar_corriente();
+EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
+EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
+
 if (Microstep==15){
 EstadoActual = STATE3;
 }
@@ -8770,7 +8777,8 @@ PSTR1CON = 0x02; PSTR2CON = 0x02;
 do { LATCbits.LATC2 = 0; } while(0); do { LATCbits.LATC1 = 0; } while(0);
 if ((Microstep<24)&&(Microstep>15)){
 
-# 109
+
+limitar_corriente();
 EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
 EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
 
@@ -8785,12 +8793,14 @@ PSTR1CON = 0x01; PSTR2CON = 0x02;
 do { LATDbits.LATD5 = 0; } while(0); do { LATCbits.LATC1 = 0; } while(0);
 if ((Microstep<32)&&(Microstep>23)){
 
-# 133
+
+limitar_corriente();
 EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
 EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
 
 if (Microstep==31){
-EstadoActual = STATE0;
+
+EstadoActual = STATE1;
 Microstep=-1;
 }
 Microstep++;
@@ -8813,7 +8823,8 @@ case STATE1:
 PSTR1CON = 0x01; PSTR2CON = 0x01;
 do { LATDbits.LATD5 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
 if (Microstep<16){
-EUSART1_Write(Microstep);
+
+limitar_corriente();
 EPWM1_LoadDutyValue(LookUP_TABLE_COS_16[Microstep]);
 EPWM2_LoadDutyValue(LookUP_TABLE_SEN_16[Microstep]);
 if (Microstep==15){
@@ -8825,8 +8836,9 @@ break;
 case STATE2:
 PSTR1CON = 0x02; PSTR2CON = 0x01;
 do { LATCbits.LATC2 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
+limitar_corriente();
 if ((Microstep<32)&&(Microstep>15)){
-EUSART1_Write(Microstep);
+
 EPWM1_LoadDutyValue(LookUP_TABLE_COS_16[Microstep]);
 EPWM2_LoadDutyValue(LookUP_TABLE_SEN_16[Microstep]);
 if (Microstep==31){
@@ -8838,8 +8850,9 @@ break;
 case STATE3:
 PSTR1CON = 0x02; PSTR2CON = 0x02;
 do { LATCbits.LATC2 = 0; } while(0); do { LATCbits.LATC1 = 0; } while(0);
+limitar_corriente();
 if ((Microstep<48)&&(Microstep>31)){
-EUSART1_Write(Microstep);
+
 EPWM1_LoadDutyValue(LookUP_TABLE_COS_16[Microstep]);
 EPWM2_LoadDutyValue(LookUP_TABLE_SEN_16[Microstep]);
 if (Microstep==47){
@@ -8852,11 +8865,12 @@ case STATE4:
 PSTR1CON = 0x01; PSTR2CON = 0x02;
 do { LATDbits.LATD5 = 0; } while(0); do { LATCbits.LATC1 = 0; } while(0);
 if ((Microstep<64)&&(Microstep>47)){
-EUSART1_Write(Microstep);
+
 EPWM1_LoadDutyValue(LookUP_TABLE_COS_16[Microstep]);
 EPWM2_LoadDutyValue(LookUP_TABLE_SEN_16[Microstep]);
 if (Microstep==63){
-EstadoActual = STATE0;
+
+EstadoActual = STATE1;
 Microstep=-1;
 }
 Microstep++;
@@ -8868,67 +8882,187 @@ break;
 }
 }
 
-void StepMove( uint16_t StepNumber, uint8_t Velocidad,uint8_t microstep_number ){
+void State16MEF_act_Backward( void ){
+switch(EstadoActual){
+case STATE0:
+PSTR1CON = 0x00; PSTR2CON = 0x00;
+do { LATCbits.LATC2 = 0; } while(0); do { LATDbits.LATD5 = 0; } while(0);do { LATCbits.LATC1 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
+EstadoActual = STATE1;
+break;
+case STATE1:
+PSTR1CON = 0x01; PSTR2CON = 0x01;
+do { LATDbits.LATD5 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
+if (Microstep<16){
+EUSART1_Write(Microstep);
+limitar_corriente();
+EPWM1_LoadDutyValue(LookUP_TABLE_COS_16[Microstep]);
+EPWM2_LoadDutyValue(LookUP_TABLE_SEN_16[Microstep]);
+if (Microstep==0){
+EstadoActual = STATE4;
+Microstep=63;
+}
+Microstep--;
+}
+break;
+case STATE2:
+PSTR1CON = 0x02; PSTR2CON = 0x01;
+do { LATCbits.LATC2 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
+limitar_corriente();
+if ((Microstep<32)&&(Microstep>15)){
+EUSART1_Write(Microstep);
+EPWM1_LoadDutyValue(LookUP_TABLE_COS_16[Microstep]);
+EPWM2_LoadDutyValue(LookUP_TABLE_SEN_16[Microstep]);
+if (Microstep==16){
+EstadoActual = STATE1;
+}
+Microstep--;
+}
+break;
+case STATE3:
+PSTR1CON = 0x02; PSTR2CON = 0x02;
+do { LATCbits.LATC2 = 0; } while(0); do { LATCbits.LATC1 = 0; } while(0);
+limitar_corriente();
+if ((Microstep<48)&&(Microstep>31)){
+EUSART1_Write(Microstep);
+EPWM1_LoadDutyValue(LookUP_TABLE_COS_16[Microstep]);
+EPWM2_LoadDutyValue(LookUP_TABLE_SEN_16[Microstep]);
+if (Microstep==32){
+EstadoActual = STATE2;
+}
+Microstep--;
+}
+break;
+case STATE4:
+PSTR1CON = 0x01; PSTR2CON = 0x02;
+do { LATDbits.LATD5 = 0; } while(0); do { LATCbits.LATC1 = 0; } while(0);
+if ((Microstep<64)&&(Microstep>47)){
+EUSART1_Write(Microstep);
+EPWM1_LoadDutyValue(LookUP_TABLE_COS_16[Microstep]);
+EPWM2_LoadDutyValue(LookUP_TABLE_SEN_16[Microstep]);
+if (Microstep==48){
+EstadoActual = STATE0;
+EstadoActual = STATE3;
+}
+Microstep--;
+}
+break;
+default:
+StateMEF_ini;
+break;
+}
+}
 
-if (StepCount<StepNumber)
+void State8MEF_act_Backward( void ){
+switch(EstadoActual){
+case STATE0:
+PSTR1CON = 0x00; PSTR2CON = 0x00;
+do { LATCbits.LATC2 = 0; } while(0); do { LATDbits.LATD5 = 0; } while(0);do { LATCbits.LATC1 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
+EstadoActual = STATE1;
+break;
+case STATE1:
+PSTR1CON = 0x01; PSTR2CON = 0x01;
+do { LATDbits.LATD5 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
+if (Microstep<8){
+
+limitar_corriente();
+EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
+EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
+if (Microstep==0){
+EstadoActual = STATE4;
+Microstep=31;
+}
+Microstep--;
+}
+break;
+case STATE2:
+PSTR1CON = 0x02; PSTR2CON = 0x01;
+do { LATCbits.LATC2 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
+limitar_corriente();
+if ((Microstep<16)&&(Microstep>7)){
+
+EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
+EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
+if (Microstep==8){
+EstadoActual = STATE1;
+}
+Microstep--;
+}
+break;
+case STATE3:
+PSTR1CON = 0x02; PSTR2CON = 0x02;
+do { LATCbits.LATC2 = 0; } while(0); do { LATCbits.LATC1 = 0; } while(0);
+limitar_corriente();
+if ((Microstep<24)&&(Microstep>15)){
+
+EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
+EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
+if (Microstep==16){
+EstadoActual = STATE2;
+}
+Microstep--;
+}
+break;
+case STATE4:
+PSTR1CON = 0x01; PSTR2CON = 0x02;
+do { LATDbits.LATD5 = 0; } while(0); do { LATCbits.LATC1 = 0; } while(0);
+if ((Microstep<32)&&(Microstep>23)){
+
+EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
+EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
+if (Microstep==24){
+EstadoActual = STATE0;
+EstadoActual = STATE3;
+}
+Microstep--;
+}
+break;
+default:
+StateMEF_ini;
+break;
+}
+}
+
+void StepMove( uint16_t StepNumber, uint8_t Velocidad,uint8_t microstep_number, uint8_t direccion ){
+
+if ((StepCount<StepNumber))
 {
+
 if (Timer2Ticked){
 Timer2Tick_count++;
 if (Timer2Tick_count == Velocidad){
+if (direccion == 1){
 if (microstep_number==16){
 State16MEF_act();
 }
 else{
 State8MEF_act();
 }
+}
+else if (direccion == 0){
+if (microstep_number==16){
+State16MEF_act_Backward();
+}
+else{
+State8MEF_act_Backward();
+}
+}
+
 StepCount++;
 Timer2Tick_count=0;
 }
 Timer2Ticked = 0;
 }
 }
+
 }
 
-
-uint8_t controlador1 (uint8_t LookUp, uint16_t An_Acquisition){
-
-int8_t error,output;
-float Vref,An_float;
-
-An_float = An_Acquisition;
-Vref = An_float/257;
-
-error = (uint8_t)Vref - LookUp;
-
-if (error<-1){
-output = LookUp + 1;
-}else if(error>1){
-output = LookUp - 1;
-}else{
-output = LookUp;
+static void limitar_corriente( void ){
+if ((LookUP_TABLE_COS[Microstep])>106){
+LookUP_TABLE_COS[Microstep]=106;
+}
+if ((LookUP_TABLE_SEN[Microstep])>106){
+LookUP_TABLE_SEN[Microstep]=106;
 }
 
-return(output);
-}
-
-uint8_t controlador2 (uint8_t LookUp, uint16_t An_Acquisition){
-
-int8_t error,output;
-float Vref,An_float;
-
-An_float = An_Acquisition;
-Vref = An_float/257;
-EUSART1_Write((uint8_t)Vref);
-error = (uint8_t)Vref - LookUp;
-
-if(error<-2){
-output = LookUp + 1;
-}else if(error>2){
-output = LookUp - 1;
-}else{
-output = LookUp;
-}
-
-return(output);
 }
 

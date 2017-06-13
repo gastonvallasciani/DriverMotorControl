@@ -54,7 +54,7 @@
   Section: Macro Declarations
 */
 
-#define PWM2_INITIALIZE_DUTY_VALUE    48
+#define PWM2_INITIALIZE_DUTY_VALUE    83
 
 /**
   Section: EPWM Module APIs
@@ -64,8 +64,8 @@ void EPWM2_Initialize (void)
 {
     // Set the PWM to the options selected in MPLAB(c) Code Configurator
     
-    // CCP2M P2A,P2C: active high; P2B,P2D: active high; DC2B 0; P2M single; 
-    CCP2CON = 0x0C;
+    // CCP2M P2A,P2C: active high; P2B,P2D: active high; DC2B 3; P2M single; 
+    CCP2CON = 0x3C;
     
     // CCP2ASE operating; PSS2BD low; PSS2AC low; CCP2AS disabled; 
     ECCP2AS = 0x00;
@@ -76,8 +76,8 @@ void EPWM2_Initialize (void)
     // STR2D P2D_to_port; STR2C P2C_to_port; STR2B P2B_to_CCP2M; STR2A P2A_to_CCP2M; STR2SYNC start_at_begin; 
     PSTR2CON = 0x03;
     
-    // CCPR2L 12; 
-    CCPR2L = 0x0C;
+    // CCPR2L 20; 
+    CCPR2L = 0x14;
     
     // CCPR2H 0; 
     CCPR2H = 0x00;

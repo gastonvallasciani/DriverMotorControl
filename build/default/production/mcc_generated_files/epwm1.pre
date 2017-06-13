@@ -8549,7 +8549,7 @@ void EPWM1_Initialize (void)
 
 
 
-CCP1CON = 0x0C;
+CCP1CON = 0x3C;
 
 
 ECCP1AS = 0x00;
@@ -8561,7 +8561,7 @@ PWM1CON = 0x80;
 PSTR1CON = 0x03;
 
 
-CCPR1L = 0x0C;
+CCPR1L = 0x14;
 
 
 CCPR1H = 0x00;

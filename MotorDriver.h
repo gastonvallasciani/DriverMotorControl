@@ -13,7 +13,9 @@
 void StateMEF_ini( void );
 void State8MEF_act( void );
 void State16MEF_act( void );
-void StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number );
+void StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
+void State16MEF_act_Backward( void );
+void State8MEF_act_Backward( void );
 uint8_t controlador1(uint8_t LookUp,uint16_t An_Acquisition);
 uint8_t controlador2(uint8_t LookUp,uint16_t An_Acquisition);
 

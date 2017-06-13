@@ -4,7 +4,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
 "13 MotorDriver.h
 [v _StateMEF_ini `(v ~T0 @X0 0 ef ]
-"19 main.c
+"17 main.c
 [v _Timer2Ticked `uc ~T0 @X0 0 e ]
 "7592 C:\Program Files\Microchip\xc8\v1.41\include\pic18f46k22.h
 [s S378 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -32,7 +32,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "16770
 [v _INTCONbits `VS820 ~T0 @X0 0 e@4082 ]
 "16 MotorDriver.h
-[v _StepMove `(v ~T0 @X0 0 ef3`ui`uc`uc ]
+[v _StepMove `(v ~T0 @X0 0 ef4`ui`uc`uc`uc ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -6638,6 +6638,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.h: 343: void TMR2_SetInterruptHandler(void *InterruptHandler);
 [; ;tmr2.h: 361: extern void (*TMR2_InterruptHandler)(void);
 [; ;tmr2.h: 379: void TMR2_DefaultInterruptHandler(void);
+[; ;eusart1.h: 94: void EUSART1_Initialize(void);
+[; ;eusart1.h: 114: uint8_t EUSART1_Read(void);
+[; ;eusart1.h: 134: void EUSART1_Write(uint8_t txData);
+[; ;ccp5.h: 58: void CCP5_Initialize(void);
 [; ;tmr6.h: 102: void TMR6_Initialize(void);
 [; ;tmr6.h: 131: void TMR6_StartTimer(void);
 [; ;tmr6.h: 163: void TMR6_StopTimer(void);
@@ -6648,8 +6652,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 325: void TMR6_SetInterruptHandler(void *InterruptHandler);
 [; ;tmr6.h: 343: extern void (*TMR6_InterruptHandler)(void);
 [; ;tmr6.h: 361: void TMR6_DefaultInterruptHandler(void);
-[; ;epwm2.h: 95: void EPWM2_Initialize(void);
-[; ;epwm2.h: 121: void EPWM2_LoadDutyValue(uint16_t dutyValue);
 [; ;adc.h: 71: typedef uint16_t adc_result_t;
 [; ;adc.h: 76: typedef struct
 [; ;adc.h: 77: {
@@ -6674,66 +6676,66 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 307: uint16_t ADC_Conversion( uint8_t channel );
 [; ;epwm1.h: 95: void EPWM1_Initialize(void);
 [; ;epwm1.h: 121: void EPWM1_LoadDutyValue(uint16_t dutyValue);
-[; ;ccp5.h: 58: void CCP5_Initialize(void);
-[; ;eusart1.h: 94: void EUSART1_Initialize(void);
-[; ;eusart1.h: 114: uint8_t EUSART1_Read(void);
-[; ;eusart1.h: 134: void EUSART1_Write(uint8_t txData);
+[; ;epwm2.h: 95: void EPWM2_Initialize(void);
+[; ;epwm2.h: 121: void EPWM2_LoadDutyValue(uint16_t dutyValue);
 [; ;mcc.h: 75: void SYSTEM_Initialize(void);
 [; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
 [; ;MotorDriver.h: 13: void StateMEF_ini( void );
 [; ;MotorDriver.h: 14: void State8MEF_act( void );
 [; ;MotorDriver.h: 15: void State16MEF_act( void );
-[; ;MotorDriver.h: 16: void StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number );
-[; ;MotorDriver.h: 17: uint8_t controlador1(uint8_t LookUp,uint16_t An_Acquisition);
-[; ;MotorDriver.h: 18: uint8_t controlador2(uint8_t LookUp,uint16_t An_Acquisition);
-[; ;main.c: 19: extern unsigned char Timer2Ticked;
-"21 main.c
+[; ;MotorDriver.h: 16: void StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
+[; ;MotorDriver.h: 17: void State16MEF_act_Backward( void );
+[; ;MotorDriver.h: 18: void State8MEF_act_Backward( void );
+[; ;MotorDriver.h: 19: uint8_t controlador1(uint8_t LookUp,uint16_t An_Acquisition);
+[; ;MotorDriver.h: 20: uint8_t controlador2(uint8_t LookUp,uint16_t An_Acquisition);
+[; ;main.c: 17: extern unsigned char Timer2Ticked;
+"19 main.c
 [v _main `(v ~T0 @X0 1 ef ]
-"22
+"20
 {
-[; ;main.c: 21: void main(void)
-[; ;main.c: 22: {
+[; ;main.c: 19: void main(void)
+[; ;main.c: 20: {
 [e :U _main ]
 [f ]
-[; ;main.c: 24: SYSTEM_Initialize();
-"24
+[; ;main.c: 22: SYSTEM_Initialize();
+"22
 [e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 25: StateMEF_ini();
-"25
+[; ;main.c: 23: StateMEF_ini();
+"23
 [e ( _StateMEF_ini ..  ]
-[; ;main.c: 26: Timer2Ticked=0;
-"26
+[; ;main.c: 24: Timer2Ticked=0;
+"24
 [e = _Timer2Ticked -> -> 0 `i `uc ]
-[; ;main.c: 27: do { LATBbits.LATB6 = 1; } while(0);
-"27
+[; ;main.c: 25: do { LATBbits.LATB6 = 1; } while(0);
+"25
 [e :U 853 ]
 {
 [e = . . _LATBbits 0 6 -> -> 1 `i `uc ]
 }
 [e :U 852 ]
-[; ;main.c: 30: (INTCONbits.GIE = 1);
-"30
+[; ;main.c: 28: (INTCONbits.GIE = 1);
+"28
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 33: (INTCONbits.PEIE = 1);
-"33
+[; ;main.c: 31: (INTCONbits.PEIE = 1);
+"31
 [e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-[; ;main.c: 34: while (1)
-"34
+[; ;main.c: 32: while (1)
+"32
 [e :U 855 ]
-[; ;main.c: 35: {
-"35
+[; ;main.c: 33: {
+"33
 {
-[; ;main.c: 36: StepMove(2500,8,16);
-"36
-[e ( _StepMove (3 , , -> -> 2500 `i `ui -> -> 8 `i `uc -> -> 16 `i `uc ]
-"48
+[; ;main.c: 35: StepMove(3000,1,16,0);
+"35
+[e ( _StepMove (4 , , , -> -> 3000 `i `ui -> -> 1 `i `uc -> -> 16 `i `uc -> -> 0 `i `uc ]
+"39
 }
 [e :U 854 ]
-"34
+"32
 [e $U 855  ]
 [e :U 856 ]
-[; ;main.c: 48: }
-[; ;main.c: 49: }
-"49
+[; ;main.c: 39: }
+[; ;main.c: 40: }
+"40
 [e :UE 850 ]
 }

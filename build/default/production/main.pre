@@ -8585,6 +8585,18 @@ extern void (*TMR2_InterruptHandler)(void);
 # 379
 void TMR2_DefaultInterruptHandler(void);
 
+# 94 "mcc_generated_files/eusart1.h"
+void EUSART1_Initialize(void);
+
+# 114
+uint8_t EUSART1_Read(void);
+
+# 134
+void EUSART1_Write(uint8_t txData);
+
+# 58 "mcc_generated_files/ccp5.h"
+void CCP5_Initialize(void);
+
 # 102 "mcc_generated_files/tmr6.h"
 void TMR6_Initialize(void);
 
@@ -8614,12 +8626,6 @@ extern void (*TMR6_InterruptHandler)(void);
 
 # 361
 void TMR6_DefaultInterruptHandler(void);
-
-# 95 "mcc_generated_files/epwm2.h"
-void EPWM2_Initialize(void);
-
-# 121
-void EPWM2_LoadDutyValue(uint16_t dutyValue);
 
 # 71 "mcc_generated_files/adc.h"
 typedef uint16_t adc_result_t;
@@ -8670,17 +8676,11 @@ void EPWM1_Initialize(void);
 # 121
 void EPWM1_LoadDutyValue(uint16_t dutyValue);
 
-# 58 "mcc_generated_files/ccp5.h"
-void CCP5_Initialize(void);
+# 95 "mcc_generated_files/epwm2.h"
+void EPWM2_Initialize(void);
 
-# 94 "mcc_generated_files/eusart1.h"
-void EUSART1_Initialize(void);
-
-# 114
-uint8_t EUSART1_Read(void);
-
-# 134
-void EUSART1_Write(uint8_t txData);
+# 121
+void EPWM2_LoadDutyValue(uint16_t dutyValue);
 
 # 75 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
@@ -8692,11 +8692,13 @@ void OSCILLATOR_Initialize(void);
 void StateMEF_ini( void );
 void State8MEF_act( void );
 void State16MEF_act( void );
-void StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number );
+void StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
+void State16MEF_act_Backward( void );
+void State8MEF_act_Backward( void );
 uint8_t controlador1(uint8_t LookUp,uint16_t An_Acquisition);
 uint8_t controlador2(uint8_t LookUp,uint16_t An_Acquisition);
 
-# 19 "main.c"
+# 17 "main.c"
 extern unsigned char Timer2Ticked;
 
 void main(void)
@@ -8714,9 +8716,11 @@ do { LATBbits.LATB6 = 1; } while(0);
 (INTCONbits.PEIE = 1);
 while (1)
 {
-StepMove(2500,8,16);
 
-# 48
+StepMove(3000,1,16,0);
+
+
+
 }
 }
 

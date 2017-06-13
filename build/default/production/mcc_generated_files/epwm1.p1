@@ -6621,9 +6621,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;epwm1.c: 64: {
 [e :U _EPWM1_Initialize ]
 [f ]
-[; ;epwm1.c: 68: CCP1CON = 0x0C;
+[; ;epwm1.c: 68: CCP1CON = 0x3C;
 "68
-[e = _CCP1CON -> -> 12 `i `uc ]
+[e = _CCP1CON -> -> 60 `i `uc ]
 [; ;epwm1.c: 71: ECCP1AS = 0x00;
 "71
 [e = _ECCP1AS -> -> 0 `i `uc ]
@@ -6633,9 +6633,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;epwm1.c: 77: PSTR1CON = 0x03;
 "77
 [e = _PSTR1CON -> -> 3 `i `uc ]
-[; ;epwm1.c: 80: CCPR1L = 0x0C;
+[; ;epwm1.c: 80: CCPR1L = 0x14;
 "80
-[e = _CCPR1L -> -> 12 `i `uc ]
+[e = _CCPR1L -> -> 20 `i `uc ]
 [; ;epwm1.c: 83: CCPR1H = 0x00;
 "83
 [e = _CCPR1H -> -> 0 `i `uc ]

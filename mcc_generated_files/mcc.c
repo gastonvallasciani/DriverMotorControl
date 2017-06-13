@@ -116,8 +116,8 @@ void SYSTEM_Initialize(void)
     OSCILLATOR_Initialize();
     TMR6_Initialize();
     EPWM2_Initialize();
-    ADC_Initialize();
     CCP5_Initialize();
+    ADC_Initialize();
     EPWM1_Initialize();
     TMR2_Initialize();
     EUSART1_Initialize();

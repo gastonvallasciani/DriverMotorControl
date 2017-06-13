@@ -6653,9 +6653,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.c: 68: T6CON = 0x01;
 "68
 [e = _T6CON -> -> 1 `i `uc ]
-[; ;tmr6.c: 71: PR6 = 0x3C;
+[; ;tmr6.c: 71: PR6 = 0x45;
 "71
-[e = _PR6 -> -> 60 `i `uc ]
+[e = _PR6 -> -> 69 `i `uc ]
 [; ;tmr6.c: 74: TMR6 = 0x00;
 "74
 [e = _TMR6 -> -> 0 `i `uc ]

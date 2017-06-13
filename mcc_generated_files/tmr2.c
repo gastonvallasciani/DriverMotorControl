@@ -53,6 +53,7 @@
 /**
   Section: Global Variables Definitions
 */
+
 volatile unsigned char Timer2Ticked=0;
 
 void (*TMR2_InterruptHandler)(void);

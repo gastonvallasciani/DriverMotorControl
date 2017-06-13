@@ -8549,7 +8549,7 @@ void EPWM2_Initialize (void)
 
 
 
-CCP2CON = 0x0C;
+CCP2CON = 0x3C;
 
 
 ECCP2AS = 0x00;
@@ -8561,7 +8561,7 @@ PWM2CON = 0x80;
 PSTR2CON = 0x03;
 
 
-CCPR2L = 0x0C;
+CCPR2L = 0x14;
 
 
 CCPR2H = 0x00;
