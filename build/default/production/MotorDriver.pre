@@ -8692,11 +8692,9 @@ void OSCILLATOR_Initialize(void);
 void StateMEF_ini( void );
 void State8MEF_act( void );
 void State16MEF_act( void );
-void StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
+uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
 void State16MEF_act_Backward( void );
 void State8MEF_act_Backward( void );
-uint8_t controlador1(uint8_t LookUp,uint16_t An_Acquisition);
-uint8_t controlador2(uint8_t LookUp,uint16_t An_Acquisition);
 
 # 5 "MotorDriver.c"
 static uint8_t LookUP_TABLE_COS[32]={125,118,108,94,77,57,34,12,12,34,57,77,94,108,118,125,125,118,108,94,77,57,34,12,12,34,57,77,94,108,118,125};
@@ -8707,14 +8705,15 @@ static uint8_t LookUP_TABLE_SEN_16[64]={6,18,29,42,53,63,73,83,91,99,106,112,117
 
 static int8_t Microstep;
 
-static uint16_t StepCount=0;
+uint16_t StepCount=0;
 
 static uint16_t Timer2Tick_count;
 
 static uint8_t MoveDone;
 
+extern uint8_t Timer2Ticked;
 
-extern unsigned char Timer2Ticked;
+uint8_t StepsComplete=0;
 
 static void limitar_corriente( void );
 
@@ -9022,11 +9021,9 @@ break;
 }
 }
 
-void StepMove( uint16_t StepNumber, uint8_t Velocidad,uint8_t microstep_number, uint8_t direccion ){
+uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad,uint8_t microstep_number, uint8_t direccion ){
 
-if ((StepCount<StepNumber))
-{
-
+if ((StepCount<StepNumber)){
 if (Timer2Ticked){
 Timer2Tick_count++;
 if (Timer2Tick_count == Velocidad){
@@ -9052,16 +9049,23 @@ Timer2Tick_count=0;
 }
 Timer2Ticked = 0;
 }
-}
+StepsComplete=0;
 
+}
+else{
+StepsComplete=1;
+StepCount=0;
+
+}
+return(StepsComplete);
 }
 
 static void limitar_corriente( void ){
-if ((LookUP_TABLE_COS[Microstep])>106){
-LookUP_TABLE_COS[Microstep]=106;
+if ((LookUP_TABLE_COS[Microstep])>115){
+LookUP_TABLE_COS[Microstep]=115;
 }
-if ((LookUP_TABLE_SEN[Microstep])>106){
-LookUP_TABLE_SEN[Microstep]=106;
+if ((LookUP_TABLE_SEN[Microstep])>115){
+LookUP_TABLE_SEN[Microstep]=115;
 }
 
 }

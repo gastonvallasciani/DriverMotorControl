@@ -3,15 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Ariel%20L/Desktop/Back%20up/Proyectos/DriverMotorControl/mcc_generated_files/tmr2.c</file>
-            <file>file:/C:/Users/Ariel%20L/Desktop/Back%20up/Proyectos/DriverMotorControl/MotorDriver.h</file>
-            <file>file:/C:/Users/Ariel%20L/Desktop/Back%20up/Proyectos/DriverMotorControl/mcc_generated_files/adc.h</file>
-            <file>file:/C:/Users/Ariel%20L/Desktop/Back%20up/Proyectos/DriverMotorControl/mcc_generated_files/mcc.c</file>
-            <file>file:/C:/Users/Ariel%20L/Desktop/Back%20up/Proyectos/DriverMotorControl/mcc_generated_files/adc.c</file>
-            <file>file:/C:/Users/Ariel%20L/Desktop/Back%20up/Proyectos/DriverMotorControl/main.c</file>
-            <file>file:/C:/Users/Ariel%20L/Desktop/Back%20up/Proyectos/DriverMotorControl/mcc_generated_files/tmr2.h</file>
-            <file>file:/C:/Users/Ariel%20L/Desktop/Back%20up/Proyectos/DriverMotorControl/mcc_generated_files/tmr6.c</file>
-            <file>file:/C:/Users/Ariel%20L/Desktop/Back%20up/Proyectos/DriverMotorControl/MotorDriver.c</file>
+            <file>file:/C:/Users/Ariel%20L/Desktop/Back%20up/Proyectos/DriverMotorControl/DriverMotorControl/main.c</file>
+            <file>file:/C:/Users/Ariel%20L/Desktop/Back%20up/Proyectos/DriverMotorControl/DriverMotorControl/MotorDriver.h</file>
+            <file>file:/C:/Users/Ariel%20L/Desktop/Back%20up/Proyectos/DriverMotorControl/DriverMotorControl/mcc_generated_files/eusart1.c</file>
+            <file>file:/C:/Users/Ariel%20L/Desktop/Back%20up/Proyectos/DriverMotorControl/DriverMotorControl/MotorDriver.c</file>
+            <file>file:/C:/Users/Ariel%20L/Desktop/Back%20up/Proyectos/DriverMotorControl/DriverMotorControl/mcc_generated_files/tmr2.c</file>
         </group>
     </open-files>
 </project-private>

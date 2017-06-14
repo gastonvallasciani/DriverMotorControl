@@ -13,11 +13,10 @@
 void StateMEF_ini( void );
 void State8MEF_act( void );
 void State16MEF_act( void );
-void StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
+uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
 void State16MEF_act_Backward( void );
 void State8MEF_act_Backward( void );
-uint8_t controlador1(uint8_t LookUp,uint16_t An_Acquisition);
-uint8_t controlador2(uint8_t LookUp,uint16_t An_Acquisition);
+
 
 // INA(P1A) --> RC2 --> PSTR2CON STRA
 // INB(P1B) --> RD5 --> PSTR1CON STRB
@@ -36,6 +35,9 @@ uint8_t controlador2(uint8_t LookUp,uint16_t An_Acquisition);
 
 #define FORWARD 1
 #define BACKWARD 0
+
+#define YES 1
+#define NO 0
 
 // IN A
 #define INA_SET(x)        LATCbits.LATC2 = x

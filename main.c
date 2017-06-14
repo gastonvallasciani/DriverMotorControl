@@ -14,6 +14,8 @@
 #include "mcc_generated_files/mcc.h"
 #include "MotorDriver.h"
 
+uint8_t StepsComplete;
+
 extern unsigned char Timer2Ticked; 
 
 void main(void)
@@ -31,11 +33,13 @@ void main(void)
     INTERRUPT_PeripheralInterruptEnable();
     while (1)
     {      
- 
-            StepMove(3000,1,16,BACKWARD);    // numero de pasos, velocidad, numero de micropasos,direccion  tao=L/Rl = 1.6mHy/0.77ohm = 2.07ms --> 5*tao = 10.38ms (Tiempo que tarda en 
-                                            // cargar una bobina del devanado))
+          // numero de pasos, velocidad, numero de micropasos,direccion  tao=L/Rl = 1.6mHy/0.77ohm = 2.07ms --> 5*tao = 10.38ms (Tiempo que tarda en 
+                                                    // cargar una bobina del devanado)) VELOCIDAD a partir de 3
+        while(StepMove(5000,5,16,FORWARD)==NO);
+        
    
-      
+        while(StepMove(5000,5,16,BACKWARD)==NO);
+       
     }
 }
 /**

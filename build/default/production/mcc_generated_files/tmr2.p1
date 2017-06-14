@@ -6653,7 +6653,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [i _Timer2Ticked
 -> -> 0 `i `uc
 ]
-[; ;tmr2.c: 57: volatile unsigned char Timer2Ticked=0;
+[; ;tmr2.c: 57: volatile uint8_t Timer2Ticked=0;
 "59
 [v _TMR2_InterruptHandler `*F7000 ~T0 @X0 1 e ]
 [; ;tmr2.c: 59: void (*TMR2_InterruptHandler)(void);

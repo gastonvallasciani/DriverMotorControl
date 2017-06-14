@@ -8574,7 +8574,7 @@ extern void (*TMR2_InterruptHandler)(void);
 void TMR2_DefaultInterruptHandler(void);
 
 # 57 "mcc_generated_files/tmr2.c"
-volatile unsigned char Timer2Ticked=0;
+volatile uint8_t Timer2Ticked=0;
 
 void (*TMR2_InterruptHandler)(void);
 

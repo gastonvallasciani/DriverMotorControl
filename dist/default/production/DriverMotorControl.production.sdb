@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 18F46K22 ]
 [d frameptr 4065 ]
-"85 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/adc.c
+"85 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/adc.c
 [e E6986 . `uc
 AN_A 0
 AN_B 1
@@ -11,8 +11,8 @@ channel_CTMU 29
 channel_DAC 30
 channel_FVRBuf2 31
 ]
-"32 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
-[e E7112 . `uc
+"33 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
+[e E7107 . `uc
 STATE0 0
 STATE1 1
 STATE2 2
@@ -39,9 +39,9 @@ STATE4 4
 [v ___flmul __flmul `(d  1 e 3 0 ]
 "15 C:\Program Files\Microchip\xc8\v1.41\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
-"19 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\main.c
+"21 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\main.c
 [v _main main `(v  1 e 1 0 ]
-"61 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/adc.c
+"61 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/adc.c
 [v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
 "84
 [v _ADC_SelectChannel ADC_SelectChannel `(v  1 e 1 0 ]
@@ -53,31 +53,31 @@ STATE4 4
 [v _ADC_GetConversionResult ADC_GetConversionResult `(ui  1 e 2 0 ]
 "144
 [v _ADC_ISR ADC_ISR `(v  1 e 1 0 ]
-"57 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/ccp5.c
+"57 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/ccp5.c
 [v _CCP5_Initialize CCP5_Initialize `(v  1 e 1 0 ]
-"63 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/epwm1.c
+"63 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/epwm1.c
 [v _EPWM1_Initialize EPWM1_Initialize `(v  1 e 1 0 ]
 "90
 [v _EPWM1_LoadDutyValue EPWM1_LoadDutyValue `(v  1 e 1 0 ]
-"63 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/epwm2.c
+"63 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/epwm2.c
 [v _EPWM2_Initialize EPWM2_Initialize `(v  1 e 1 0 ]
 "90
 [v _EPWM2_LoadDutyValue EPWM2_LoadDutyValue `(v  1 e 1 0 ]
-"55 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/eusart1.c
+"55 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/eusart1.c
 [v _EUSART1_Initialize EUSART1_Initialize `(v  1 e 1 0 ]
 "96
 [v _EUSART1_Write EUSART1_Write `(v  1 e 1 0 ]
-"51 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/interrupt_manager.c
+"51 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_Initialize INTERRUPT_Initialize `(v  1 e 1 0 ]
 "57
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
-"111 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/mcc.c
+"111 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 "126
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
-"51 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/pin_manager.c
+"51 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
-"65 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/tmr2.c
+"65 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr2.c
 [v _TMR2_Initialize TMR2_Initialize `(v  1 e 1 0 ]
 "91
 [v _TMR2_StartTimer TMR2_StartTimer `(v  1 e 1 0 ]
@@ -89,7 +89,7 @@ STATE4 4
 [v _TMR2_SetInterruptHandler TMR2_SetInterruptHandler `(v  1 e 1 0 ]
 "149
 [v _TMR2_DefaultInterruptHandler TMR2_DefaultInterruptHandler `(v  1 e 1 0 ]
-"63 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/tmr6.c
+"63 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr6.c
 [v _TMR6_Initialize TMR6_Initialize `(v  1 e 1 0 ]
 "89
 [v _TMR6_StartTimer TMR6_StartTimer `(v  1 e 1 0 ]
@@ -99,19 +99,19 @@ STATE4 4
 [v _TMR6_SetInterruptHandler TMR6_SetInterruptHandler `(v  1 e 1 0 ]
 "138
 [v _TMR6_DefaultInterruptHandler TMR6_DefaultInterruptHandler `(v  1 e 1 0 ]
-"34 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
+"35 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
 [v _StateMEF_ini StateMEF_ini `(v  1 e 1 0 ]
-"40
+"41
 [v _State8MEF_act State8MEF_act `(v  1 e 1 0 ]
-"118
+"119
 [v _State16MEF_act State16MEF_act `(v  1 e 1 0 ]
-"188
+"189
 [v _State16MEF_act_Backward State16MEF_act_Backward `(v  1 e 1 0 ]
-"258
+"259
 [v _State8MEF_act_Backward State8MEF_act_Backward `(v  1 e 1 0 ]
-"328
-[v _StepMove StepMove `(v  1 e 1 0 ]
-"362
+"329
+[v _StepMove StepMove `(uc  1 e 1 0 ]
+"368
 [v _limitar_corriente limitar_corriente `(v  1 s 1 limitar_corriente ]
 "49 C:\Program Files\Microchip\xc8\v1.41\include\pic18f46k22.h
 [v _ANSELA ANSELA `VEuc  1 e 1 @3896 ]
@@ -223,7 +223,7 @@ STATE4 4
 [v _LATBbits LATBbits `VES889  1 e 1 @3978 ]
 "7697
 [v _LATC LATC `VEuc  1 e 1 @3979 ]
-[s S964 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S965 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -233,7 +233,7 @@ STATE4 4
 `uc 1 LATC7 1 0 :1:7 
 ]
 "7724
-[s S973 . 1 `uc 1 LC0 1 0 :1:0 
+[s S974 . 1 `uc 1 LC0 1 0 :1:0 
 `uc 1 LC1 1 0 :1:1 
 `uc 1 LC2 1 0 :1:2 
 `uc 1 LC3 1 0 :1:3 
@@ -242,11 +242,11 @@ STATE4 4
 `uc 1 LC6 1 0 :1:6 
 `uc 1 LC7 1 0 :1:7 
 ]
-[u S982 . 1 `S964 1 . 1 0 `S973 1 . 1 0 ]
-[v _LATCbits LATCbits `VES982  1 e 1 @3979 ]
+[u S983 . 1 `S965 1 . 1 0 `S974 1 . 1 0 ]
+[v _LATCbits LATCbits `VES983  1 e 1 @3979 ]
 "7808
 [v _LATD LATD `VEuc  1 e 1 @3980 ]
-[s S1004 . 1 `uc 1 LATD0 1 0 :1:0 
+[s S1005 . 1 `uc 1 LATD0 1 0 :1:0 
 `uc 1 LATD1 1 0 :1:1 
 `uc 1 LATD2 1 0 :1:2 
 `uc 1 LATD3 1 0 :1:3 
@@ -256,7 +256,7 @@ STATE4 4
 `uc 1 LATD7 1 0 :1:7 
 ]
 "7835
-[s S1013 . 1 `uc 1 LD0 1 0 :1:0 
+[s S1014 . 1 `uc 1 LD0 1 0 :1:0 
 `uc 1 LD1 1 0 :1:1 
 `uc 1 LD2 1 0 :1:2 
 `uc 1 LD3 1 0 :1:3 
@@ -265,8 +265,8 @@ STATE4 4
 `uc 1 LD6 1 0 :1:6 
 `uc 1 LD7 1 0 :1:7 
 ]
-[u S1022 . 1 `S1004 1 . 1 0 `S1013 1 . 1 0 ]
-[v _LATDbits LATDbits `VES1022  1 e 1 @3980 ]
+[u S1023 . 1 `S1005 1 . 1 0 `S1014 1 . 1 0 ]
+[v _LATDbits LATDbits `VES1023  1 e 1 @3980 ]
 "7919
 [v _LATE LATE `VEuc  1 e 1 @3981 ]
 "7970
@@ -516,13 +516,13 @@ STATE4 4
 ]
 [u S630 . 1 `S608 1 . 1 0 `S617 1 . 1 0 `S626 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES630  1 e 1 @4082 ]
-"57 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/tmr2.c
+"57 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr2.c
 [v _Timer2Ticked Timer2Ticked `VEuc  1 e 1 0 ]
 "59
 [v _TMR2_InterruptHandler TMR2_InterruptHandler `*.37(v  1 e 2 0 ]
-"57 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/tmr6.c
+"57 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr6.c
 [v _TMR6_InterruptHandler TMR6_InterruptHandler `*.37(v  1 e 2 0 ]
-"5 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
+"5 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
 [v _LookUP_TABLE_COS LookUP_TABLE_COS `[32]uc  1 s 32 LookUP_TABLE_COS ]
 "6
 [v _LookUP_TABLE_SEN LookUP_TABLE_SEN `[32]uc  1 s 32 LookUP_TABLE_SEN ]
@@ -533,41 +533,43 @@ STATE4 4
 "11
 [v _Microstep Microstep `c  1 s 1 Microstep ]
 "13
-[v _StepCount StepCount `ui  1 s 2 StepCount ]
+[v _StepCount StepCount `ui  1 e 2 0 ]
 "15
 [v _Timer2Tick_count Timer2Tick_count `ui  1 s 2 Timer2Tick_count ]
-"32
-[v _EstadoActual EstadoActual `E7112  1 e 1 0 ]
-"19 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\main.c
+"21
+[v _StepsComplete StepsComplete `uc  1 e 1 0 ]
+"33
+[v _EstadoActual EstadoActual `E7107  1 e 1 0 ]
+"21 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"40
+"44
 } 0
-"328 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
-[v _StepMove StepMove `(v  1 e 1 0 ]
+"329 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
+[v _StepMove StepMove `(uc  1 e 1 0 ]
 {
 [v StepMove@StepNumber StepNumber `ui  1 p 2 19 ]
 [v StepMove@Velocidad Velocidad `uc  1 p 1 21 ]
 [v StepMove@microstep_number microstep_number `uc  1 p 1 22 ]
 [v StepMove@direccion direccion `uc  1 p 1 23 ]
-"360
+"366
 } 0
-"258
+"259
 [v _State8MEF_act_Backward State8MEF_act_Backward `(v  1 e 1 0 ]
 {
-"326
+"327
 } 0
-"40
+"41
 [v _State8MEF_act State8MEF_act `(v  1 e 1 0 ]
 {
-"116
+"117
 } 0
-"188
+"189
 [v _State16MEF_act_Backward State16MEF_act_Backward `(v  1 e 1 0 ]
 {
-"256
+"257
 } 0
-"96 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/eusart1.c
+"96 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/eusart1.c
 [v _EUSART1_Write EUSART1_Write `(v  1 e 1 0 ]
 {
 [v EUSART1_Write@txData txData `uc  1 a 1 wreg ]
@@ -575,39 +577,39 @@ STATE4 4
 [v EUSART1_Write@txData txData `uc  1 a 1 14 ]
 "103
 } 0
-"118 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
+"119 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
 [v _State16MEF_act State16MEF_act `(v  1 e 1 0 ]
 {
-"186
+"187
 } 0
-"362
+"368
 [v _limitar_corriente limitar_corriente `(v  1 s 1 limitar_corriente ]
 {
-"370
+"376
 } 0
-"90 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/epwm2.c
+"90 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/epwm2.c
 [v _EPWM2_LoadDutyValue EPWM2_LoadDutyValue `(v  1 e 1 0 ]
 {
 [v EPWM2_LoadDutyValue@dutyValue dutyValue `ui  1 p 2 14 ]
 "97
 } 0
-"90 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/epwm1.c
+"90 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/epwm1.c
 [v _EPWM1_LoadDutyValue EPWM1_LoadDutyValue `(v  1 e 1 0 ]
 {
 [v EPWM1_LoadDutyValue@dutyValue dutyValue `ui  1 p 2 14 ]
 "97
 } 0
-"34 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\MotorDriver.c
+"35 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
 [v _StateMEF_ini StateMEF_ini `(v  1 e 1 0 ]
 {
-"38
+"39
 } 0
-"111 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/mcc.c
+"111 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 {
 "124
 } 0
-"63 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/tmr6.c
+"63 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr6.c
 [v _TMR6_Initialize TMR6_Initialize `(v  1 e 1 0 ]
 {
 "87
@@ -623,7 +625,7 @@ STATE4 4
 [v TMR6_SetInterruptHandler@InterruptHandler InterruptHandler `*.2v  1 p 2 14 ]
 "136
 } 0
-"65 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/tmr2.c
+"65 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr2.c
 [v _TMR2_Initialize TMR2_Initialize `(v  1 e 1 0 ]
 {
 "89
@@ -639,52 +641,52 @@ STATE4 4
 [v TMR2_SetInterruptHandler@InterruptHandler InterruptHandler `*.2v  1 p 2 14 ]
 "147
 } 0
-"51 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/pin_manager.c
+"51 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
 {
 "91
 } 0
-"126 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/mcc.c
+"126 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/mcc.c
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 {
 "136
 } 0
-"51 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/interrupt_manager.c
+"51 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_Initialize INTERRUPT_Initialize `(v  1 e 1 0 ]
 {
 "55
 } 0
-"55 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/eusart1.c
+"55 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/eusart1.c
 [v _EUSART1_Initialize EUSART1_Initialize `(v  1 e 1 0 ]
 {
 "74
 } 0
-"63 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/epwm2.c
+"63 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/epwm2.c
 [v _EPWM2_Initialize EPWM2_Initialize `(v  1 e 1 0 ]
 {
 "88
 } 0
-"63 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/epwm1.c
+"63 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/epwm1.c
 [v _EPWM1_Initialize EPWM1_Initialize `(v  1 e 1 0 ]
 {
 "88
 } 0
-"57 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/ccp5.c
+"57 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/ccp5.c
 [v _CCP5_Initialize CCP5_Initialize `(v  1 e 1 0 ]
 {
 "65
 } 0
-"61 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/adc.c
+"61 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/adc.c
 [v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
 {
 "82
 } 0
-"57 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/interrupt_manager.c
+"57 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
 {
 "76
 } 0
-"121 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/tmr6.c
+"121 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr6.c
 [v _TMR6_ISR TMR6_ISR `(v  1 e 1 0 ]
 {
 "131
@@ -694,7 +696,7 @@ STATE4 4
 {
 "141
 } 0
-"123 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/tmr2.c
+"123 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr2.c
 [v _TMR2_ISR TMR2_ISR `(v  1 e 1 0 ]
 {
 "132
@@ -709,7 +711,7 @@ STATE4 4
 {
 "152
 } 0
-"144 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\mcc_generated_files/adc.c
+"144 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/adc.c
 [v _ADC_ISR ADC_ISR `(v  1 e 1 0 ]
 {
 "150

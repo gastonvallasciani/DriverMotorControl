@@ -10,14 +10,15 @@ static uint8_t LookUP_TABLE_SEN_16[64]={6,18,29,42,53,63,73,83,91,99,106,112,117
 
 static int8_t Microstep;
 
-static uint16_t StepCount=0;
+uint16_t StepCount=0;
 
 static uint16_t Timer2Tick_count;
 
 static uint8_t MoveDone;
 
+extern uint8_t Timer2Ticked;
 
-extern unsigned char Timer2Ticked;
+uint8_t StepsComplete=NO;
 
 static void limitar_corriente( void );
 
@@ -325,11 +326,9 @@ void State8MEF_act_Backward( void ){
      }    
 }
 
-void StepMove( uint16_t StepNumber, uint8_t Velocidad,uint8_t microstep_number, uint8_t direccion ){
+uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad,uint8_t microstep_number, uint8_t direccion ){
     
-    if ((StepCount<StepNumber))
-        {
-
+    if ((StepCount<StepNumber)){
             if (Timer2Ticked){ 
                 Timer2Tick_count++;
                 if (Timer2Tick_count == Velocidad){
@@ -355,16 +354,23 @@ void StepMove( uint16_t StepNumber, uint8_t Velocidad,uint8_t microstep_number, 
                     }
                     Timer2Ticked = 0;
                 }       
-        }
- 
+            StepsComplete=NO;
+         
+    }
+    else{
+        StepsComplete=YES;
+        StepCount=0;
+      
+    }
+    return(StepsComplete);
 }
 
 static void limitar_corriente( void ){
-    if ((LookUP_TABLE_COS[Microstep])>106){
-        LookUP_TABLE_COS[Microstep]=106;
+    if ((LookUP_TABLE_COS[Microstep])>115){
+        LookUP_TABLE_COS[Microstep]=115;
     }
-    if ((LookUP_TABLE_SEN[Microstep])>106){
-        LookUP_TABLE_SEN[Microstep]=106;
+    if ((LookUP_TABLE_SEN[Microstep])>115){
+        LookUP_TABLE_SEN[Microstep]=115;
     }
     
 }
