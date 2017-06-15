@@ -53,6 +53,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+
+
 #ifdef __cplusplus  // Provide C++ Compatibility
 
     extern "C" {
@@ -377,6 +379,9 @@ extern void (*TMR2_InterruptHandler)(void);
     None
 */
 void TMR2_DefaultInterruptHandler(void);
+
+
+
 
 
  #ifdef __cplusplus  // Provide C++ Compatibility

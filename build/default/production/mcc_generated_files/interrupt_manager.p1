@@ -81,7 +81,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PIR5bits `VS321 ~T0 @X0 0 e@3966 ]
 "307 mcc_generated_files/tmr6.h
 [v _TMR6_ISR `(v ~T0 @X0 0 ef ]
-"308 mcc_generated_files/tmr2.h
+"310 mcc_generated_files/tmr2.h
 [v _TMR2_ISR `(v ~T0 @X0 0 ef ]
 [; ;interrupt_manager.h: 110: void interrupt INTERRUPT_InterruptManager(void);
 [; ;interrupt_manager.h: 122: void INTERRUPT_Initialize (void);
@@ -6677,17 +6677,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;tmr2.h: 103: void TMR2_Initialize(void);
-[; ;tmr2.h: 132: void TMR2_StartTimer(void);
-[; ;tmr2.h: 164: void TMR2_StopTimer(void);
-[; ;tmr2.h: 199: uint8_t TMR2_ReadTimer(void);
-[; ;tmr2.h: 238: void TMR2_WriteTimer(uint8_t timerVal);
-[; ;tmr2.h: 290: void TMR2_LoadPeriodRegister(uint8_t periodVal);
-[; ;tmr2.h: 308: void TMR2_ISR(void);
-[; ;tmr2.h: 326: void TMR2_CallBack(void);
-[; ;tmr2.h: 343: void TMR2_SetInterruptHandler(void *InterruptHandler);
-[; ;tmr2.h: 361: extern void (*TMR2_InterruptHandler)(void);
-[; ;tmr2.h: 379: void TMR2_DefaultInterruptHandler(void);
+[; ;tmr2.h: 105: void TMR2_Initialize(void);
+[; ;tmr2.h: 134: void TMR2_StartTimer(void);
+[; ;tmr2.h: 166: void TMR2_StopTimer(void);
+[; ;tmr2.h: 201: uint8_t TMR2_ReadTimer(void);
+[; ;tmr2.h: 240: void TMR2_WriteTimer(uint8_t timerVal);
+[; ;tmr2.h: 292: void TMR2_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr2.h: 310: void TMR2_ISR(void);
+[; ;tmr2.h: 328: void TMR2_CallBack(void);
+[; ;tmr2.h: 345: void TMR2_SetInterruptHandler(void *InterruptHandler);
+[; ;tmr2.h: 363: extern void (*TMR2_InterruptHandler)(void);
+[; ;tmr2.h: 381: void TMR2_DefaultInterruptHandler(void);
 [; ;eusart1.h: 94: void EUSART1_Initialize(void);
 [; ;eusart1.h: 114: uint8_t EUSART1_Read(void);
 [; ;eusart1.h: 134: void EUSART1_Write(uint8_t txData);

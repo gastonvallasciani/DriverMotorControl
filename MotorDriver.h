@@ -16,22 +16,35 @@ void State16MEF_act( void );
 uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
 void State16MEF_act_Backward( void );
 void State8MEF_act_Backward( void );
+void Motor_Stop( void );
+
+/////////////////////////////////////Delay Timer 2
+/*El timer 2 se interrumpe cada 52 us*/
+void DelayTmr2(unsigned uint16_t Timeout);
+
+#define ms1_t 19
+#define ms10_t 192
+#define ms100_t 1923
+#define s1_t 19230
+
+//////////////////////////////////////////////////////
+
+/** INA(P1A) --> RC2 --> PSTR2CON STRA
+  *INB(P1B) --> RD5 --> PSTR1CON STRB
+  *INC(P2A) --> RC1 --> PSTR1CON STRA
+  *IND(P2B) --> RC0 --> PSTR2CON STRB
 
 
-// INA(P1A) --> RC2 --> PSTR2CON STRA
-// INB(P1B) --> RD5 --> PSTR1CON STRB
-// INC(P2A) --> RC1 --> PSTR1CON STRA
-// IND(P2B) --> RC0 --> PSTR2CON STRB
+  *PSTRxCON = - | - | - | STRxSYNC | STRxD | STRxC | STRxB | STRxA
+  *          b7  b6  b5   b4         b3      b2      b1      b0
+  *
+  *STRxSYNC = 1 --> output steering update occurs on the next PWM period.
+  *STRxSYNC = 0 --> output steering update occurs at the beginning of the instruction cycle boundary. 
+  *
+  *STRxA,B,C,D = 1 --> PxA,B,C,D pins have the PWM waveform with polarity control from CCPxM<1:0>
+  *STRxA,B,C,D = 0 --> PxA,B,C,D are assign to port pin.
+*/
 
-
-//          PSTRxCON = - | - | - | STRxSYNC | STRxD | STRxC | STRxB | STRxA
-//                     b7  b6  b5   b4         b3      b2      b1      b0
-//
-//                                  STRxSYNC = 1 --> output steering update occurs on the next PWM period.
-//                                  STRxSYNC = 0 --> output steering update occurs at the beginning of the instruction cycle boundary. 
-//
-//                                  STRxA,B,C,D = 1 --> PxA,B,C,D pins have the PWM waveform with polarity control from CCPxM<1:0>
-//                                  STRxA,B,C,D = 0 --> PxA,B,C,D are assign to port pin.
 
 #define FORWARD 1
 #define BACKWARD 0

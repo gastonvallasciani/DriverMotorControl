@@ -8540,45 +8540,46 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files\Microchip\xc8\v1.41\include\stdbool.h"
 typedef unsigned char bool;
 
-# 103 "mcc_generated_files/tmr2.h"
+# 105 "mcc_generated_files/tmr2.h"
 void TMR2_Initialize(void);
 
-# 132
+# 134
 void TMR2_StartTimer(void);
 
-# 164
+# 166
 void TMR2_StopTimer(void);
 
-# 199
+# 201
 uint8_t TMR2_ReadTimer(void);
 
-# 238
+# 240
 void TMR2_WriteTimer(uint8_t timerVal);
 
-# 290
+# 292
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
 
-# 308
+# 310
 void TMR2_ISR(void);
 
-# 326
+# 328
 void TMR2_CallBack(void);
 
-# 343
+# 345
 void TMR2_SetInterruptHandler(void *InterruptHandler);
 
-# 361
+# 363
 extern void (*TMR2_InterruptHandler)(void);
 
-# 379
+# 381
 void TMR2_DefaultInterruptHandler(void);
 
-# 57 "mcc_generated_files/tmr2.c"
-volatile uint8_t Timer2Ticked=0;
+# 59 "mcc_generated_files/tmr2.c"
+volatile uint8_t Timer2Ticked = 0;
+volatile uint8_t DelayTimerTicked = 0;
 
 void (*TMR2_InterruptHandler)(void);
 
-# 65
+# 68
 void TMR2_Initialize(void)
 {
 
@@ -8651,7 +8652,9 @@ TMR2_CallBack();
 void TMR2_CallBack(void)
 {
 
-Timer2Ticked=1;
+Timer2Ticked = 1;
+DelayTimerTicked = 1;
+
 
 if(TMR2_InterruptHandler)
 {

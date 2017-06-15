@@ -8614,37 +8614,37 @@ void interrupt INTERRUPT_InterruptManager(void);
 # 122
 void INTERRUPT_Initialize (void);
 
-# 103 "mcc_generated_files/tmr2.h"
+# 105 "mcc_generated_files/tmr2.h"
 void TMR2_Initialize(void);
 
-# 132
+# 134
 void TMR2_StartTimer(void);
 
-# 164
+# 166
 void TMR2_StopTimer(void);
 
-# 199
+# 201
 uint8_t TMR2_ReadTimer(void);
 
-# 238
+# 240
 void TMR2_WriteTimer(uint8_t timerVal);
 
-# 290
+# 292
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
 
-# 308
+# 310
 void TMR2_ISR(void);
 
-# 326
+# 328
 void TMR2_CallBack(void);
 
-# 343
+# 345
 void TMR2_SetInterruptHandler(void *InterruptHandler);
 
-# 361
+# 363
 extern void (*TMR2_InterruptHandler)(void);
 
-# 379
+# 381
 void TMR2_DefaultInterruptHandler(void);
 
 # 94 "mcc_generated_files/eusart1.h"

@@ -6,6 +6,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _StateMEF_ini `(v ~T0 @X0 0 ef ]
 "19 main.c
 [v _Timer2Ticked `uc ~T0 @X0 0 e ]
+"20
+[v _DelayTimerTicked `uc ~T0 @X0 0 e ]
 "7592 C:\Program Files\Microchip\xc8\v1.41\include\pic18f46k22.h
 [s S378 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S378 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
@@ -33,6 +35,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INTCONbits `VS820 ~T0 @X0 0 e@4082 ]
 "16 MotorDriver.h
 [v _StepMove `(uc ~T0 @X0 0 ef4`ui`uc`uc`uc ]
+"19
+[v _Motor_Stop `(v ~T0 @X0 0 ef ]
+"23
+[v _DelayTmr2 `(v ~T0 @X0 0 ef1`ui ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -6627,17 +6633,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;interrupt_manager.h: 110: void interrupt INTERRUPT_InterruptManager(void);
 [; ;interrupt_manager.h: 122: void INTERRUPT_Initialize (void);
-[; ;tmr2.h: 103: void TMR2_Initialize(void);
-[; ;tmr2.h: 132: void TMR2_StartTimer(void);
-[; ;tmr2.h: 164: void TMR2_StopTimer(void);
-[; ;tmr2.h: 199: uint8_t TMR2_ReadTimer(void);
-[; ;tmr2.h: 238: void TMR2_WriteTimer(uint8_t timerVal);
-[; ;tmr2.h: 290: void TMR2_LoadPeriodRegister(uint8_t periodVal);
-[; ;tmr2.h: 308: void TMR2_ISR(void);
-[; ;tmr2.h: 326: void TMR2_CallBack(void);
-[; ;tmr2.h: 343: void TMR2_SetInterruptHandler(void *InterruptHandler);
-[; ;tmr2.h: 361: extern void (*TMR2_InterruptHandler)(void);
-[; ;tmr2.h: 379: void TMR2_DefaultInterruptHandler(void);
+[; ;tmr2.h: 105: void TMR2_Initialize(void);
+[; ;tmr2.h: 134: void TMR2_StartTimer(void);
+[; ;tmr2.h: 166: void TMR2_StopTimer(void);
+[; ;tmr2.h: 201: uint8_t TMR2_ReadTimer(void);
+[; ;tmr2.h: 240: void TMR2_WriteTimer(uint8_t timerVal);
+[; ;tmr2.h: 292: void TMR2_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr2.h: 310: void TMR2_ISR(void);
+[; ;tmr2.h: 328: void TMR2_CallBack(void);
+[; ;tmr2.h: 345: void TMR2_SetInterruptHandler(void *InterruptHandler);
+[; ;tmr2.h: 363: extern void (*TMR2_InterruptHandler)(void);
+[; ;tmr2.h: 381: void TMR2_DefaultInterruptHandler(void);
 [; ;eusart1.h: 94: void EUSART1_Initialize(void);
 [; ;eusart1.h: 114: uint8_t EUSART1_Read(void);
 [; ;eusart1.h: 134: void EUSART1_Write(uint8_t txData);
@@ -6686,68 +6692,86 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MotorDriver.h: 16: uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
 [; ;MotorDriver.h: 17: void State16MEF_act_Backward( void );
 [; ;MotorDriver.h: 18: void State8MEF_act_Backward( void );
+[; ;MotorDriver.h: 19: void Motor_Stop( void );
+[; ;MotorDriver.h: 23: void DelayTmr2(unsigned uint16_t Timeout);
 "17 main.c
 [v _StepsComplete `uc ~T0 @X0 1 e ]
 [; ;main.c: 17: uint8_t StepsComplete;
 [; ;main.c: 19: extern unsigned char Timer2Ticked;
-"21
+[; ;main.c: 20: extern unsigned char DelayTimerTicked;
+"23
 [v _main `(v ~T0 @X0 1 ef ]
-"22
+"24
 {
-[; ;main.c: 21: void main(void)
-[; ;main.c: 22: {
+[; ;main.c: 23: void main(void)
+[; ;main.c: 24: {
 [e :U _main ]
 [f ]
-[; ;main.c: 24: SYSTEM_Initialize();
-"24
-[e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 25: StateMEF_ini();
-"25
-[e ( _StateMEF_ini ..  ]
-[; ;main.c: 26: Timer2Ticked=0;
+[; ;main.c: 26: SYSTEM_Initialize();
 "26
-[e = _Timer2Ticked -> -> 0 `i `uc ]
-[; ;main.c: 27: do { LATBbits.LATB6 = 1; } while(0);
+[e ( _SYSTEM_Initialize ..  ]
+[; ;main.c: 27: StateMEF_ini();
 "27
+[e ( _StateMEF_ini ..  ]
+[; ;main.c: 28: Timer2Ticked=0;
+"28
+[e = _Timer2Ticked -> -> 0 `i `uc ]
+[; ;main.c: 29: DelayTimerTicked=0;
+"29
+[e = _DelayTimerTicked -> -> 0 `i `uc ]
+[; ;main.c: 30: do { LATBbits.LATB6 = 1; } while(0);
+"30
 [e :U 853 ]
 {
 [e = . . _LATBbits 0 6 -> -> 1 `i `uc ]
 }
 [e :U 852 ]
-[; ;main.c: 30: (INTCONbits.GIE = 1);
-"30
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 33: (INTCONbits.PEIE = 1);
+[; ;main.c: 33: (INTCONbits.GIE = 1);
 "33
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+[; ;main.c: 36: (INTCONbits.PEIE = 1);
+"36
 [e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-[; ;main.c: 34: while (1)
-"34
+[; ;main.c: 37: while (1)
+"37
 [e :U 855 ]
-[; ;main.c: 35: {
-"35
-{
-[; ;main.c: 38: while(StepMove(5000,5,16,1)==0);
+[; ;main.c: 38: {
 "38
+{
+[; ;main.c: 41: while(StepMove(2000,3,8,1)==0);
+"41
 [e $U 857  ]
 [e :U 858 ]
 [e :U 857 ]
-[e $ == -> ( _StepMove (4 , , , -> -> 5000 `i `ui -> -> 5 `i `uc -> -> 16 `i `uc -> -> 1 `i `uc `i -> 0 `i 858  ]
+[e $ == -> ( _StepMove (4 , , , -> -> 2000 `i `ui -> -> 3 `i `uc -> -> 8 `i `uc -> -> 1 `i `uc `i -> 0 `i 858  ]
 [e :U 859 ]
-[; ;main.c: 41: while(StepMove(5000,5,16,0)==0);
-"41
+[; ;main.c: 43: Motor_Stop();
+"43
+[e ( _Motor_Stop ..  ]
+[; ;main.c: 45: DelayTmr2(19230);
+"45
+[e ( _DelayTmr2 (1 -> -> 19230 `i `ui ]
+[; ;main.c: 47: while(StepMove(2000,3,8,0)==0);
+"47
 [e $U 860  ]
 [e :U 861 ]
 [e :U 860 ]
-[e $ == -> ( _StepMove (4 , , , -> -> 5000 `i `ui -> -> 5 `i `uc -> -> 16 `i `uc -> -> 0 `i `uc `i -> 0 `i 861  ]
+[e $ == -> ( _StepMove (4 , , , -> -> 2000 `i `ui -> -> 3 `i `uc -> -> 8 `i `uc -> -> 0 `i `uc `i -> 0 `i 861  ]
 [e :U 862 ]
-"43
+[; ;main.c: 49: Motor_Stop();
+"49
+[e ( _Motor_Stop ..  ]
+[; ;main.c: 51: DelayTmr2(19230);
+"51
+[e ( _DelayTmr2 (1 -> -> 19230 `i `ui ]
+"55
 }
 [e :U 854 ]
-"34
+"37
 [e $U 855  ]
 [e :U 856 ]
-[; ;main.c: 43: }
-[; ;main.c: 44: }
-"44
+[; ;main.c: 55: }
+[; ;main.c: 56: }
+"56
 [e :UE 850 ]
 }

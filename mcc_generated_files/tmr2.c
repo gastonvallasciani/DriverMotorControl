@@ -49,12 +49,15 @@
 
 #include <xc.h>
 #include "tmr2.h"
+//#include "MotorDriver.h"
+
 
 /**
   Section: Global Variables Definitions
 */
 
-volatile uint8_t Timer2Ticked=0;
+volatile uint8_t Timer2Ticked = 0;
+volatile uint8_t DelayTimerTicked = 0;
 
 void (*TMR2_InterruptHandler)(void);
 
@@ -134,7 +137,9 @@ void TMR2_ISR(void)
 void TMR2_CallBack(void)
 {
     // Add your custom callback code here
-    Timer2Ticked=1;
+    Timer2Ticked = 1;
+    DelayTimerTicked = 1;
+
     // this code executes every TMR2_INTERRUPT_TICKER_FACTOR periods of TMR2
     if(TMR2_InterruptHandler)
     {

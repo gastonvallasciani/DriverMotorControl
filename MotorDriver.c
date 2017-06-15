@@ -17,6 +17,7 @@ static uint16_t Timer2Tick_count;
 static uint8_t MoveDone;
 
 extern uint8_t Timer2Ticked;
+extern uint8_t DelayTimerTicked;
 
 uint8_t StepsComplete=NO;
 
@@ -52,7 +53,7 @@ void State8MEF_act( void ){
                  if (Microstep<8){
                      //EUSART1_Write(Microstep);
                      
-                     limitar_corriente();
+                     //limitar_corriente();
                      EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
                      EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);                     
                      if (Microstep==7){
@@ -66,7 +67,7 @@ void State8MEF_act( void ){
                  INA_OFF(); IND_OFF();
                  if ((Microstep<16)&&(Microstep>7)){
                                      
-                     limitar_corriente();
+                     //limitar_corriente();
                      EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
                      EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]); 
                      
@@ -82,7 +83,7 @@ void State8MEF_act( void ){
                  if ((Microstep<24)&&(Microstep>15)){
                      //EUSART1_Write(Microstep);
                      
-                     limitar_corriente();
+                     //limitar_corriente();
                      EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
                      EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]); 
                      
@@ -98,7 +99,7 @@ void State8MEF_act( void ){
                  if ((Microstep<32)&&(Microstep>23)){
                      //EUSART1_Write(Microstep);
                                       
-                     limitar_corriente();
+                     //limitar_corriente();
                      EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
                      EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]); 
                      
@@ -268,7 +269,7 @@ void State8MEF_act_Backward( void ){
                  INB_OFF(); IND_OFF();                  
                  if (Microstep<8){
                      //EUSART1_Write(Microstep);
-                     limitar_corriente();
+                     //limitar_corriente();
                      EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
                      EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);                     
                  if (Microstep==0){
@@ -281,7 +282,7 @@ void State8MEF_act_Backward( void ){
          case STATE2:
                  PSTR1CON = 0x02; PSTR2CON = 0x01;
                  INA_OFF(); IND_OFF();
-                 limitar_corriente();
+                 //limitar_corriente();
                  if ((Microstep<16)&&(Microstep>7)){
                      //EUSART1_Write(Microstep);
                      EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
@@ -295,7 +296,7 @@ void State8MEF_act_Backward( void ){
          case STATE3:                 
                  PSTR1CON = 0x02; PSTR2CON = 0x02;
                  INA_OFF(); INC_OFF();
-                 limitar_corriente();
+                 //limitar_corriente();
                  if ((Microstep<24)&&(Microstep>15)){
                      //EUSART1_Write(Microstep);
                      EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
@@ -311,6 +312,7 @@ void State8MEF_act_Backward( void ){
                  INB_OFF(); INC_OFF();
                  if ((Microstep<32)&&(Microstep>23)){              
                      //EUSART1_Write(Microstep);
+                     //limitar_corriente();
                      EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
                      EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
                      if (Microstep==24){
@@ -375,7 +377,26 @@ static void limitar_corriente( void ){
     
 }
 
+void Motor_Stop( void ){
+    PSTR1CON = 0x00; PSTR2CON = 0x00;
+    INA_OFF(); INB_OFF();INC_OFF(); IND_OFF();
+}
 
+void DelayTmr2(unsigned uint16_t Timeout)
+{
+    
+	// Solo puede haber un Delay en ejecución
+	// No se puede llamar a Delay desde interrupciones
+	DelayTimerTicked = 0; // Timer2Tick cambia a YES
+	while (Timeout > 0)
+	{
+		if (DelayTimerTicked)
+		{
+			Timeout--;
+			DelayTimerTicked = 0;
+		}
+	}
+}
 
 
 

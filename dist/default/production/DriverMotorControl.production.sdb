@@ -11,8 +11,8 @@ channel_CTMU 29
 channel_DAC 30
 channel_FVRBuf2 31
 ]
-"33 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
-[e E7107 . `uc
+"34 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
+[e E7112 . `uc
 STATE0 0
 STATE1 1
 STATE2 2
@@ -39,7 +39,7 @@ STATE4 4
 [v ___flmul __flmul `(d  1 e 3 0 ]
 "15 C:\Program Files\Microchip\xc8\v1.41\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
-"21 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\main.c
+"23 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\main.c
 [v _main main `(v  1 e 1 0 ]
 "61 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/adc.c
 [v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
@@ -77,17 +77,17 @@ STATE4 4
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 "51 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
-"65 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr2.c
+"68 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr2.c
 [v _TMR2_Initialize TMR2_Initialize `(v  1 e 1 0 ]
-"91
+"94
 [v _TMR2_StartTimer TMR2_StartTimer `(v  1 e 1 0 ]
-"123
+"126
 [v _TMR2_ISR TMR2_ISR `(v  1 e 1 0 ]
-"134
+"137
 [v _TMR2_CallBack TMR2_CallBack `(v  1 e 1 0 ]
-"145
+"150
 [v _TMR2_SetInterruptHandler TMR2_SetInterruptHandler `(v  1 e 1 0 ]
-"149
+"154
 [v _TMR2_DefaultInterruptHandler TMR2_DefaultInterruptHandler `(v  1 e 1 0 ]
 "63 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr6.c
 [v _TMR6_Initialize TMR6_Initialize `(v  1 e 1 0 ]
@@ -99,20 +99,24 @@ STATE4 4
 [v _TMR6_SetInterruptHandler TMR6_SetInterruptHandler `(v  1 e 1 0 ]
 "138
 [v _TMR6_DefaultInterruptHandler TMR6_DefaultInterruptHandler `(v  1 e 1 0 ]
-"35 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
+"36 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
 [v _StateMEF_ini StateMEF_ini `(v  1 e 1 0 ]
-"41
+"42
 [v _State8MEF_act State8MEF_act `(v  1 e 1 0 ]
-"119
+"120
 [v _State16MEF_act State16MEF_act `(v  1 e 1 0 ]
-"189
+"190
 [v _State16MEF_act_Backward State16MEF_act_Backward `(v  1 e 1 0 ]
-"259
+"260
 [v _State8MEF_act_Backward State8MEF_act_Backward `(v  1 e 1 0 ]
-"329
+"331
 [v _StepMove StepMove `(uc  1 e 1 0 ]
-"368
+"370
 [v _limitar_corriente limitar_corriente `(v  1 s 1 limitar_corriente ]
+"380
+[v _Motor_Stop Motor_Stop `(v  1 e 1 0 ]
+"385
+[v _DelayTmr2 DelayTmr2 `(v  1 e 1 0 ]
 "49 C:\Program Files\Microchip\xc8\v1.41\include\pic18f46k22.h
 [v _ANSELA ANSELA `VEuc  1 e 1 @3896 ]
 "93
@@ -123,14 +127,14 @@ STATE4 4
 [v _ANSELD ANSELD `VEuc  1 e 1 @3899 ]
 "253
 [v _ANSELE ANSELE `VEuc  1 e 1 @3900 ]
-[s S330 . 1 `uc 1 C1TSEL 1 0 :2:0 
+[s S331 . 1 `uc 1 C1TSEL 1 0 :2:0 
 `uc 1 . 1 0 :1:2 
 `uc 1 C2TSEL 1 0 :2:3 
 `uc 1 . 1 0 :1:5 
 `uc 1 C3TSEL 1 0 :2:6 
 ]
 "1393
-[s S336 . 1 `uc 1 C1TSEL0 1 0 :1:0 
+[s S337 . 1 `uc 1 C1TSEL0 1 0 :1:0 
 `uc 1 C1TSEL1 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 C2TSEL0 1 0 :1:3 
@@ -139,8 +143,8 @@ STATE4 4
 `uc 1 C3TSEL0 1 0 :1:6 
 `uc 1 C3TSEL1 1 0 :1:7 
 ]
-[u S345 . 1 `S330 1 . 1 0 `S336 1 . 1 0 ]
-[v _CCPTMRS0bits CCPTMRS0bits `VES345  1 e 1 @3913 ]
+[u S346 . 1 `S331 1 . 1 0 `S337 1 . 1 0 ]
+[v _CCPTMRS0bits CCPTMRS0bits `VES346  1 e 1 @3913 ]
 "1442
 [v _T6CON T6CON `VEuc  1 e 1 @3914 ]
 [s S60 . 1 `uc 1 T6CKPS 1 0 :2:0 
@@ -200,7 +204,7 @@ STATE4 4
 [v _LATA LATA `VEuc  1 e 1 @3977 ]
 "7586
 [v _LATB LATB `VEuc  1 e 1 @3978 ]
-[s S871 . 1 `uc 1 LATB0 1 0 :1:0 
+[s S873 . 1 `uc 1 LATB0 1 0 :1:0 
 `uc 1 LATB1 1 0 :1:1 
 `uc 1 LATB2 1 0 :1:2 
 `uc 1 LATB3 1 0 :1:3 
@@ -210,7 +214,7 @@ STATE4 4
 `uc 1 LATB7 1 0 :1:7 
 ]
 "7613
-[s S880 . 1 `uc 1 LB0 1 0 :1:0 
+[s S882 . 1 `uc 1 LB0 1 0 :1:0 
 `uc 1 LB1 1 0 :1:1 
 `uc 1 LB2 1 0 :1:2 
 `uc 1 LB3 1 0 :1:3 
@@ -219,11 +223,11 @@ STATE4 4
 `uc 1 LB6 1 0 :1:6 
 `uc 1 LB7 1 0 :1:7 
 ]
-[u S889 . 1 `S871 1 . 1 0 `S880 1 . 1 0 ]
-[v _LATBbits LATBbits `VES889  1 e 1 @3978 ]
+[u S891 . 1 `S873 1 . 1 0 `S882 1 . 1 0 ]
+[v _LATBbits LATBbits `VES891  1 e 1 @3978 ]
 "7697
 [v _LATC LATC `VEuc  1 e 1 @3979 ]
-[s S965 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S976 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -233,7 +237,7 @@ STATE4 4
 `uc 1 LATC7 1 0 :1:7 
 ]
 "7724
-[s S974 . 1 `uc 1 LC0 1 0 :1:0 
+[s S985 . 1 `uc 1 LC0 1 0 :1:0 
 `uc 1 LC1 1 0 :1:1 
 `uc 1 LC2 1 0 :1:2 
 `uc 1 LC3 1 0 :1:3 
@@ -242,11 +246,11 @@ STATE4 4
 `uc 1 LC6 1 0 :1:6 
 `uc 1 LC7 1 0 :1:7 
 ]
-[u S983 . 1 `S965 1 . 1 0 `S974 1 . 1 0 ]
-[v _LATCbits LATCbits `VES983  1 e 1 @3979 ]
+[u S994 . 1 `S976 1 . 1 0 `S985 1 . 1 0 ]
+[v _LATCbits LATCbits `VES994  1 e 1 @3979 ]
 "7808
 [v _LATD LATD `VEuc  1 e 1 @3980 ]
-[s S1005 . 1 `uc 1 LATD0 1 0 :1:0 
+[s S1016 . 1 `uc 1 LATD0 1 0 :1:0 
 `uc 1 LATD1 1 0 :1:1 
 `uc 1 LATD2 1 0 :1:2 
 `uc 1 LATD3 1 0 :1:3 
@@ -256,7 +260,7 @@ STATE4 4
 `uc 1 LATD7 1 0 :1:7 
 ]
 "7835
-[s S1014 . 1 `uc 1 LD0 1 0 :1:0 
+[s S1025 . 1 `uc 1 LD0 1 0 :1:0 
 `uc 1 LD1 1 0 :1:1 
 `uc 1 LD2 1 0 :1:2 
 `uc 1 LD3 1 0 :1:3 
@@ -265,8 +269,8 @@ STATE4 4
 `uc 1 LD6 1 0 :1:6 
 `uc 1 LD7 1 0 :1:7 
 ]
-[u S1023 . 1 `S1005 1 . 1 0 `S1014 1 . 1 0 ]
-[v _LATDbits LATDbits `VES1023  1 e 1 @3980 ]
+[u S1034 . 1 `S1016 1 . 1 0 `S1025 1 . 1 0 ]
+[v _LATDbits LATDbits `VES1034  1 e 1 @3980 ]
 "7919
 [v _LATE LATE `VEuc  1 e 1 @3981 ]
 "7970
@@ -315,7 +319,7 @@ STATE4 4
 [v _PIR1bits PIR1bits `VES133  1 e 1 @3998 ]
 "10268
 [v _RCSTA1 RCSTA1 `VEuc  1 e 1 @4011 ]
-[s S781 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S782 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -325,10 +329,10 @@ STATE4 4
 `uc 1 SPEN 1 0 :1:7 
 ]
 "10321
-[s S790 . 1 `uc 1 . 1 0 :3:0 
+[s S791 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 ADEN 1 0 :1:3 
 ]
-[s S793 . 1 `uc 1 RX9D1 1 0 :1:0 
+[s S794 . 1 `uc 1 RX9D1 1 0 :1:0 
 `uc 1 OERR1 1 0 :1:1 
 `uc 1 FERR1 1 0 :1:2 
 `uc 1 ADDEN1 1 0 :1:3 
@@ -337,18 +341,18 @@ STATE4 4
 `uc 1 RX91 1 0 :1:6 
 `uc 1 SPEN1 1 0 :1:7 
 ]
-[s S802 . 1 `uc 1 RCD8 1 0 :1:0 
+[s S803 . 1 `uc 1 RCD8 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 RC8_9 1 0 :1:6 
 ]
-[s S806 . 1 `uc 1 . 1 0 :6:0 
+[s S807 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC9 1 0 :1:6 
 ]
-[s S809 . 1 `uc 1 . 1 0 :5:0 
+[s S810 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 SRENA 1 0 :1:5 
 ]
-[u S812 . 1 `S781 1 . 1 0 `S790 1 . 1 0 `S793 1 . 1 0 `S802 1 . 1 0 `S806 1 . 1 0 `S809 1 . 1 0 ]
-[v _RCSTA1bits RCSTA1bits `VES812  1 e 1 @4011 ]
+[u S813 . 1 `S782 1 . 1 0 `S791 1 . 1 0 `S794 1 . 1 0 `S803 1 . 1 0 `S807 1 . 1 0 `S810 1 . 1 0 ]
+[v _RCSTA1bits RCSTA1bits `VES813  1 e 1 @4011 ]
 "10723
 [v _TXSTA1 TXSTA1 `VEuc  1 e 1 @4012 ]
 "11097
@@ -400,15 +404,15 @@ STATE4 4
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
 "13476
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
-[s S428 . 1 `uc 1 . 1 0 :1:0 
+[s S429 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_NOT_DONE 1 0 :1:1 
 ]
 "13521
-[s S431 . 1 `uc 1 ADON 1 0 :1:0 
+[s S432 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :5:2 
 ]
-[s S435 . 1 `uc 1 . 1 0 :1:0 
+[s S436 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -416,43 +420,43 @@ STATE4 4
 `uc 1 CHS3 1 0 :1:5 
 `uc 1 CHS4 1 0 :1:6 
 ]
-[s S443 . 1 `uc 1 . 1 0 :1:0 
+[s S444 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 DONE 1 0 :1:1 
 ]
-[s S446 . 1 `uc 1 . 1 0 :1:0 
+[s S447 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 NOT_DONE 1 0 :1:1 
 ]
-[s S449 . 1 `uc 1 . 1 0 :1:0 
+[s S450 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S452 . 1 `uc 1 . 1 0 :1:0 
+[s S453 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[s S455 . 1 `uc 1 . 1 0 :1:0 
+[s S456 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GODONE 1 0 :1:1 
 ]
-[u S458 . 1 `S428 1 . 1 0 `S431 1 . 1 0 `S435 1 . 1 0 `S443 1 . 1 0 `S446 1 . 1 0 `S449 1 . 1 0 `S452 1 . 1 0 `S455 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES458  1 e 1 @4034 ]
+[u S459 . 1 `S429 1 . 1 0 `S432 1 . 1 0 `S436 1 . 1 0 `S444 1 . 1 0 `S447 1 . 1 0 `S450 1 . 1 0 `S453 1 . 1 0 `S456 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES459  1 e 1 @4034 ]
 "13606
 [v _ADRESL ADRESL `VEuc  1 e 1 @4035 ]
 "13625
 [v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
-[s S541 . 1 `uc 1 NOT_BOR 1 0 :1:0 
+[s S542 . 1 `uc 1 NOT_BOR 1 0 :1:0 
 ]
 "15720
-[s S543 . 1 `uc 1 . 1 0 :1:0 
+[s S544 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 NOT_POR 1 0 :1:1 
 ]
-[s S546 . 1 `uc 1 . 1 0 :2:0 
+[s S547 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_PD 1 0 :1:2 
 ]
-[s S549 . 1 `uc 1 . 1 0 :3:0 
+[s S550 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 NOT_TO 1 0 :1:3 
 ]
-[s S552 . 1 `uc 1 . 1 0 :4:0 
+[s S553 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 NOT_RI 1 0 :1:4 
 ]
-[s S555 . 1 `uc 1 nBOR 1 0 :1:0 
+[s S556 . 1 `uc 1 nBOR 1 0 :1:0 
 `uc 1 nPOR 1 0 :1:1 
 `uc 1 nPD 1 0 :1:2 
 `uc 1 nTO 1 0 :1:3 
@@ -461,23 +465,23 @@ STATE4 4
 `uc 1 SBOREN 1 0 :1:6 
 `uc 1 IPEN 1 0 :1:7 
 ]
-[s S564 . 1 `uc 1 BOR 1 0 :1:0 
+[s S565 . 1 `uc 1 BOR 1 0 :1:0 
 `uc 1 POR 1 0 :1:1 
 `uc 1 PD 1 0 :1:2 
 `uc 1 TO 1 0 :1:3 
 `uc 1 RI 1 0 :1:4 
 ]
-[u S570 . 1 `S541 1 . 1 0 `S543 1 . 1 0 `S546 1 . 1 0 `S549 1 . 1 0 `S552 1 . 1 0 `S555 1 . 1 0 `S564 1 . 1 0 ]
-[v _RCONbits RCONbits `VES570  1 e 1 @4048 ]
+[u S571 . 1 `S542 1 . 1 0 `S544 1 . 1 0 `S547 1 . 1 0 `S550 1 . 1 0 `S553 1 . 1 0 `S556 1 . 1 0 `S565 1 . 1 0 ]
+[v _RCONbits RCONbits `VES571  1 e 1 @4048 ]
 "15836
 [v _OSCCON2 OSCCON2 `VEuc  1 e 1 @4050 ]
 "15892
 [v _OSCCON OSCCON `VEuc  1 e 1 @4051 ]
-[s S279 . 1 `uc 1 . 1 0 :7:0 
+[s S280 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 NOT_RBPU 1 0 :1:7 
 ]
 "16694
-[s S282 . 1 `uc 1 RBIP 1 0 :1:0 
+[s S283 . 1 `uc 1 RBIP 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 TMR0IP 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -486,12 +490,12 @@ STATE4 4
 `uc 1 INTEDG0 1 0 :1:6 
 `uc 1 nRBPU 1 0 :1:7 
 ]
-[s S291 . 1 `uc 1 . 1 0 :7:0 
+[s S292 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 RBPU 1 0 :1:7 
 ]
-[u S294 . 1 `S279 1 . 1 0 `S282 1 . 1 0 `S291 1 . 1 0 ]
-[v _INTCON2bits INTCON2bits `VES294  1 e 1 @4081 ]
-[s S608 . 1 `uc 1 RBIF 1 0 :1:0 
+[u S295 . 1 `S280 1 . 1 0 `S283 1 . 1 0 `S292 1 . 1 0 ]
+[v _INTCON2bits INTCON2bits `VES295  1 e 1 @4081 ]
+[s S609 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -501,7 +505,7 @@ STATE4 4
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
 "16770
-[s S617 . 1 `uc 1 . 1 0 :1:0 
+[s S618 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 INT0F 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -510,15 +514,17 @@ STATE4 4
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-[s S626 . 1 `uc 1 . 1 0 :6:0 
+[s S627 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
-[u S630 . 1 `S608 1 . 1 0 `S617 1 . 1 0 `S626 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES630  1 e 1 @4082 ]
-"57 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr2.c
+[u S631 . 1 `S609 1 . 1 0 `S618 1 . 1 0 `S627 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES631  1 e 1 @4082 ]
+"59 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr2.c
 [v _Timer2Ticked Timer2Ticked `VEuc  1 e 1 0 ]
-"59
+"60
+[v _DelayTimerTicked DelayTimerTicked `VEuc  1 e 1 0 ]
+"62
 [v _TMR2_InterruptHandler TMR2_InterruptHandler `*.37(v  1 e 2 0 ]
 "57 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr6.c
 [v _TMR6_InterruptHandler TMR6_InterruptHandler `*.37(v  1 e 2 0 ]
@@ -536,38 +542,38 @@ STATE4 4
 [v _StepCount StepCount `ui  1 e 2 0 ]
 "15
 [v _Timer2Tick_count Timer2Tick_count `ui  1 s 2 Timer2Tick_count ]
-"21
+"22
 [v _StepsComplete StepsComplete `uc  1 e 1 0 ]
-"33
-[v _EstadoActual EstadoActual `E7107  1 e 1 0 ]
-"21 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\main.c
+"34
+[v _EstadoActual EstadoActual `E7112  1 e 1 0 ]
+"23 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"44
+"56
 } 0
-"329 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
+"331 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
 [v _StepMove StepMove `(uc  1 e 1 0 ]
 {
 [v StepMove@StepNumber StepNumber `ui  1 p 2 19 ]
 [v StepMove@Velocidad Velocidad `uc  1 p 1 21 ]
 [v StepMove@microstep_number microstep_number `uc  1 p 1 22 ]
 [v StepMove@direccion direccion `uc  1 p 1 23 ]
-"366
+"368
 } 0
-"259
+"260
 [v _State8MEF_act_Backward State8MEF_act_Backward `(v  1 e 1 0 ]
 {
-"327
+"329
 } 0
-"41
+"42
 [v _State8MEF_act State8MEF_act `(v  1 e 1 0 ]
 {
-"117
+"118
 } 0
-"189
+"190
 [v _State16MEF_act_Backward State16MEF_act_Backward `(v  1 e 1 0 ]
 {
-"257
+"258
 } 0
 "96 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/eusart1.c
 [v _EUSART1_Write EUSART1_Write `(v  1 e 1 0 ]
@@ -577,15 +583,15 @@ STATE4 4
 [v EUSART1_Write@txData txData `uc  1 a 1 14 ]
 "103
 } 0
-"119 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
+"120 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
 [v _State16MEF_act State16MEF_act `(v  1 e 1 0 ]
 {
-"187
+"188
 } 0
-"368
+"370
 [v _limitar_corriente limitar_corriente `(v  1 s 1 limitar_corriente ]
 {
-"376
+"378
 } 0
 "90 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/epwm2.c
 [v _EPWM2_LoadDutyValue EPWM2_LoadDutyValue `(v  1 e 1 0 ]
@@ -599,10 +605,10 @@ STATE4 4
 [v EPWM1_LoadDutyValue@dutyValue dutyValue `ui  1 p 2 14 ]
 "97
 } 0
-"35 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
+"36 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
 [v _StateMEF_ini StateMEF_ini `(v  1 e 1 0 ]
 {
-"39
+"40
 } 0
 "111 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
@@ -625,21 +631,21 @@ STATE4 4
 [v TMR6_SetInterruptHandler@InterruptHandler InterruptHandler `*.2v  1 p 2 14 ]
 "136
 } 0
-"65 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr2.c
+"68 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr2.c
 [v _TMR2_Initialize TMR2_Initialize `(v  1 e 1 0 ]
 {
-"89
+"92
 } 0
-"91
+"94
 [v _TMR2_StartTimer TMR2_StartTimer `(v  1 e 1 0 ]
 {
-"95
+"98
 } 0
-"145
+"150
 [v _TMR2_SetInterruptHandler TMR2_SetInterruptHandler `(v  1 e 1 0 ]
 {
 [v TMR2_SetInterruptHandler@InterruptHandler InterruptHandler `*.2v  1 p 2 14 ]
-"147
+"152
 } 0
 "51 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
@@ -681,6 +687,17 @@ STATE4 4
 {
 "82
 } 0
+"380 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\MotorDriver.c
+[v _Motor_Stop Motor_Stop `(v  1 e 1 0 ]
+{
+"383
+} 0
+"385
+[v _DelayTmr2 DelayTmr2 `(v  1 e 1 0 ]
+{
+[v DelayTmr2@Timeout Timeout `ui  1 p 2 14 ]
+"399
+} 0
 "57 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
 {
@@ -696,20 +713,20 @@ STATE4 4
 {
 "141
 } 0
-"123 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr2.c
+"126 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/tmr2.c
 [v _TMR2_ISR TMR2_ISR `(v  1 e 1 0 ]
 {
-"132
+"135
 } 0
-"134
+"137
 [v _TMR2_CallBack TMR2_CallBack `(v  1 e 1 0 ]
 {
-"143
+"148
 } 0
-"149
+"154
 [v _TMR2_DefaultInterruptHandler TMR2_DefaultInterruptHandler `(v  1 e 1 0 ]
 {
-"152
+"157
 } 0
 "144 C:\Users\Ariel L\Desktop\Back up\Proyectos\DriverMotorControl\DriverMotorControl\mcc_generated_files/adc.c
 [v _ADC_ISR ADC_ISR `(v  1 e 1 0 ]

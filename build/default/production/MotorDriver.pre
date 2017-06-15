@@ -8552,37 +8552,37 @@ void interrupt INTERRUPT_InterruptManager(void);
 # 122
 void INTERRUPT_Initialize (void);
 
-# 103 "mcc_generated_files/tmr2.h"
+# 105 "mcc_generated_files/tmr2.h"
 void TMR2_Initialize(void);
 
-# 132
+# 134
 void TMR2_StartTimer(void);
 
-# 164
+# 166
 void TMR2_StopTimer(void);
 
-# 199
+# 201
 uint8_t TMR2_ReadTimer(void);
 
-# 238
+# 240
 void TMR2_WriteTimer(uint8_t timerVal);
 
-# 290
+# 292
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
 
-# 308
+# 310
 void TMR2_ISR(void);
 
-# 326
+# 328
 void TMR2_CallBack(void);
 
-# 343
+# 345
 void TMR2_SetInterruptHandler(void *InterruptHandler);
 
-# 361
+# 363
 extern void (*TMR2_InterruptHandler)(void);
 
-# 379
+# 381
 void TMR2_DefaultInterruptHandler(void);
 
 # 94 "mcc_generated_files/eusart1.h"
@@ -8695,6 +8695,11 @@ void State16MEF_act( void );
 uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
 void State16MEF_act_Backward( void );
 void State8MEF_act_Backward( void );
+void Motor_Stop( void );
+
+
+
+void DelayTmr2(unsigned uint16_t Timeout);
 
 # 5 "MotorDriver.c"
 static uint8_t LookUP_TABLE_COS[32]={125,118,108,94,77,57,34,12,12,34,57,77,94,108,118,125,125,118,108,94,77,57,34,12,12,34,57,77,94,108,118,125};
@@ -8712,6 +8717,7 @@ static uint16_t Timer2Tick_count;
 static uint8_t MoveDone;
 
 extern uint8_t Timer2Ticked;
+extern uint8_t DelayTimerTicked;
 
 uint8_t StepsComplete=0;
 
@@ -8747,7 +8753,7 @@ do { LATDbits.LATD5 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
 if (Microstep<8){
 
 
-limitar_corriente();
+
 EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
 EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
 if (Microstep==7){
@@ -8761,7 +8767,7 @@ PSTR1CON = 0x02; PSTR2CON = 0x01;
 do { LATCbits.LATC2 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
 if ((Microstep<16)&&(Microstep>7)){
 
-limitar_corriente();
+
 EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
 EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
 
@@ -8777,7 +8783,7 @@ do { LATCbits.LATC2 = 0; } while(0); do { LATCbits.LATC1 = 0; } while(0);
 if ((Microstep<24)&&(Microstep>15)){
 
 
-limitar_corriente();
+
 EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
 EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
 
@@ -8793,7 +8799,7 @@ do { LATDbits.LATD5 = 0; } while(0); do { LATCbits.LATC1 = 0; } while(0);
 if ((Microstep<32)&&(Microstep>23)){
 
 
-limitar_corriente();
+
 EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
 EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
 
@@ -8963,7 +8969,7 @@ PSTR1CON = 0x01; PSTR2CON = 0x01;
 do { LATDbits.LATD5 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
 if (Microstep<8){
 
-limitar_corriente();
+
 EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
 EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
 if (Microstep==0){
@@ -8976,7 +8982,7 @@ break;
 case STATE2:
 PSTR1CON = 0x02; PSTR2CON = 0x01;
 do { LATCbits.LATC2 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
-limitar_corriente();
+
 if ((Microstep<16)&&(Microstep>7)){
 
 EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
@@ -8990,7 +8996,7 @@ break;
 case STATE3:
 PSTR1CON = 0x02; PSTR2CON = 0x02;
 do { LATCbits.LATC2 = 0; } while(0); do { LATCbits.LATC1 = 0; } while(0);
-limitar_corriente();
+
 if ((Microstep<24)&&(Microstep>15)){
 
 EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
@@ -9005,6 +9011,7 @@ case STATE4:
 PSTR1CON = 0x01; PSTR2CON = 0x02;
 do { LATDbits.LATD5 = 0; } while(0); do { LATCbits.LATC1 = 0; } while(0);
 if ((Microstep<32)&&(Microstep>23)){
+
 
 EPWM1_LoadDutyValue(LookUP_TABLE_COS[Microstep]);
 EPWM2_LoadDutyValue(LookUP_TABLE_SEN[Microstep]);
@@ -9068,5 +9075,26 @@ if ((LookUP_TABLE_SEN[Microstep])>115){
 LookUP_TABLE_SEN[Microstep]=115;
 }
 
+}
+
+void Motor_Stop( void ){
+PSTR1CON = 0x00; PSTR2CON = 0x00;
+do { LATCbits.LATC2 = 0; } while(0); do { LATDbits.LATD5 = 0; } while(0);do { LATCbits.LATC1 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
+}
+
+void DelayTmr2(unsigned uint16_t Timeout)
+{
+
+
+
+DelayTimerTicked = 0;
+while (Timeout > 0)
+{
+if (DelayTimerTicked)
+{
+Timeout--;
+DelayTimerTicked = 0;
+}
+}
 }
 

@@ -8552,37 +8552,37 @@ void interrupt INTERRUPT_InterruptManager(void);
 # 122
 void INTERRUPT_Initialize (void);
 
-# 103 "mcc_generated_files/tmr2.h"
+# 105 "mcc_generated_files/tmr2.h"
 void TMR2_Initialize(void);
 
-# 132
+# 134
 void TMR2_StartTimer(void);
 
-# 164
+# 166
 void TMR2_StopTimer(void);
 
-# 199
+# 201
 uint8_t TMR2_ReadTimer(void);
 
-# 238
+# 240
 void TMR2_WriteTimer(uint8_t timerVal);
 
-# 290
+# 292
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
 
-# 308
+# 310
 void TMR2_ISR(void);
 
-# 326
+# 328
 void TMR2_CallBack(void);
 
-# 343
+# 345
 void TMR2_SetInterruptHandler(void *InterruptHandler);
 
-# 361
+# 363
 extern void (*TMR2_InterruptHandler)(void);
 
-# 379
+# 381
 void TMR2_DefaultInterruptHandler(void);
 
 # 94 "mcc_generated_files/eusart1.h"
@@ -8695,11 +8695,18 @@ void State16MEF_act( void );
 uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
 void State16MEF_act_Backward( void );
 void State8MEF_act_Backward( void );
+void Motor_Stop( void );
+
+
+
+void DelayTmr2(unsigned uint16_t Timeout);
 
 # 17 "main.c"
 uint8_t StepsComplete;
 
 extern unsigned char Timer2Ticked;
+extern unsigned char DelayTimerTicked;
+
 
 void main(void)
 {
@@ -8707,6 +8714,7 @@ void main(void)
 SYSTEM_Initialize();
 StateMEF_ini();
 Timer2Ticked=0;
+DelayTimerTicked=0;
 do { LATBbits.LATB6 = 1; } while(0);
 
 
@@ -8718,10 +8726,19 @@ while (1)
 {
 
 
-while(StepMove(5000,5,16,1)==0);
+while(StepMove(2000,3,8,1)==0);
+
+Motor_Stop();
+
+DelayTmr2(19230);
+
+while(StepMove(2000,3,8,0)==0);
+
+Motor_Stop();
+
+DelayTmr2(19230);
 
 
-while(StepMove(5000,5,16,0)==0);
 
 }
 }
