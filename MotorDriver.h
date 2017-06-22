@@ -11,12 +11,10 @@
 #include "mcc_generated_files/mcc.h"
 
 void StateMEF_ini( void );
-void State8MEF_act( void );
-void State16MEF_act( void );
 uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
-void State16MEF_act_Backward( void );
-void State8MEF_act_Backward( void );
 void Motor_Stop( void );
+void State8MEF_act( uint8_t direccion );
+void State16MEF_act( uint8_t direccion );
 
 /////////////////////////////////////Delay Timer 2
 /*El timer 2 se interrumpe cada 52 us*/

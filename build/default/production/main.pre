@@ -8690,12 +8690,10 @@ void OSCILLATOR_Initialize(void);
 
 # 13 "MotorDriver.h"
 void StateMEF_ini( void );
-void State8MEF_act( void );
-void State16MEF_act( void );
 uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
-void State16MEF_act_Backward( void );
-void State8MEF_act_Backward( void );
 void Motor_Stop( void );
+void State8MEF_act( uint8_t direccion );
+void State16MEF_act( uint8_t direccion );
 
 
 
@@ -8726,17 +8724,21 @@ while (1)
 {
 
 
-while(StepMove(2000,3,8,1)==0);
+while(StepMove(3000,20,16,1)==0);
+
+Motor_Stop();
+
+StateMEF_ini();
+
+DelayTmr2(19230);
+
+while(StepMove(3000,20,16,0)==0);
 
 Motor_Stop();
 
 DelayTmr2(19230);
 
-while(StepMove(2000,3,8,0)==0);
-
-Motor_Stop();
-
-DelayTmr2(19230);
+StateMEF_ini();
 
 
 
