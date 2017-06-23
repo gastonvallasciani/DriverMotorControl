@@ -33,11 +33,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S820 . . . . ]
 "16770
 [v _INTCONbits `VS820 ~T0 @X0 0 e@4082 ]
-"14 MotorDriver.h
+"20 MotorDriver.h
+[v _RectaAceleracion `(v ~T0 @X0 0 ef3`uc`uc`uc ]
+"14
 [v _StepMove `(uc ~T0 @X0 0 ef4`ui`uc`uc`uc ]
 "15
 [v _Motor_Stop `(v ~T0 @X0 0 ef ]
-"21
+"57
 [v _DelayTmr2 `(v ~T0 @X0 0 ef1`ui ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -6691,12 +6693,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MotorDriver.h: 15: void Motor_Stop( void );
 [; ;MotorDriver.h: 16: void State8MEF_act( uint8_t direccion );
 [; ;MotorDriver.h: 17: void State16MEF_act( uint8_t direccion );
-[; ;MotorDriver.h: 21: void DelayTmr2(unsigned uint16_t Timeout);
+[; ;MotorDriver.h: 20: void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
+[; ;MotorDriver.h: 57: void DelayTmr2(unsigned uint16_t Timeout);
 "17 main.c
 [v _StepsComplete `uc ~T0 @X0 1 e ]
 [; ;main.c: 17: uint8_t StepsComplete;
 [; ;main.c: 19: extern unsigned char Timer2Ticked;
 [; ;main.c: 20: extern unsigned char DelayTimerTicked;
+"21
+[v _Velocidad `uc ~T0 @X0 1 e ]
+[; ;main.c: 21: uint8_t Velocidad;
 "23
 [v _main `(v ~T0 @X0 1 ef ]
 "24
@@ -6724,58 +6730,67 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _LATBbits 0 6 -> -> 1 `i `uc ]
 }
 [e :U 852 ]
-[; ;main.c: 33: (INTCONbits.GIE = 1);
-"33
+[; ;main.c: 32: Velocidad = 3;
+"32
+[e = _Velocidad -> -> 3 `i `uc ]
+[; ;main.c: 35: (INTCONbits.GIE = 1);
+"35
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 36: (INTCONbits.PEIE = 1);
-"36
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-[; ;main.c: 37: while (1)
-"37
-[e :U 855 ]
-[; ;main.c: 38: {
+[; ;main.c: 38: (INTCONbits.PEIE = 1);
 "38
+[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
+[; ;main.c: 39: while (1)
+"39
+[e :U 855 ]
+[; ;main.c: 40: {
+"40
 {
-[; ;main.c: 41: while(StepMove(3000,20,16,1)==0);
-"41
+[; ;main.c: 45: RectaAceleracion( Velocidad , 8 , 1);
+"45
+[e ( _RectaAceleracion (3 , , _Velocidad -> -> 8 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 46: while(StepMove(2000,Velocidad,8,1)==0);
+"46
 [e $U 857  ]
 [e :U 858 ]
 [e :U 857 ]
-[e $ == -> ( _StepMove (4 , , , -> -> 3000 `i `ui -> -> 20 `i `uc -> -> 16 `i `uc -> -> 1 `i `uc `i -> 0 `i 858  ]
+[e $ == -> ( _StepMove (4 , , , -> -> 2000 `i `ui _Velocidad -> -> 8 `i `uc -> -> 1 `i `uc `i -> 0 `i 858  ]
 [e :U 859 ]
-[; ;main.c: 43: Motor_Stop();
-"43
+[; ;main.c: 48: Motor_Stop();
+"48
 [e ( _Motor_Stop ..  ]
-[; ;main.c: 45: StateMEF_ini();
-"45
+[; ;main.c: 50: StateMEF_ini();
+"50
 [e ( _StateMEF_ini ..  ]
-[; ;main.c: 47: DelayTmr2(19230);
-"47
+[; ;main.c: 52: DelayTmr2(19230);
+"52
 [e ( _DelayTmr2 (1 -> -> 19230 `i `ui ]
-[; ;main.c: 49: while(StepMove(3000,20,16,0)==0);
-"49
+[; ;main.c: 54: RectaAceleracion( Velocidad , 8 , 0);
+"54
+[e ( _RectaAceleracion (3 , , _Velocidad -> -> 8 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 55: while(StepMove(2000,Velocidad,8,0)==0);
+"55
 [e $U 860  ]
 [e :U 861 ]
 [e :U 860 ]
-[e $ == -> ( _StepMove (4 , , , -> -> 3000 `i `ui -> -> 20 `i `uc -> -> 16 `i `uc -> -> 0 `i `uc `i -> 0 `i 861  ]
+[e $ == -> ( _StepMove (4 , , , -> -> 2000 `i `ui _Velocidad -> -> 8 `i `uc -> -> 0 `i `uc `i -> 0 `i 861  ]
 [e :U 862 ]
-[; ;main.c: 51: Motor_Stop();
-"51
+[; ;main.c: 57: Motor_Stop();
+"57
 [e ( _Motor_Stop ..  ]
-[; ;main.c: 53: DelayTmr2(19230);
-"53
-[e ( _DelayTmr2 (1 -> -> 19230 `i `ui ]
-[; ;main.c: 55: StateMEF_ini();
-"55
-[e ( _StateMEF_ini ..  ]
+[; ;main.c: 59: DelayTmr2(19230);
 "59
+[e ( _DelayTmr2 (1 -> -> 19230 `i `ui ]
+[; ;main.c: 61: StateMEF_ini();
+"61
+[e ( _StateMEF_ini ..  ]
+"65
 }
 [e :U 854 ]
-"37
+"39
 [e $U 855  ]
 [e :U 856 ]
-[; ;main.c: 59: }
-[; ;main.c: 60: }
-"60
+[; ;main.c: 65: }
+[; ;main.c: 66: }
+"66
 [e :UE 850 ]
 }

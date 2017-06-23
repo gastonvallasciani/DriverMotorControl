@@ -18,7 +18,7 @@ uint8_t StepsComplete;
 
 extern unsigned char Timer2Ticked; 
 extern unsigned char DelayTimerTicked; 
-
+uint8_t Velocidad;
 
 void main(void)
 {
@@ -28,6 +28,8 @@ void main(void)
     Timer2Ticked=0;
     DelayTimerTicked=0;
     LTest_SetHigh();
+    
+    Velocidad = 3;
 
     // Enable the Global Interrupts
     INTERRUPT_GlobalInterruptEnable();
@@ -37,17 +39,21 @@ void main(void)
     while (1)
     {      
           // numero de pasos, velocidad, numero de micropasos,direccion  tao=L/Rl = 1.6mHy/0.77ohm = 2.07ms --> 5*tao = 10.38ms (Tiempo que tarda en 
-                                                    // cargar una bobina del devanado)) VELOCIDAD a partir de 3
-        while(StepMove(3000,20,16,FORWARD)==NO);
+        //RectaAcelereacion();
+         // cargar una bobina del devanado)) VELOCIDAD a partir de 3
         
+        RectaAceleracion( Velocidad , 8 , FORWARD);
+        while(StepMove(2000,Velocidad,8,FORWARD)==NO);
+        //RectaFrenado( Velocidad , 8 , FORWARD);
         Motor_Stop();
         
         StateMEF_ini();
         
         DelayTmr2(s1_t);
-   
-        while(StepMove(3000,20,16,BACKWARD)==NO);
         
+        RectaAceleracion( Velocidad , 8 , BACKWARD);
+        while(StepMove(2000,Velocidad,8,BACKWARD)==NO);
+        //RectaFrenado( Velocidad , 8 , FORWARD);
         Motor_Stop();
         
         DelayTmr2(s1_t);

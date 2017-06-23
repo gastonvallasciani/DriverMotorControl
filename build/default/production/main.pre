@@ -8696,7 +8696,9 @@ void State8MEF_act( uint8_t direccion );
 void State16MEF_act( uint8_t direccion );
 
 
+void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
 
+# 57
 void DelayTmr2(unsigned uint16_t Timeout);
 
 # 17 "main.c"
@@ -8704,7 +8706,7 @@ uint8_t StepsComplete;
 
 extern unsigned char Timer2Ticked;
 extern unsigned char DelayTimerTicked;
-
+uint8_t Velocidad;
 
 void main(void)
 {
@@ -8715,6 +8717,8 @@ Timer2Ticked=0;
 DelayTimerTicked=0;
 do { LATBbits.LATB6 = 1; } while(0);
 
+Velocidad = 3;
+
 
 (INTCONbits.GIE = 1);
 
@@ -8724,7 +8728,10 @@ while (1)
 {
 
 
-while(StepMove(3000,20,16,1)==0);
+
+
+RectaAceleracion( Velocidad , 8 , 1);
+while(StepMove(2000,Velocidad,8,1)==0);
 
 Motor_Stop();
 
@@ -8732,7 +8739,8 @@ StateMEF_ini();
 
 DelayTmr2(19230);
 
-while(StepMove(3000,20,16,0)==0);
+RectaAceleracion( Velocidad , 8 , 0);
+while(StepMove(2000,Velocidad,8,0)==0);
 
 Motor_Stop();
 

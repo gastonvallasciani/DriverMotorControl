@@ -49,7 +49,6 @@ uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad,uint8_t microstep_numbe
                      State16MEF_act( direccion );
                      }
                      else{
-                       
                         State8MEF_act( direccion );
                      }
                     StepCount++;
@@ -57,8 +56,7 @@ uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad,uint8_t microstep_numbe
                     }
                     Timer2Ticked = 0;
                 }       
-            StepsComplete=NO;
-         
+            StepsComplete=NO;  
     }
     else{
         StepsComplete=YES;
@@ -67,6 +65,8 @@ uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad,uint8_t microstep_numbe
     }
     return(StepsComplete);
 }
+
+
 
 static void limitar_corriente( void ){
     if ((LookUP_TABLE_COS[Microstep])>115){
@@ -317,6 +317,35 @@ void State16MEF_act( uint8_t direccion ){
              break; 
      }    
 }
+
+void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion){
+    uint8_t i;
+    if (microstep_number == 8){
+       for (i=30;i>velocidad;i--){
+       while(StepMove(10,i,8,direccion)==NO);    
+       }     
+    }
+    else if (microstep_number == 16){
+       for (i=30;i>velocidad;i--){
+       while(StepMove(10,i,16,direccion)==NO);    
+       }
+    }
+    
+}
+
+/*void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion){
+    uint8_t i;
+    if (microstep_number == 8){
+       for (i=velocidad;i<30;i++){
+       while(StepMove(10,i,8,direccion)==NO);    
+       }     
+    }
+    else if (microstep_number == 16){
+       for (i=velocidad;i<30;i++){
+       while(StepMove(10,i,16,direccion)==NO);    
+       }
+    }
+}*/
 
 
 

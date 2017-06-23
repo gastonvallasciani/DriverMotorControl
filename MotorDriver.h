@@ -16,6 +16,42 @@ void Motor_Stop( void );
 void State8MEF_act( uint8_t direccion );
 void State16MEF_act( uint8_t direccion );
 
+
+void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
+/*              Recta de Aceleración
+ *              --------------------       
+ *      
+ *              30  __________________________ Velocidad Inicial             
+ *                |\          
+ *     [*52useg]  | \          
+                  |  \        
+                  |   \       
+                  |    \     
+   Tiempo entre   |     \     
+      pasos       |      \    
+                  |_______\___________________ Velocidad Constante   (velocidad de movimiento del motor)   
+                  |        
+                  |____________________________
+ *                       Número de pasos
+ */
+//void RectaFrenando( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
+/*              Recta de Aceleración
+ *              --------------------       
+ *      
+ *              30  __________________________ Velocidad Final             
+ *                |       /|    
+ *     [*52useg]  |      / |     
+                  |     /  |   
+                  |    /   |  
+                  |   /    |
+   Tiempo entre   |  /     |
+      pasos       | /      |
+                  |/_______|___________________ Velocidad de movimiento del motor (velocidad de frenado inicial) 
+                  |        
+                  |____________________________
+ *                       Número de pasos
+ */
+
 /////////////////////////////////////Delay Timer 2
 /*El timer 2 se interrumpe cada 52 us*/
 void DelayTmr2(unsigned uint16_t Timeout);

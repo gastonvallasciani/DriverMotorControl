@@ -8696,7 +8696,9 @@ void State8MEF_act( uint8_t direccion );
 void State16MEF_act( uint8_t direccion );
 
 
+void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
 
+# 57
 void DelayTmr2(unsigned uint16_t Timeout);
 
 # 5 "MotorDriver.c"
@@ -8747,7 +8749,6 @@ if (microstep_number==16){
 State16MEF_act( direccion );
 }
 else{
-
 State8MEF_act( direccion );
 }
 StepCount++;
@@ -8756,7 +8757,6 @@ Timer2Tick_count=0;
 Timer2Ticked = 0;
 }
 StepsComplete=0;
-
 }
 else{
 StepsComplete=1;
@@ -8765,6 +8765,8 @@ StepCount=0;
 }
 return(StepsComplete);
 }
+
+
 
 static void limitar_corriente( void ){
 if ((LookUP_TABLE_COS[Microstep])>115){
@@ -9014,5 +9016,20 @@ default:
 StateMEF_ini;
 break;
 }
+}
+
+void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion){
+uint8_t i;
+if (microstep_number == 8){
+for (i=30;i>velocidad;i--){
+while(StepMove(10,i,8,direccion)==0);
+}
+}
+else if (microstep_number == 16){
+for (i=30;i>velocidad;i--){
+while(StepMove(10,i,16,direccion)==0);
+}
+}
+
 }
 

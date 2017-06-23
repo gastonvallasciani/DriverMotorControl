@@ -1,7 +1,7 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "34 MotorDriver.c
-[c E7108 0 1 2 3 4 .. ]
-[n E7108 . STATE0 STATE1 STATE2 STATE3 STATE4  ]
+[c E7112 0 1 2 3 4 .. ]
+[n E7112 . STATE0 STATE1 STATE2 STATE3 STATE4  ]
 "19
 [v _Timer2Ticked `uc ~T0 @X0 0 e ]
 "17 MotorDriver.h
@@ -6692,7 +6692,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MotorDriver.h: 15: void Motor_Stop( void );
 [; ;MotorDriver.h: 16: void State8MEF_act( uint8_t direccion );
 [; ;MotorDriver.h: 17: void State16MEF_act( uint8_t direccion );
-[; ;MotorDriver.h: 21: void DelayTmr2(unsigned uint16_t Timeout);
+[; ;MotorDriver.h: 20: void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
+[; ;MotorDriver.h: 57: void DelayTmr2(unsigned uint16_t Timeout);
 "5 MotorDriver.c
 [v _LookUP_TABLE_COS `uc ~T0 @X0 -> 32 `i s ]
 [i _LookUP_TABLE_COS
@@ -6945,7 +6946,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MotorDriver.c: 31: STATE4
 [; ;MotorDriver.c: 32: }t_STATEMEF;
 "34
-[v _EstadoActual `E7108 ~T0 @X0 1 e ]
+[v _EstadoActual `E7112 ~T0 @X0 1 e ]
 [; ;MotorDriver.c: 34: t_STATEMEF EstadoActual;
 "36
 [v _StateMEF_ini `(v ~T0 @X0 1 ef ]
@@ -6955,7 +6956,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;MotorDriver.c: 38: EstadoActual = STATE1;
 "38
-[e = _EstadoActual . `E7108 1 ]
+[e = _EstadoActual . `E7112 1 ]
 [; ;MotorDriver.c: 39: Microstep=0;
 "39
 [e = _Microstep -> 0 `i ]
@@ -7003,57 +7004,57 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 855 ]
 [; ;MotorDriver.c: 51: else{
 {
-[; ;MotorDriver.c: 53: State8MEF_act( direccion );
-"53
+[; ;MotorDriver.c: 52: State8MEF_act( direccion );
+"52
 [e ( _State8MEF_act (1 _direccion ]
-"54
+"53
 }
 [e :U 856 ]
-[; ;MotorDriver.c: 54: }
-[; ;MotorDriver.c: 55: StepCount++;
-"55
+[; ;MotorDriver.c: 53: }
+[; ;MotorDriver.c: 54: StepCount++;
+"54
 [e ++ _StepCount -> -> 1 `i `ui ]
-[; ;MotorDriver.c: 56: Timer2Tick_count=0;
-"56
+[; ;MotorDriver.c: 55: Timer2Tick_count=0;
+"55
 [e = _Timer2Tick_count -> -> 0 `i `ui ]
-"57
+"56
 }
 [e :U 854 ]
-[; ;MotorDriver.c: 57: }
-[; ;MotorDriver.c: 58: Timer2Ticked = 0;
-"58
+[; ;MotorDriver.c: 56: }
+[; ;MotorDriver.c: 57: Timer2Ticked = 0;
+"57
 [e = _Timer2Ticked -> -> 0 `i `uc ]
-"59
+"58
 }
 [e :U 853 ]
-[; ;MotorDriver.c: 59: }
-[; ;MotorDriver.c: 60: StepsComplete=0;
-"60
+[; ;MotorDriver.c: 58: }
+[; ;MotorDriver.c: 59: StepsComplete=0;
+"59
 [e = _StepsComplete -> -> 0 `i `uc ]
-"62
+"60
 }
-[; ;MotorDriver.c: 62: }
+[; ;MotorDriver.c: 60: }
 [e $U 857  ]
-"63
+"61
 [e :U 852 ]
-[; ;MotorDriver.c: 63: else{
+[; ;MotorDriver.c: 61: else{
 {
-[; ;MotorDriver.c: 64: StepsComplete=1;
-"64
+[; ;MotorDriver.c: 62: StepsComplete=1;
+"62
 [e = _StepsComplete -> -> 1 `i `uc ]
-[; ;MotorDriver.c: 65: StepCount=0;
-"65
+[; ;MotorDriver.c: 63: StepCount=0;
+"63
 [e = _StepCount -> -> 0 `i `ui ]
-"67
+"65
 }
 [e :U 857 ]
-[; ;MotorDriver.c: 67: }
-[; ;MotorDriver.c: 68: return(StepsComplete);
-"68
+[; ;MotorDriver.c: 65: }
+[; ;MotorDriver.c: 66: return(StepsComplete);
+"66
 [e ) _StepsComplete ]
 [e $UE 851  ]
-[; ;MotorDriver.c: 69: }
-"69
+[; ;MotorDriver.c: 67: }
+"67
 [e :UE 851 ]
 }
 "71
@@ -7218,7 +7219,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;MotorDriver.c: 116: EstadoActual = STATE2;
 "116
-[e = _EstadoActual . `E7108 2 ]
+[e = _EstadoActual . `E7112 2 ]
 "117
 }
 [e :U 891 ]
@@ -7240,7 +7241,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;MotorDriver.c: 122: EstadoActual = STATE4;
 "122
-[e = _EstadoActual . `E7108 4 ]
+[e = _EstadoActual . `E7112 4 ]
 [; ;MotorDriver.c: 123: Microstep=31;
 "123
 [e = _Microstep -> 31 `i ]
@@ -7301,7 +7302,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;MotorDriver.c: 142: EstadoActual = STATE3;
 "142
-[e = _EstadoActual . `E7108 3 ]
+[e = _EstadoActual . `E7112 3 ]
 "143
 }
 [e :U 903 ]
@@ -7323,7 +7324,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;MotorDriver.c: 148: EstadoActual = STATE1;
 "148
-[e = _EstadoActual . `E7108 1 ]
+[e = _EstadoActual . `E7112 1 ]
 "149
 }
 [e :U 905 ]
@@ -7381,7 +7382,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;MotorDriver.c: 167: EstadoActual = STATE4;
 "167
-[e = _EstadoActual . `E7108 4 ]
+[e = _EstadoActual . `E7112 4 ]
 "168
 }
 [e :U 915 ]
@@ -7403,7 +7404,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;MotorDriver.c: 173: EstadoActual = STATE2;
 "173
-[e = _EstadoActual . `E7108 2 ]
+[e = _EstadoActual . `E7112 2 ]
 "174
 }
 [e :U 917 ]
@@ -7461,7 +7462,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;MotorDriver.c: 192: EstadoActual = STATE1;
 "192
-[e = _EstadoActual . `E7108 1 ]
+[e = _EstadoActual . `E7112 1 ]
 [; ;MotorDriver.c: 193: Microstep=-1;
 "193
 [e = _Microstep -U -> 1 `i ]
@@ -7486,7 +7487,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;MotorDriver.c: 199: EstadoActual = STATE3;
 "199
-[e = _EstadoActual . `E7108 3 ]
+[e = _EstadoActual . `E7112 3 ]
 "200
 }
 [e :U 929 ]
@@ -7520,10 +7521,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 880  ]
 "103
 [e :U 881 ]
-[e [\ _EstadoActual , $ . `E7108 1 882
- , $ . `E7108 2 894
- , $ . `E7108 3 906
- , $ . `E7108 4 918
+[e [\ _EstadoActual , $ . `E7112 1 882
+ , $ . `E7112 2 894
+ , $ . `E7112 3 906
+ , $ . `E7112 4 918
  930 ]
 "208
 [e :U 880 ]
@@ -7581,7 +7582,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;MotorDriver.c: 226: EstadoActual = STATE2;
 "226
-[e = _EstadoActual . `E7108 2 ]
+[e = _EstadoActual . `E7112 2 ]
 "227
 }
 [e :U 943 ]
@@ -7603,7 +7604,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;MotorDriver.c: 232: EstadoActual = STATE4;
 "232
-[e = _EstadoActual . `E7108 4 ]
+[e = _EstadoActual . `E7112 4 ]
 [; ;MotorDriver.c: 233: Microstep=63;
 "233
 [e = _Microstep -> 63 `i ]
@@ -7664,7 +7665,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;MotorDriver.c: 252: EstadoActual = STATE3;
 "252
-[e = _EstadoActual . `E7108 3 ]
+[e = _EstadoActual . `E7112 3 ]
 "253
 }
 [e :U 955 ]
@@ -7686,7 +7687,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;MotorDriver.c: 258: EstadoActual = STATE1;
 "258
-[e = _EstadoActual . `E7108 1 ]
+[e = _EstadoActual . `E7112 1 ]
 "259
 }
 [e :U 957 ]
@@ -7744,7 +7745,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;MotorDriver.c: 277: EstadoActual = STATE4;
 "277
-[e = _EstadoActual . `E7108 4 ]
+[e = _EstadoActual . `E7112 4 ]
 "278
 }
 [e :U 967 ]
@@ -7766,7 +7767,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;MotorDriver.c: 283: EstadoActual = STATE2;
 "283
-[e = _EstadoActual . `E7108 2 ]
+[e = _EstadoActual . `E7112 2 ]
 "284
 }
 [e :U 969 ]
@@ -7824,7 +7825,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;MotorDriver.c: 302: EstadoActual = STATE1;
 "302
-[e = _EstadoActual . `E7108 1 ]
+[e = _EstadoActual . `E7112 1 ]
 [; ;MotorDriver.c: 303: Microstep=-1;
 "303
 [e = _Microstep -U -> 1 `i ]
@@ -7849,7 +7850,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;MotorDriver.c: 309: EstadoActual = STATE3;
 "309
-[e = _EstadoActual . `E7108 3 ]
+[e = _EstadoActual . `E7112 3 ]
 "310
 }
 [e :U 981 ]
@@ -7883,14 +7884,96 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 932  ]
 "213
 [e :U 933 ]
-[e [\ _EstadoActual , $ . `E7108 1 934
- , $ . `E7108 2 946
- , $ . `E7108 3 958
- , $ . `E7108 4 970
+[e [\ _EstadoActual , $ . `E7112 1 934
+ , $ . `E7112 2 946
+ , $ . `E7112 3 958
+ , $ . `E7112 4 970
  982 ]
 "318
 [e :U 932 ]
 [; ;MotorDriver.c: 319: }
 "319
 [e :UE 931 ]
+}
+"321
+[v _RectaAceleracion `(v ~T0 @X0 1 ef3`uc`uc`uc ]
+{
+[; ;MotorDriver.c: 321: void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion){
+[e :U _RectaAceleracion ]
+[v _velocidad `uc ~T0 @X0 1 r1 ]
+[v _microstep_number `uc ~T0 @X0 1 r2 ]
+[v _direccion `uc ~T0 @X0 1 r3 ]
+[f ]
+"322
+[v _i `uc ~T0 @X0 1 a ]
+[; ;MotorDriver.c: 322: uint8_t i;
+[; ;MotorDriver.c: 323: if (microstep_number == 8){
+"323
+[e $ ! == -> _microstep_number `i -> 8 `i 984  ]
+{
+[; ;MotorDriver.c: 324: for (i=30;i>velocidad;i--){
+"324
+{
+[e = _i -> -> 30 `i `uc ]
+[e $U 988  ]
+[e :U 985 ]
+{
+[; ;MotorDriver.c: 325: while(StepMove(10,i,8,direccion)==0);
+"325
+[e $U 989  ]
+[e :U 990 ]
+[e :U 989 ]
+[e $ == -> ( _StepMove (4 , , , -> -> 10 `i `ui _i -> -> 8 `i `uc _direccion `i -> 0 `i 990  ]
+[e :U 991 ]
+"326
+}
+"324
+[e -- _i -> -> 1 `i `uc ]
+[e :U 988 ]
+[e $ > -> _i `i -> _velocidad `i 985  ]
+[e :U 986 ]
+"326
+}
+"327
+}
+[; ;MotorDriver.c: 326: }
+[; ;MotorDriver.c: 327: }
+[e $U 992  ]
+"328
+[e :U 984 ]
+[; ;MotorDriver.c: 328: else if (microstep_number == 16){
+[e $ ! == -> _microstep_number `i -> 16 `i 993  ]
+{
+[; ;MotorDriver.c: 329: for (i=30;i>velocidad;i--){
+"329
+{
+[e = _i -> -> 30 `i `uc ]
+[e $U 997  ]
+[e :U 994 ]
+{
+[; ;MotorDriver.c: 330: while(StepMove(10,i,16,direccion)==0);
+"330
+[e $U 998  ]
+[e :U 999 ]
+[e :U 998 ]
+[e $ == -> ( _StepMove (4 , , , -> -> 10 `i `ui _i -> -> 16 `i `uc _direccion `i -> 0 `i 999  ]
+[e :U 1000 ]
+"331
+}
+"329
+[e -- _i -> -> 1 `i `uc ]
+[e :U 997 ]
+[e $ > -> _i `i -> _velocidad `i 994  ]
+[e :U 995 ]
+"331
+}
+"332
+}
+[e :U 993 ]
+"334
+[e :U 992 ]
+[; ;MotorDriver.c: 331: }
+[; ;MotorDriver.c: 332: }
+[; ;MotorDriver.c: 334: }
+[e :UE 983 ]
 }
