@@ -8690,23 +8690,41 @@ void OSCILLATOR_Initialize(void);
 
 # 13 "MotorDriver.h"
 void StateMEF_ini( void );
+
+# 23
 uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
+
+# 43
 void Motor_Stop( void );
+
+# 70
 void State8MEF_act( uint8_t direccion );
+
+# 84
 void State16MEF_act( uint8_t direccion );
 
-
+# 99
 void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
 
-# 57
+# 145
+void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
+
+# 196
 void DelayTmr2(unsigned uint16_t Timeout);
+
+# 221
+struct{
+uint8_t Velocidad;
+uint8_t MicroStepNumber;
+uint8_t Direccion;
+uint16_t StepsNumber;
+}StepperMotor;
 
 # 17 "main.c"
 uint8_t StepsComplete;
 
 extern unsigned char Timer2Ticked;
 extern unsigned char DelayTimerTicked;
-uint8_t Velocidad;
 
 void main(void)
 {
@@ -8717,7 +8735,10 @@ Timer2Ticked=0;
 DelayTimerTicked=0;
 do { LATBbits.LATB6 = 1; } while(0);
 
-Velocidad = 3;
+
+StepperMotor.Velocidad = 10;
+StepperMotor.StepsNumber = 2000;
+StepperMotor.MicroStepNumber = 16;
 
 
 (INTCONbits.GIE = 1);
@@ -8729,25 +8750,27 @@ while (1)
 
 
 
+StepperMotor.Direccion = 1;
 
-RectaAceleracion( Velocidad , 8 , 1);
-while(StepMove(2000,Velocidad,8,1)==0);
-
+RectaAceleracion( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion );
+while(StepMove(StepperMotor.StepsNumber, StepperMotor.Velocidad , StepperMotor.MicroStepNumber ,StepperMotor.Direccion)==0);
+RectaFrenado( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion);
 Motor_Stop();
 
 StateMEF_ini();
 
 DelayTmr2(19230);
 
-RectaAceleracion( Velocidad , 8 , 0);
-while(StepMove(2000,Velocidad,8,0)==0);
+StepperMotor.Direccion = 0;
 
+RectaAceleracion( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion);
+while(StepMove(StepperMotor.StepsNumber , StepperMotor.Velocidad , StepperMotor.MicroStepNumber ,StepperMotor.Direccion)==0);
+RectaFrenado( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion);
 Motor_Stop();
 
 DelayTmr2(19230);
 
 StateMEF_ini();
-
 
 
 }

@@ -322,30 +322,30 @@ void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t dir
     uint8_t i;
     if (microstep_number == 8){
        for (i=30;i>velocidad;i--){
-       while(StepMove(10,i,8,direccion)==NO);    
+       while(StepMove(5,i,8,direccion)==NO);    
        }     
     }
     else if (microstep_number == 16){
        for (i=30;i>velocidad;i--){
-       while(StepMove(10,i,16,direccion)==NO);    
+       while(StepMove(5,i,16,direccion)==NO);    
        }
     }
     
 }
 
-/*void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion){
+void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion){
     uint8_t i;
     if (microstep_number == 8){
        for (i=velocidad;i<30;i++){
-       while(StepMove(10,i,8,direccion)==NO);    
+       while(StepMove(5,i,8,direccion)==NO);    
        }     
     }
     else if (microstep_number == 16){
        for (i=velocidad;i<30;i++){
-       while(StepMove(10,i,16,direccion)==NO);    
+       while(StepMove(5,i,16,direccion)==NO);    
        }
     }
-}*/
+}
 
 
 

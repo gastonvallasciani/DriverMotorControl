@@ -8690,16 +8690,35 @@ void OSCILLATOR_Initialize(void);
 
 # 13 "MotorDriver.h"
 void StateMEF_ini( void );
+
+# 23
 uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
+
+# 43
 void Motor_Stop( void );
+
+# 70
 void State8MEF_act( uint8_t direccion );
+
+# 84
 void State16MEF_act( uint8_t direccion );
 
-
+# 99
 void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
 
-# 57
+# 145
+void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
+
+# 196
 void DelayTmr2(unsigned uint16_t Timeout);
+
+# 221
+struct{
+uint8_t Velocidad;
+uint8_t MicroStepNumber;
+uint8_t Direccion;
+uint16_t StepsNumber;
+}StepperMotor;
 
 # 5 "MotorDriver.c"
 static uint8_t LookUP_TABLE_COS[32]={125,118,108,94,77,57,34,12,12,34,57,77,94,108,118,125,125,118,108,94,77,57,34,12,12,34,57,77,94,108,118,125};
@@ -9022,14 +9041,28 @@ void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t dir
 uint8_t i;
 if (microstep_number == 8){
 for (i=30;i>velocidad;i--){
-while(StepMove(10,i,8,direccion)==0);
+while(StepMove(5,i,8,direccion)==0);
 }
 }
 else if (microstep_number == 16){
 for (i=30;i>velocidad;i--){
-while(StepMove(10,i,16,direccion)==0);
+while(StepMove(5,i,16,direccion)==0);
 }
 }
 
+}
+
+void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion){
+uint8_t i;
+if (microstep_number == 8){
+for (i=velocidad;i<30;i++){
+while(StepMove(5,i,8,direccion)==0);
+}
+}
+else if (microstep_number == 16){
+for (i=velocidad;i<30;i++){
+while(StepMove(5,i,16,direccion)==0);
+}
+}
 }
 

@@ -18,7 +18,6 @@ uint8_t StepsComplete;
 
 extern unsigned char Timer2Ticked; 
 extern unsigned char DelayTimerTicked; 
-uint8_t Velocidad;
 
 void main(void)
 {
@@ -29,7 +28,10 @@ void main(void)
     DelayTimerTicked=0;
     LTest_SetHigh();
     
-    Velocidad = 3;
+
+    StepperMotor.Velocidad = 10;
+    StepperMotor.StepsNumber = 2000;
+    StepperMotor.MicroStepNumber = MICROSTEP16;
 
     // Enable the Global Interrupts
     INTERRUPT_GlobalInterruptEnable();
@@ -39,28 +41,30 @@ void main(void)
     while (1)
     {      
           // numero de pasos, velocidad, numero de micropasos,direccion  tao=L/Rl = 1.6mHy/0.77ohm = 2.07ms --> 5*tao = 10.38ms (Tiempo que tarda en 
-        //RectaAcelereacion();
          // cargar una bobina del devanado)) VELOCIDAD a partir de 3
         
-        RectaAceleracion( Velocidad , 8 , FORWARD);
-        while(StepMove(2000,Velocidad,8,FORWARD)==NO);
-        //RectaFrenado( Velocidad , 8 , FORWARD);
+        StepperMotor.Direccion = FORWARD;
+      
+        RectaAceleracion( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion );
+        while(StepMove(StepperMotor.StepsNumber, StepperMotor.Velocidad , StepperMotor.MicroStepNumber ,StepperMotor.Direccion)==NO);
+        RectaFrenado( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion);
         Motor_Stop();
         
         StateMEF_ini();
         
         DelayTmr2(s1_t);
         
-        RectaAceleracion( Velocidad , 8 , BACKWARD);
-        while(StepMove(2000,Velocidad,8,BACKWARD)==NO);
-        //RectaFrenado( Velocidad , 8 , FORWARD);
+        StepperMotor.Direccion = BACKWARD;
+        
+        RectaAceleracion( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion);
+        while(StepMove(StepperMotor.StepsNumber , StepperMotor.Velocidad , StepperMotor.MicroStepNumber ,StepperMotor.Direccion)==NO);
+        RectaFrenado( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion);
         Motor_Stop();
         
         DelayTmr2(s1_t);
         
         StateMEF_ini();
         
-        ////////////StepMove(1000,3,16,BACKWARD);
        
     }
 }
