@@ -8709,10 +8709,10 @@ void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t dir
 # 145
 void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
 
-# 196
+# 194
 void DelayTmr2(unsigned uint16_t Timeout);
 
-# 221
+# 234
 struct{
 uint8_t Velocidad;
 uint8_t MicroStepNumber;
@@ -8756,65 +8756,6 @@ void StateMEF_ini( void ){
 
 EstadoActual = STATE1;
 Microstep=0;
-}
-
-uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad,uint8_t microstep_number, uint8_t direccion ){
-
-if ((StepCount<StepNumber)){
-if (Timer2Ticked){
-Timer2Tick_count++;
-if (Timer2Tick_count == Velocidad){
-if (microstep_number==16){
-State16MEF_act( direccion );
-}
-else{
-State8MEF_act( direccion );
-}
-StepCount++;
-Timer2Tick_count=0;
-}
-Timer2Ticked = 0;
-}
-StepsComplete=0;
-}
-else{
-StepsComplete=1;
-StepCount=0;
-
-}
-return(StepsComplete);
-}
-
-
-
-static void limitar_corriente( void ){
-if ((LookUP_TABLE_COS[Microstep])>115){
-LookUP_TABLE_COS[Microstep]=115;
-}
-if ((LookUP_TABLE_SEN[Microstep])>115){
-LookUP_TABLE_SEN[Microstep]=115;
-}
-
-}
-
-void Motor_Stop( void ){
-PSTR1CON = 0x00; PSTR2CON = 0x00;
-do { LATCbits.LATC2 = 0; } while(0); do { LATDbits.LATD5 = 0; } while(0);do { LATCbits.LATC1 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
-}
-
-void DelayTmr2(unsigned uint16_t Timeout){
-
-
-
-DelayTimerTicked = 0;
-while (Timeout > 0)
-{
-if (DelayTimerTicked)
-{
-Timeout--;
-DelayTimerTicked = 0;
-}
-}
 }
 
 void State8MEF_act( uint8_t direccion ){
@@ -9037,6 +8978,48 @@ break;
 }
 }
 
+uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad,uint8_t microstep_number, uint8_t direccion ){
+
+if ((StepCount<StepNumber)){
+if (Timer2Ticked){
+Timer2Tick_count++;
+if (Timer2Tick_count == Velocidad){
+if (microstep_number==16){
+State16MEF_act( direccion );
+}
+else{
+State8MEF_act( direccion );
+}
+StepCount++;
+Timer2Tick_count=0;
+}
+Timer2Ticked = 0;
+}
+StepsComplete=0;
+}
+else{
+StepsComplete=1;
+StepCount=0;
+
+}
+return(StepsComplete);
+}
+
+static void limitar_corriente( void ){
+if ((LookUP_TABLE_COS[Microstep])>115){
+LookUP_TABLE_COS[Microstep]=115;
+}
+if ((LookUP_TABLE_SEN[Microstep])>115){
+LookUP_TABLE_SEN[Microstep]=115;
+}
+
+}
+
+void Motor_Stop( void ){
+PSTR1CON = 0x00; PSTR2CON = 0x00;
+do { LATCbits.LATC2 = 0; } while(0); do { LATDbits.LATD5 = 0; } while(0);do { LATCbits.LATC1 = 0; } while(0); do { LATCbits.LATC0 = 0; } while(0);
+}
+
 void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion){
 uint8_t i;
 if (microstep_number == 8){
@@ -9062,6 +9045,21 @@ while(StepMove(5,i,8,direccion)==0);
 else if (microstep_number == 16){
 for (i=velocidad;i<30;i++){
 while(StepMove(5,i,16,direccion)==0);
+}
+}
+}
+
+void DelayTmr2(unsigned uint16_t Timeout){
+
+
+
+DelayTimerTicked = 0;
+while (Timeout > 0)
+{
+if (DelayTimerTicked)
+{
+Timeout--;
+DelayTimerTicked = 0;
 }
 }
 }

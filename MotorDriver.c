@@ -39,65 +39,6 @@ void StateMEF_ini( void ){
     Microstep=0;
 }
 
-uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad,uint8_t microstep_number, uint8_t direccion ){
-    
-    if ((StepCount<StepNumber)){
-            if (Timer2Ticked){ 
-                Timer2Tick_count++;
-                if (Timer2Tick_count == Velocidad){
-                     if (microstep_number==16){
-                     State16MEF_act( direccion );
-                     }
-                     else{
-                        State8MEF_act( direccion );
-                     }
-                    StepCount++;
-                    Timer2Tick_count=0;
-                    }
-                    Timer2Ticked = 0;
-                }       
-            StepsComplete=NO;  
-    }
-    else{
-        StepsComplete=YES;
-        StepCount=0;
-      
-    }
-    return(StepsComplete);
-}
-
-
-
-static void limitar_corriente( void ){
-    if ((LookUP_TABLE_COS[Microstep])>115){
-        LookUP_TABLE_COS[Microstep]=115;
-    }
-    if ((LookUP_TABLE_SEN[Microstep])>115){
-        LookUP_TABLE_SEN[Microstep]=115;
-    }
-    
-}
-
-void Motor_Stop( void ){
-    PSTR1CON = 0x00; PSTR2CON = 0x00;
-    INA_OFF(); INB_OFF();INC_OFF(); IND_OFF();
-}
-
-void DelayTmr2(unsigned uint16_t Timeout){
-    
-	// Solo puede haber un Delay en ejecución
-	// No se puede llamar a Delay desde interrupciones
-	DelayTimerTicked = 0; // Timer2Tick cambia a YES
-	while (Timeout > 0)
-	{
-		if (DelayTimerTicked)
-		{
-			Timeout--;
-			DelayTimerTicked = 0;
-		}
-	}
-}
-
 void State8MEF_act( uint8_t direccion ){
 
      switch(EstadoActual) {
@@ -318,6 +259,48 @@ void State16MEF_act( uint8_t direccion ){
      }    
 }
 
+uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad,uint8_t microstep_number, uint8_t direccion ){
+    
+    if ((StepCount<StepNumber)){
+            if (Timer2Ticked){ 
+                Timer2Tick_count++;
+                if (Timer2Tick_count == Velocidad){
+                     if (microstep_number==16){
+                     State16MEF_act( direccion );
+                     }
+                     else{
+                        State8MEF_act( direccion );
+                     }
+                    StepCount++;
+                    Timer2Tick_count=0;
+                    }
+                    Timer2Ticked = 0;
+                }       
+            StepsComplete=NO;  
+    }
+    else{
+        StepsComplete=YES;
+        StepCount=0;
+      
+    }
+    return(StepsComplete);
+}
+
+static void limitar_corriente( void ){
+    if ((LookUP_TABLE_COS[Microstep])>115){
+        LookUP_TABLE_COS[Microstep]=115;
+    }
+    if ((LookUP_TABLE_SEN[Microstep])>115){
+        LookUP_TABLE_SEN[Microstep]=115;
+    }
+    
+}
+
+void Motor_Stop( void ){
+    PSTR1CON = 0x00; PSTR2CON = 0x00;
+    INA_OFF(); INB_OFF();INC_OFF(); IND_OFF();
+}
+
 void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion){
     uint8_t i;
     if (microstep_number == 8){
@@ -345,6 +328,21 @@ void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direcci
        while(StepMove(5,i,16,direccion)==NO);    
        }
     }
+}
+
+void DelayTmr2(unsigned uint16_t Timeout){
+    
+	// Solo puede haber un Delay en ejecución
+	// No se puede llamar a Delay desde interrupciones
+	DelayTimerTicked = 0; // Timer2Tick cambia a YES
+	while (Timeout > 0)
+	{
+		if (DelayTimerTicked)
+		{
+			Timeout--;
+			DelayTimerTicked = 0;
+		}
+	}
 }
 
 

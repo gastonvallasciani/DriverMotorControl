@@ -8709,10 +8709,10 @@ void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t dir
 # 145
 void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
 
-# 196
+# 194
 void DelayTmr2(unsigned uint16_t Timeout);
 
-# 221
+# 234
 struct{
 uint8_t Velocidad;
 uint8_t MicroStepNumber;
@@ -8720,11 +8720,13 @@ uint8_t Direccion;
 uint16_t StepsNumber;
 }StepperMotor;
 
-# 17 "main.c"
+# 16 "main.c"
 uint8_t StepsComplete;
 
 extern unsigned char Timer2Ticked;
 extern unsigned char DelayTimerTicked;
+
+uint8_t parar=0;
 
 void main(void)
 {
@@ -8736,9 +8738,9 @@ DelayTimerTicked=0;
 do { LATBbits.LATB6 = 1; } while(0);
 
 
-StepperMotor.Velocidad = 10;
-StepperMotor.StepsNumber = 2000;
-StepperMotor.MicroStepNumber = 16;
+StepperMotor.Velocidad = 12;
+StepperMotor.StepsNumber = 2*(1600);
+StepperMotor.MicroStepNumber = 8;
 
 
 (INTCONbits.GIE = 1);
@@ -8748,29 +8750,13 @@ StepperMotor.MicroStepNumber = 16;
 while (1)
 {
 
-
-
+# 68
+if (parar==0){
+parar=1;
 StepperMotor.Direccion = 1;
-
-RectaAceleracion( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion );
 while(StepMove(StepperMotor.StepsNumber, StepperMotor.Velocidad , StepperMotor.MicroStepNumber ,StepperMotor.Direccion)==0);
-RectaFrenado( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion);
 Motor_Stop();
-
-StateMEF_ini();
-
-DelayTmr2(19230);
-
-StepperMotor.Direccion = 0;
-
-RectaAceleracion( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion);
-while(StepMove(StepperMotor.StepsNumber , StepperMotor.Velocidad , StepperMotor.MicroStepNumber ,StepperMotor.Direccion)==0);
-RectaFrenado( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion);
-Motor_Stop();
-
-DelayTmr2(19230);
-
-StateMEF_ini();
+}
 
 
 }

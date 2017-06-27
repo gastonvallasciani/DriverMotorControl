@@ -100,7 +100,7 @@ void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t dir
 /*          
  * void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
  * 
- * * Parametros: velocidad --> Seteo de la frecuencia con que se ejecutaran los pasos.
+ * Parametros: velocidad --> Seteo de la frecuencia con que se ejecutaran los pasos.
  *               microstep_number --> Cantidad de micropasos entre pasos. Pueden ser 8 o 16.
  *                                   MICROSTEP16 
  *                                   MICROSTEP8
@@ -191,16 +191,29 @@ void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direcci
  *  Ultima revision: 26-06-2017  
  */
 
-/////////////////////////////////////Delay Timer 2
-/*El timer 2 se interrumpe cada 52 us*/
 void DelayTmr2(unsigned uint16_t Timeout);
-/*Posibles parametros de la funcion DelayTmr2()*/
+
 #define ms1_t 19            //Retardo de 1ms 
 #define ms10_t 192          //Retardo de 10ms
 #define ms100_t 1923        //Retardo de 100ms
 #define s1_t 19230          //Retardo de 1s
+/*
+ * void Motor_Stop( void );
+ * El timer 2 se interrumpe cada 52 us.
+ * Parametros: Timeout --> Setea el valor inicial del contador que establece el retardo generado por la funcion DelatTmr2.
+ *                            #define ms1_t 19            //Retardo de 1ms 
+ *                            #define ms10_t 192          //Retardo de 10ms
+ *                            #define ms100_t 1923        //Retardo de 100ms
+ *                            #define s1_t 19230          //Retardo de 1s               
+ * Funciones que se deben llamar previamente: ninguna.
+ * Descripcion: Funcion que genera un retardo bloqueante.
+ * Ejemplo de aplicacion:  
+ *                              
+ *                      DelayTmr2(s1_t);
+ *
+ * Ultima revision: 26-06-2017    
+ */
 
-//////////////////////////////////////////////////////
 
 /** INA(P1A) --> RC2 --> PSTR2CON STRA
   *INB(P1B) --> RD5 --> PSTR1CON STRB
@@ -225,8 +238,25 @@ struct{
     uint16_t StepsNumber;
 }StepperMotor;
 
+/*Posibles parametros para setear la velocidad de movimiento del stepper motor. La velocidad nunca debe ser menor a 5
+ ya que se produciria perdida de pasos
+ revision 27-06-2017*/
+#define FASTSPEED 6
+#define MOVEMENTSPEED 12
+#define SLOWSPEED1 18
+#define SLOWSPEED2 25
+/*********************************************************************************************************************/
+/*Posibles parametros para setear el MicroStepNumber. Este puede ser de 15 micropasos/paso u 8 micropasos/paso
+ revision 27-06-2017*/
 #define MICROSTEP16 16
-#define MICROSTEP8 8 
+#define MICROSTEP8 8
+/*********************************************************************************************************************/
+/*Posibles parametros para setear el StepsNumber. Establecen 1 revolucion para los dos modos de funcionamiento
+ * 16 usetps per step o 8 usteps per step
+ revision 27-06-2017*/
+#define REVOLUTION16USTEPS 3200
+#define REVOLUTION8USTEPS 1600
+/*********************************************************************************************************************/ 
 
 #define FORWARD 1
 #define BACKWARD 0

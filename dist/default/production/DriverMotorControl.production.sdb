@@ -39,7 +39,7 @@ STATE4 4
 [v ___flmul __flmul `(d  1 e 3 0 ]
 "15 C:\Program Files\Microchip\xc8\v1.41\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
-"22 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\main.c
+"23 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\main.c
 [v _main main `(v  1 e 1 0 ]
 "61 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\mcc_generated_files/adc.c
 [v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
@@ -102,19 +102,13 @@ STATE4 4
 "36 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\MotorDriver.c
 [v _StateMEF_ini StateMEF_ini `(v  1 e 1 0 ]
 "42
-[v _StepMove StepMove `(uc  1 e 1 0 ]
-"81
-[v _Motor_Stop Motor_Stop `(v  1 e 1 0 ]
-"86
-[v _DelayTmr2 DelayTmr2 `(v  1 e 1 0 ]
-"101
 [v _State8MEF_act State8MEF_act `(v  1 e 1 0 ]
-"211
+"152
 [v _State16MEF_act State16MEF_act `(v  1 e 1 0 ]
-"321
-[v _RectaAceleracion RectaAceleracion `(v  1 e 1 0 ]
-"336
-[v _RectaFrenado RectaFrenado `(v  1 e 1 0 ]
+"262
+[v _StepMove StepMove `(uc  1 e 1 0 ]
+"299
+[v _Motor_Stop Motor_Stop `(v  1 e 1 0 ]
 "49 C:\Program Files\Microchip\xc8\v1.41\include\pic18f46k22.h
 [v _ANSELA ANSELA `VEuc  1 e 1 @3896 ]
 "93
@@ -225,7 +219,7 @@ STATE4 4
 [v _LATBbits LATBbits `VES896  1 e 1 @3978 ]
 "7697
 [v _LATC LATC `VEuc  1 e 1 @3979 ]
-[s S1016 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S1027 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -235,7 +229,7 @@ STATE4 4
 `uc 1 LATC7 1 0 :1:7 
 ]
 "7724
-[s S1025 . 1 `uc 1 LC0 1 0 :1:0 
+[s S1036 . 1 `uc 1 LC0 1 0 :1:0 
 `uc 1 LC1 1 0 :1:1 
 `uc 1 LC2 1 0 :1:2 
 `uc 1 LC3 1 0 :1:3 
@@ -244,11 +238,11 @@ STATE4 4
 `uc 1 LC6 1 0 :1:6 
 `uc 1 LC7 1 0 :1:7 
 ]
-[u S1034 . 1 `S1016 1 . 1 0 `S1025 1 . 1 0 ]
-[v _LATCbits LATCbits `VES1034  1 e 1 @3979 ]
+[u S1045 . 1 `S1027 1 . 1 0 `S1036 1 . 1 0 ]
+[v _LATCbits LATCbits `VES1045  1 e 1 @3979 ]
 "7808
 [v _LATD LATD `VEuc  1 e 1 @3980 ]
-[s S1056 . 1 `uc 1 LATD0 1 0 :1:0 
+[s S987 . 1 `uc 1 LATD0 1 0 :1:0 
 `uc 1 LATD1 1 0 :1:1 
 `uc 1 LATD2 1 0 :1:2 
 `uc 1 LATD3 1 0 :1:3 
@@ -258,7 +252,7 @@ STATE4 4
 `uc 1 LATD7 1 0 :1:7 
 ]
 "7835
-[s S1065 . 1 `uc 1 LD0 1 0 :1:0 
+[s S996 . 1 `uc 1 LD0 1 0 :1:0 
 `uc 1 LD1 1 0 :1:1 
 `uc 1 LD2 1 0 :1:2 
 `uc 1 LD3 1 0 :1:3 
@@ -267,8 +261,8 @@ STATE4 4
 `uc 1 LD6 1 0 :1:6 
 `uc 1 LD7 1 0 :1:7 
 ]
-[u S1074 . 1 `S1056 1 . 1 0 `S1065 1 . 1 0 ]
-[v _LATDbits LATDbits `VES1074  1 e 1 @3980 ]
+[u S1005 . 1 `S987 1 . 1 0 `S996 1 . 1 0 ]
+[v _LATDbits LATDbits `VES1005  1 e 1 @3980 ]
 "7919
 [v _LATE LATE `VEuc  1 e 1 @3981 ]
 "7970
@@ -518,6 +512,8 @@ STATE4 4
 ]
 [u S631 . 1 `S609 1 . 1 0 `S618 1 . 1 0 `S627 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES631  1 e 1 @4082 ]
+"21 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\main.c
+[v _parar parar `uc  1 e 1 0 ]
 "59 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\mcc_generated_files/tmr2.c
 [v _Timer2Ticked Timer2Ticked `VEuc  1 e 1 0 ]
 "60
@@ -545,12 +541,49 @@ STATE4 4
 "34
 [v _EstadoActual EstadoActual `E7122  1 e 1 0 ]
 [s S866 . 5 `uc 1 Velocidad 1 0 `uc 1 MicroStepNumber 1 1 `uc 1 Direccion 1 2 `ui 1 StepsNumber 2 3 ]
-"226 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\MotorDriver.h
+"239 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\MotorDriver.h
 [v _StepperMotor StepperMotor `S866  1 e 5 0 ]
-"22 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\main.c
+"23 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"70
+"77
+} 0
+"262 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\MotorDriver.c
+[v _StepMove StepMove `(uc  1 e 1 0 ]
+{
+[v StepMove@StepNumber StepNumber `ui  1 p 2 0 ]
+[v StepMove@Velocidad Velocidad `uc  1 p 1 2 ]
+[v StepMove@microstep_number microstep_number `uc  1 p 1 3 ]
+[v StepMove@direccion direccion `uc  1 p 1 4 ]
+"287
+} 0
+"42
+[v _State8MEF_act State8MEF_act `(v  1 e 1 0 ]
+{
+[v State8MEF_act@direccion direccion `uc  1 a 1 wreg ]
+[v State8MEF_act@direccion direccion `uc  1 a 1 wreg ]
+[v State8MEF_act@direccion direccion `uc  1 a 1 19 ]
+"150
+} 0
+"152
+[v _State16MEF_act State16MEF_act `(v  1 e 1 0 ]
+{
+[v State16MEF_act@direccion direccion `uc  1 a 1 wreg ]
+[v State16MEF_act@direccion direccion `uc  1 a 1 wreg ]
+[v State16MEF_act@direccion direccion `uc  1 a 1 19 ]
+"260
+} 0
+"90 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\mcc_generated_files/epwm2.c
+[v _EPWM2_LoadDutyValue EPWM2_LoadDutyValue `(v  1 e 1 0 ]
+{
+[v EPWM2_LoadDutyValue@dutyValue dutyValue `ui  1 p 2 14 ]
+"97
+} 0
+"90 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\mcc_generated_files/epwm1.c
+[v _EPWM1_LoadDutyValue EPWM1_LoadDutyValue `(v  1 e 1 0 ]
+{
+[v EPWM1_LoadDutyValue@dutyValue dutyValue `ui  1 p 2 14 ]
+"97
 } 0
 "36 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\MotorDriver.c
 [v _StateMEF_ini StateMEF_ini `(v  1 e 1 0 ]
@@ -634,81 +667,10 @@ STATE4 4
 {
 "82
 } 0
-"336 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\MotorDriver.c
-[v _RectaFrenado RectaFrenado `(v  1 e 1 0 ]
-{
-[v RectaFrenado@velocidad velocidad `uc  1 a 1 wreg ]
-"337
-[v RectaFrenado@i i `uc  1 a 1 6 ]
-"336
-[v RectaFrenado@velocidad velocidad `uc  1 a 1 wreg ]
-[v RectaFrenado@microstep_number microstep_number `uc  1 p 1 22 ]
-[v RectaFrenado@direccion direccion `uc  1 p 1 23 ]
-"338
-[v RectaFrenado@velocidad velocidad `uc  1 a 1 5 ]
-"348
-} 0
-"321
-[v _RectaAceleracion RectaAceleracion `(v  1 e 1 0 ]
-{
-[v RectaAceleracion@velocidad velocidad `uc  1 a 1 wreg ]
-"322
-[v RectaAceleracion@i i `uc  1 a 1 6 ]
-"321
-[v RectaAceleracion@velocidad velocidad `uc  1 a 1 wreg ]
-[v RectaAceleracion@microstep_number microstep_number `uc  1 p 1 22 ]
-[v RectaAceleracion@direccion direccion `uc  1 p 1 23 ]
-"323
-[v RectaAceleracion@velocidad velocidad `uc  1 a 1 5 ]
-"334
-} 0
-"42
-[v _StepMove StepMove `(uc  1 e 1 0 ]
-{
-[v StepMove@StepNumber StepNumber `ui  1 p 2 0 ]
-[v StepMove@Velocidad Velocidad `uc  1 p 1 2 ]
-[v StepMove@microstep_number microstep_number `uc  1 p 1 3 ]
-[v StepMove@direccion direccion `uc  1 p 1 4 ]
-"67
-} 0
-"101
-[v _State8MEF_act State8MEF_act `(v  1 e 1 0 ]
-{
-[v State8MEF_act@direccion direccion `uc  1 a 1 wreg ]
-[v State8MEF_act@direccion direccion `uc  1 a 1 wreg ]
-[v State8MEF_act@direccion direccion `uc  1 a 1 19 ]
-"209
-} 0
-"211
-[v _State16MEF_act State16MEF_act `(v  1 e 1 0 ]
-{
-[v State16MEF_act@direccion direccion `uc  1 a 1 wreg ]
-[v State16MEF_act@direccion direccion `uc  1 a 1 wreg ]
-[v State16MEF_act@direccion direccion `uc  1 a 1 19 ]
-"319
-} 0
-"90 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\mcc_generated_files/epwm2.c
-[v _EPWM2_LoadDutyValue EPWM2_LoadDutyValue `(v  1 e 1 0 ]
-{
-[v EPWM2_LoadDutyValue@dutyValue dutyValue `ui  1 p 2 14 ]
-"97
-} 0
-"90 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\mcc_generated_files/epwm1.c
-[v _EPWM1_LoadDutyValue EPWM1_LoadDutyValue `(v  1 e 1 0 ]
-{
-[v EPWM1_LoadDutyValue@dutyValue dutyValue `ui  1 p 2 14 ]
-"97
-} 0
-"81 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\MotorDriver.c
+"299 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\MotorDriver.c
 [v _Motor_Stop Motor_Stop `(v  1 e 1 0 ]
 {
-"84
-} 0
-"86
-[v _DelayTmr2 DelayTmr2 `(v  1 e 1 0 ]
-{
-[v DelayTmr2@Timeout Timeout `ui  1 p 2 14 ]
-"99
+"302
 } 0
 "57 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
