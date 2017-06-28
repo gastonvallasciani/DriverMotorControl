@@ -10,6 +10,62 @@
 
 #include "mcc_generated_files/mcc.h"
 
+struct{
+    uint8_t Velocidad;
+    uint8_t MicroStepNumber;
+    uint8_t Direccion;
+    uint16_t StepsNumber;
+}StepperMotor;
+
+/*Posibles parametros para setear la velocidad de movimiento del stepper motor. La velocidad nunca debe ser menor a 5
+ * ya que se produciria perdida de pasos para el modo de trabajo en 8 microsteps. Para el modo 16 microsteps como minimo 
+ * debe ser 2.
+ revision 28-06-2017*/
+/////////////////////////// 8 Micro Steps
+#define FASTESTSPEED_8uSTEPS 6
+#define FASTERSPEED_8uSTEPS 10
+#define WORKINGSPEED_8uSTEPS 14
+#define SLOWERSPEED_8uSTEPS 18
+#define SLOWESTSPEED_8uSTEPS 25
+////////////////////////// 16 Micro Steps
+#define FASTESTSPEED_16uSTEPS 3
+#define FASTERSPEED_16uSTEPS 4
+#define WORKINGSPEED_16uSTEPS 6
+#define SLOWERSPEED_16uSTEPS 10
+#define SLOWESTSPEED_16uSTEPS 15
+/*********************************************************************************************************************/
+/*Posibles parametros para setear el MicroStepNumber. Este puede ser de 15 micropasos/paso u 8 micropasos/paso
+ revision 27-06-2017*/
+#define MICROSTEP16 16
+#define MICROSTEP8 8
+/*********************************************************************************************************************/
+/*Posibles parametros para setear el StepsNumber. Establecen 1 revolucion para los dos modos de funcionamiento
+ * 16 usetps per step o 8 usteps per step
+ revision 27-06-2017*/
+#define REVOLUTION_16uSTEPS 3200
+#define REVOLUTION_8uSTEPS 1600
+/*********************************************************************************************************************/ 
+
+#define FORWARD 1
+#define BACKWARD 0
+
+#define YES 1
+#define NO 0
+
+// IN A
+#define INA_OFF()         RC2_SetLow()     // IO_RC2_MOTOR2_PAP1_SetLow()
+#define INA_ON()          RC2_SetHigh()    // IO_RC2_MOTOR2_PAP1_SetHigh()
+// IN B
+#define INB_OFF()         RD5_SetLow()     // IO_RD5_MOTOR2_PDIR1_SetLow()
+#define INB_ON()          RD5_SetHigh()    // IO_RD5_MOTOR2_PDIR1_SetHigh()
+// IN C
+#define INC_OFF()         RC1_SetLow()     // IO_RC1_MOTOR2_PAP2_SetLow()
+#define INC_ON()          RC1_SetHigh()    // IO_RC1_MOTOR2_PAP2_SetHigh()
+// IN D
+#define IND_OFF()         RC0_SetLow()     // IO_RC0_MOTOR2_PDIR2_SetLow()
+#define IND_ON()          RC0_SetHigh()    // IO_RC0_MOTOR2_PDIR2_SetHigh()
+
+
 void StateMEF_ini( void );    
 /*
  * void StateMEF_ini( void )
@@ -140,7 +196,7 @@ void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t dir
                   |____________________________
  *
  *                       Número de pasos
- * * Ultima revision: 26-06-2017  
+ *   Ultima revision: 26-06-2017  
  */
 void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
 /*              
@@ -191,6 +247,41 @@ void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direcci
  *  Ultima revision: 26-06-2017  
  */
 
+uint8_t SwitchDirection( uint8_t actual_direction );
+/*              
+ * void SwitchDirection( uint8_t actual_direction );
+ * 
+ * Parametros: ninguno.
+ * Funciones que se deben llamar previamente: ninguna.
+ * Descripcion: Funcion para cambiar el sentido de movimiento del motor. 
+ * Ejemplo de aplicacion:
+ * 
+ *                          #include "mcc_generated_files/mcc.h"
+ *                          #include "MotorDriver.h"
+ *                          
+ *                          struct{
+ *                              uint8_t Velocidad;
+ *                              uint8_t MicroStepNumber;
+ *                              uint8_t Direccion;
+ *                              uint16_t StepsNumber;
+ *                          }StepperMotor;
+ *                                
+ *                          StepperMotor.Velocidad = 10;
+ *                          StepperMotor.StepsNumber = 2000;
+ *                          StepperMotor.MicroStepNumber = MICROSTEP16;
+ *                          StepperMotor.Direccion = FORWARD;
+ *     
+ *                          while(1){
+ *                          RectaAceleracion( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion );
+ *                          while(StepMove(StepperMotor.StepsNumber, StepperMotor.Velocidad , StepperMotor.MicroStepNumber ,StepperMotor.Direccion)==NO);
+ *                          RectaFrenado( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion);
+ *                          StepperMotor.Direccion = SwitchDirection( StepperMotor.Direccion ); // El motor cambia su sentido de giro a BACKWARD.
+ *                          }
+ * 
+ *  Ultima revision: 28-06-2017  
+ */
+
+
 void DelayTmr2(unsigned uint16_t Timeout);
 
 #define ms1_t 19            //Retardo de 1ms 
@@ -213,70 +304,6 @@ void DelayTmr2(unsigned uint16_t Timeout);
  *
  * Ultima revision: 26-06-2017    
  */
-
-
-/** INA(P1A) --> RC2 --> PSTR2CON STRA
-  *INB(P1B) --> RD5 --> PSTR1CON STRB
-  *INC(P2A) --> RC1 --> PSTR1CON STRA
-  *IND(P2B) --> RC0 --> PSTR2CON STRB
-
-
-  *PSTRxCON = - | - | - | STRxSYNC | STRxD | STRxC | STRxB | STRxA
-  *          b7  b6  b5   b4         b3      b2      b1      b0
-  *
-  *STRxSYNC = 1 --> output steering update occurs on the next PWM period.
-  *STRxSYNC = 0 --> output steering update occurs at the beginning of the instruction cycle boundary. 
-  *
-  *STRxA,B,C,D = 1 --> PxA,B,C,D pins have the PWM waveform with polarity control from CCPxM<1:0>
-  *STRxA,B,C,D = 0 --> PxA,B,C,D are assign to port pin.
-*/
-
-struct{
-    uint8_t Velocidad;
-    uint8_t MicroStepNumber;
-    uint8_t Direccion;
-    uint16_t StepsNumber;
-}StepperMotor;
-
-/*Posibles parametros para setear la velocidad de movimiento del stepper motor. La velocidad nunca debe ser menor a 5
- ya que se produciria perdida de pasos
- revision 27-06-2017*/
-#define FASTSPEED 6
-#define MOVEMENTSPEED 12
-#define SLOWSPEED1 18
-#define SLOWSPEED2 25
-/*********************************************************************************************************************/
-/*Posibles parametros para setear el MicroStepNumber. Este puede ser de 15 micropasos/paso u 8 micropasos/paso
- revision 27-06-2017*/
-#define MICROSTEP16 16
-#define MICROSTEP8 8
-/*********************************************************************************************************************/
-/*Posibles parametros para setear el StepsNumber. Establecen 1 revolucion para los dos modos de funcionamiento
- * 16 usetps per step o 8 usteps per step
- revision 27-06-2017*/
-#define REVOLUTION16USTEPS 3200
-#define REVOLUTION8USTEPS 1600
-/*********************************************************************************************************************/ 
-
-#define FORWARD 1
-#define BACKWARD 0
-
-#define YES 1
-#define NO 0
-
-// IN A
-#define INA_OFF()         RC2_SetLow()     // IO_RC2_MOTOR2_PAP1_SetLow()
-#define INA_ON()          RC2_SetHigh()    // IO_RC2_MOTOR2_PAP1_SetHigh()
-// IN B
-#define INB_OFF()         RD5_SetLow()     // IO_RD5_MOTOR2_PDIR1_SetLow()
-#define INB_ON()          RD5_SetHigh()    // IO_RD5_MOTOR2_PDIR1_SetHigh()
-// IN C
-#define INC_OFF()         RC1_SetLow()     // IO_RC1_MOTOR2_PAP2_SetLow()
-#define INC_ON()          RC1_SetHigh()    // IO_RC1_MOTOR2_PAP2_SetHigh()
-// IN D
-#define IND_OFF()         RC0_SetLow()     // IO_RC0_MOTOR2_PDIR2_SetLow()
-#define IND_ON()          RC0_SetHigh()    // IO_RC0_MOTOR2_PDIR2_SetHigh()
-
 
 #ifdef	__cplusplus
 extern "C" {

@@ -30,9 +30,10 @@ void main(void)
     LTest_SetHigh();
     
 
-    StepperMotor.Velocidad = MOVEMENTSPEED;
-    StepperMotor.StepsNumber = 2*(REVOLUTION8USTEPS);
-    StepperMotor.MicroStepNumber = MICROSTEP8;
+    StepperMotor.Velocidad = SLOWESTSPEED_16uSTEPS;
+    StepperMotor.StepsNumber = 2*(REVOLUTION_16uSTEPS);
+    StepperMotor.MicroStepNumber = MICROSTEP16;
+    StepperMotor.Direccion = FORWARD;
     
     // Enable the Global Interrupts
     INTERRUPT_GlobalInterruptEnable();
@@ -41,33 +42,22 @@ void main(void)
     INTERRUPT_PeripheralInterruptEnable();
     while (1)
     {      
-          // numero de pasos, velocidad, numero de micropasos,direccion  tao=L/Rl = 1.6mHy/0.77ohm = 2.07ms --> 5*tao = 10.38ms (Tiempo que tarda en 
-         // cargar una bobina del devanado)) VELOCIDAD a partir de 3
         
-        /*StepperMotor.Direccion = FORWARD;
-      
-        RectaAceleracion( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion );
+        /*RectaAceleracion( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion );
         while(StepMove(StepperMotor.StepsNumber, StepperMotor.Velocidad , StepperMotor.MicroStepNumber ,StepperMotor.Direccion)==NO);
         RectaFrenado( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion);
         Motor_Stop();
         
         StateMEF_ini();
         
-        DelayTmr2(s1_t);
+        StepperMotor.Direccion = SwitchDirection( StepperMotor.Direccion );
         
-        StepperMotor.Direccion = BACKWARD;
+        DelayTmr2(s1_t);*/
         
-        RectaAceleracion( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion);
-        while(StepMove(StepperMotor.StepsNumber , StepperMotor.Velocidad , StepperMotor.MicroStepNumber ,StepperMotor.Direccion)==NO);
-        RectaFrenado( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion);
-        Motor_Stop();
-        
-        DelayTmr2(s1_t);
-        
-        StateMEF_ini();*/
+      
         if (parar==0){
             parar=1;
-            StepperMotor.Direccion = FORWARD;
+            RectaAceleracion( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion );
             while(StepMove(StepperMotor.StepsNumber, StepperMotor.Velocidad , StepperMotor.MicroStepNumber ,StepperMotor.Direccion)==NO);
             Motor_Stop();
         }

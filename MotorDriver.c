@@ -1,3 +1,29 @@
+/*
+ * Especificaciones de Hardware: 
+ *          
+ *                  Microcontrolador = PIC18F46K22
+ *                  Stepper Motor Model = 103-H7123-0740 -----> Specs: 1,8 +- 0.09 grados, Bipolar Current MAX: 2.2A, Rl=0.77ohm,L=1.6mHy
+ * 
+ * 
+ * 
+ * INA(P1A) --> RC2 --> PSTR2CON STRA
+ * INB(P1B) --> RD5 --> PSTR1CON STRB
+ * INC(P2A) --> RC1 --> PSTR1CON STRA
+ * IND(P2B) --> RC0 --> PSTR2CON STRB
+ *
+ * Registro PSTRxCON
+ * -----------------
+ * PSTRxCON = - | - | - | STRxSYNC | STRxD | STRxC | STRxB | STRxA
+ *           b7  b6  b5   b4         b3      b2      b1      b0
+ *
+ * STRxSYNC = 1 --> output steering update occurs on the next PWM period.
+ * STRxSYNC = 0 --> output steering update occurs at the beginning of the instruction cycle boundary. 
+ *
+ * STRxA,B,C,D = 1 --> PxA,B,C,D pins have the PWM waveform with polarity control from CCPxM<1:0>
+ * STRxA,B,C,D = 0 --> PxA,B,C,D are assign to port pin.
+ */
+ 
+
 #include "MotorDriver.h"
 #include "mcc_generated_files/mcc.h"
 
@@ -305,12 +331,12 @@ void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t dir
     uint8_t i;
     if (microstep_number == 8){
        for (i=30;i>velocidad;i--){
-       while(StepMove(5,i,8,direccion)==NO);    
+       while(StepMove(1,i,8,direccion)==NO);    
        }     
     }
     else if (microstep_number == 16){
        for (i=30;i>velocidad;i--){
-       while(StepMove(5,i,16,direccion)==NO);    
+       while(StepMove(1,i,16,direccion)==NO);    
        }
     }
     
@@ -330,6 +356,14 @@ void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direcci
     }
 }
 
+uint8_t SwitchDirection( uint8_t actual_direction ){
+    
+       DelayTmr2(ms10_t);                   //Retardo de 10ms que permite la descarga completa de las bobinas del motor previo al cambio de direccion.                           
+       actual_direction = !actual_direction;
+       
+       return(actual_direction);    
+}
+
 void DelayTmr2(unsigned uint16_t Timeout){
     
 	// Solo puede haber un Delay en ejecución
@@ -344,6 +378,7 @@ void DelayTmr2(unsigned uint16_t Timeout){
 		}
 	}
 }
+
 
 
 

@@ -1,11 +1,11 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"234 MotorDriver.h
+"13 MotorDriver.h
 [s S850 `uc 1 `uc 1 `uc 1 `ui 1 ]
 [n S850 . Velocidad MicroStepNumber Direccion StepsNumber ]
 [p mainexit ]
 "75 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
-"13 MotorDriver.h
+"69 MotorDriver.h
 [v _StateMEF_ini `(v ~T0 @X0 0 ef ]
 "18 main.c
 [v _Timer2Ticked `uc ~T0 @X0 0 e ]
@@ -36,9 +36,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S820 . . . . ]
 "16770
 [v _INTCONbits `VS820 ~T0 @X0 0 e@4082 ]
-"23 MotorDriver.h
+"155 MotorDriver.h
+[v _RectaAceleracion `(v ~T0 @X0 0 ef3`uc`uc`uc ]
+"79
 [v _StepMove `(uc ~T0 @X0 0 ef4`ui`uc`uc`uc ]
-"43
+"99
 [v _Motor_Stop `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -6687,22 +6689,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;epwm2.h: 121: void EPWM2_LoadDutyValue(uint16_t dutyValue);
 [; ;mcc.h: 75: void SYSTEM_Initialize(void);
 [; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
-[; ;MotorDriver.h: 13: void StateMEF_ini( void );
-[; ;MotorDriver.h: 23: uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
-[; ;MotorDriver.h: 43: void Motor_Stop( void );
-[; ;MotorDriver.h: 70: void State8MEF_act( uint8_t direccion );
-[; ;MotorDriver.h: 84: void State16MEF_act( uint8_t direccion );
-[; ;MotorDriver.h: 99: void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
-[; ;MotorDriver.h: 145: void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
-[; ;MotorDriver.h: 194: void DelayTmr2(unsigned uint16_t Timeout);
-"239 MotorDriver.h
+"18 MotorDriver.h
 [v _StepperMotor `S850 ~T0 @X0 1 e ]
-[; ;MotorDriver.h: 234: struct{
-[; ;MotorDriver.h: 235: uint8_t Velocidad;
-[; ;MotorDriver.h: 236: uint8_t MicroStepNumber;
-[; ;MotorDriver.h: 237: uint8_t Direccion;
-[; ;MotorDriver.h: 238: uint16_t StepsNumber;
-[; ;MotorDriver.h: 239: }StepperMotor;
+[; ;MotorDriver.h: 13: struct{
+[; ;MotorDriver.h: 14: uint8_t Velocidad;
+[; ;MotorDriver.h: 15: uint8_t MicroStepNumber;
+[; ;MotorDriver.h: 16: uint8_t Direccion;
+[; ;MotorDriver.h: 17: uint16_t StepsNumber;
+[; ;MotorDriver.h: 18: }StepperMotor;
+[; ;MotorDriver.h: 69: void StateMEF_ini( void );
+[; ;MotorDriver.h: 79: uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
+[; ;MotorDriver.h: 99: void Motor_Stop( void );
+[; ;MotorDriver.h: 126: void State8MEF_act( uint8_t direccion );
+[; ;MotorDriver.h: 140: void State16MEF_act( uint8_t direccion );
+[; ;MotorDriver.h: 155: void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
+[; ;MotorDriver.h: 201: void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
+[; ;MotorDriver.h: 250: uint8_t SwitchDirection( uint8_t actual_direction );
+[; ;MotorDriver.h: 285: void DelayTmr2(unsigned uint16_t Timeout);
 "16 main.c
 [v _StepsComplete `uc ~T0 @X0 1 e ]
 [; ;main.c: 16: uint8_t StepsComplete;
@@ -6741,59 +6744,62 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _LATBbits 0 6 -> -> 1 `i `uc ]
 }
 [e :U 853 ]
-[; ;main.c: 33: StepperMotor.Velocidad = 12;
+[; ;main.c: 33: StepperMotor.Velocidad = 15;
 "33
-[e = . _StepperMotor 0 -> -> 12 `i `uc ]
-[; ;main.c: 34: StepperMotor.StepsNumber = 2*(1600);
+[e = . _StepperMotor 0 -> -> 15 `i `uc ]
+[; ;main.c: 34: StepperMotor.StepsNumber = 2*(3200);
 "34
-[e = . _StepperMotor 3 -> * -> 2 `i -> 1600 `i `ui ]
-[; ;main.c: 35: StepperMotor.MicroStepNumber = 8;
+[e = . _StepperMotor 3 -> * -> 2 `i -> 3200 `i `ui ]
+[; ;main.c: 35: StepperMotor.MicroStepNumber = 16;
 "35
-[e = . _StepperMotor 1 -> -> 8 `i `uc ]
-[; ;main.c: 38: (INTCONbits.GIE = 1);
-"38
+[e = . _StepperMotor 1 -> -> 16 `i `uc ]
+[; ;main.c: 36: StepperMotor.Direccion = 1;
+"36
+[e = . _StepperMotor 2 -> -> 1 `i `uc ]
+[; ;main.c: 39: (INTCONbits.GIE = 1);
+"39
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 41: (INTCONbits.PEIE = 1);
-"41
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-[; ;main.c: 42: while (1)
+[; ;main.c: 42: (INTCONbits.PEIE = 1);
 "42
-[e :U 856 ]
-[; ;main.c: 43: {
+[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
+[; ;main.c: 43: while (1)
 "43
+[e :U 856 ]
+[; ;main.c: 44: {
+"44
 {
-[; ;main.c: 68: if (parar==0){
-"68
+[; ;main.c: 58: if (parar==0){
+"58
 [e $ ! == -> _parar `i -> 0 `i 858  ]
 {
-[; ;main.c: 69: parar=1;
-"69
+[; ;main.c: 59: parar=1;
+"59
 [e = _parar -> -> 1 `i `uc ]
-[; ;main.c: 70: StepperMotor.Direccion = 1;
-"70
-[e = . _StepperMotor 2 -> -> 1 `i `uc ]
-[; ;main.c: 71: while(StepMove(StepperMotor.StepsNumber, StepperMotor.Velocidad , StepperMotor.MicroStepNumber ,StepperMotor.Direccion)==0);
-"71
+[; ;main.c: 60: RectaAceleracion( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion );
+"60
+[e ( _RectaAceleracion (3 , , . _StepperMotor 0 . _StepperMotor 1 . _StepperMotor 2 ]
+[; ;main.c: 61: while(StepMove(StepperMotor.StepsNumber, StepperMotor.Velocidad , StepperMotor.MicroStepNumber ,StepperMotor.Direccion)==0);
+"61
 [e $U 859  ]
 [e :U 860 ]
 [e :U 859 ]
 [e $ == -> ( _StepMove (4 , , , . _StepperMotor 3 . _StepperMotor 0 . _StepperMotor 1 . _StepperMotor 2 `i -> 0 `i 860  ]
 [e :U 861 ]
-[; ;main.c: 72: Motor_Stop();
-"72
+[; ;main.c: 62: Motor_Stop();
+"62
 [e ( _Motor_Stop ..  ]
-"73
+"63
 }
 [e :U 858 ]
-"76
+"66
 }
 [e :U 855 ]
-"42
+"43
 [e $U 856  ]
 [e :U 857 ]
-[; ;main.c: 73: }
-[; ;main.c: 76: }
-[; ;main.c: 77: }
-"77
+[; ;main.c: 63: }
+[; ;main.c: 66: }
+[; ;main.c: 67: }
+"67
 [e :UE 851 ]
 }

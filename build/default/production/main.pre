@@ -8689,36 +8689,39 @@ void SYSTEM_Initialize(void);
 void OSCILLATOR_Initialize(void);
 
 # 13 "MotorDriver.h"
-void StateMEF_ini( void );
-
-# 23
-uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
-
-# 43
-void Motor_Stop( void );
-
-# 70
-void State8MEF_act( uint8_t direccion );
-
-# 84
-void State16MEF_act( uint8_t direccion );
-
-# 99
-void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
-
-# 145
-void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
-
-# 194
-void DelayTmr2(unsigned uint16_t Timeout);
-
-# 234
 struct{
 uint8_t Velocidad;
 uint8_t MicroStepNumber;
 uint8_t Direccion;
 uint16_t StepsNumber;
 }StepperMotor;
+
+# 69
+void StateMEF_ini( void );
+
+# 79
+uint8_t StepMove( uint16_t StepNumber, uint8_t Velocidad, uint8_t microstep_number, uint8_t direccion );
+
+# 99
+void Motor_Stop( void );
+
+# 126
+void State8MEF_act( uint8_t direccion );
+
+# 140
+void State16MEF_act( uint8_t direccion );
+
+# 155
+void RectaAceleracion( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
+
+# 201
+void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
+
+# 250
+uint8_t SwitchDirection( uint8_t actual_direction );
+
+# 285
+void DelayTmr2(unsigned uint16_t Timeout);
 
 # 16 "main.c"
 uint8_t StepsComplete;
@@ -8738,9 +8741,10 @@ DelayTimerTicked=0;
 do { LATBbits.LATB6 = 1; } while(0);
 
 
-StepperMotor.Velocidad = 12;
-StepperMotor.StepsNumber = 2*(1600);
-StepperMotor.MicroStepNumber = 8;
+StepperMotor.Velocidad = 15;
+StepperMotor.StepsNumber = 2*(3200);
+StepperMotor.MicroStepNumber = 16;
+StepperMotor.Direccion = 1;
 
 
 (INTCONbits.GIE = 1);
@@ -8750,10 +8754,10 @@ StepperMotor.MicroStepNumber = 8;
 while (1)
 {
 
-# 68
+# 58
 if (parar==0){
 parar=1;
-StepperMotor.Direccion = 1;
+RectaAceleracion( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion );
 while(StepMove(StepperMotor.StepsNumber, StepperMotor.Velocidad , StepperMotor.MicroStepNumber ,StepperMotor.Direccion)==0);
 Motor_Stop();
 }
