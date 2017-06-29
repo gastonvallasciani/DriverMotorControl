@@ -31,7 +31,7 @@ void main(void)
     
 
     StepperMotor.Velocidad = SLOWESTSPEED_16uSTEPS;
-    StepperMotor.StepsNumber = 2*(REVOLUTION_16uSTEPS);
+    StepperMotor.StepsNumber = 100;
     StepperMotor.MicroStepNumber = MICROSTEP16;
     StepperMotor.Direccion = FORWARD;
     
@@ -61,6 +61,8 @@ void main(void)
             while(StepMove(StepperMotor.StepsNumber, StepperMotor.Velocidad , StepperMotor.MicroStepNumber ,StepperMotor.Direccion)==NO);
             Motor_Stop();
         }
+        
+       
         
        
     }

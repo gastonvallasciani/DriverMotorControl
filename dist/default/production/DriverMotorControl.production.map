@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v1.41\dat\en_msgs.txt -cs \
   -h+dist/default/production\DriverMotorControl.production.sym \
   --cmf=dist/default/production\DriverMotorControl.production.cmf -z \
-  -Q18F46K22 -oC:\Users\ARIELL~1\AppData\Local\Temp\sj0.2 \
+  -Q18F46K22 -oC:\Users\ARIELL~1\AppData\Local\Temp\s13c.2 \
   -Mdist/default/production/DriverMotorControl.production.map -E1 -ver=XC8 \
   -ASTACK=0109h-0f37h -pstack=STACK -ACODE=00h-0FFFFh -ACONST=00h-0FFFFh \
   -ASMALLCONST=01000h-010FFhx240 -AMEDIUMCONST=01000h-0FFFFh \
@@ -26,7 +26,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj \
+  C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj \
   dist/default/production\DriverMotorControl.production.obj 
 
 Object code version is 3.11
@@ -39,7 +39,7 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj
+C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj
                 init                                 AA       AA        4        4       0
                 reset_vec                             0        0        4        0       0
                 idloc                            200000   200000        8   200000       0
@@ -809,6 +809,10 @@ Total ram usage:        0 bytes
 		Nothing
  This function is called by:
 		_main
+		_goDark
+		_goReference
+		_goInitMovement
+		_Measure
  This function uses a non-reentrant model
 
 
@@ -1305,6 +1309,7 @@ Total ram usage:        4 bytes
 		_StepMove
  This function is called by:
 		_main
+		_Measure
  This function uses a non-reentrant model
 
 
@@ -1341,6 +1346,10 @@ Total ram usage:        7 bytes
 		_main
 		_RectaAceleracion
 		_RectaFrenado
+		_goDark
+		_goReference
+		_goInitMovement
+		_Measure
  This function uses a non-reentrant model
 
 

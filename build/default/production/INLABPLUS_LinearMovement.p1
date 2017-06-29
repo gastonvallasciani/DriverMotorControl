@@ -2,46 +2,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 "13 MotorDriver.h
 [s S850 `uc 1 `uc 1 `uc 1 `ui 1 ]
 [n S850 . Velocidad MicroStepNumber Direccion StepsNumber ]
-[p mainexit ]
-"75 mcc_generated_files/mcc.h
-[v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
-"69 MotorDriver.h
-[v _StateMEF_ini `(v ~T0 @X0 0 ef ]
-"18 main.c
-[v _Timer2Ticked `uc ~T0 @X0 0 e ]
-"19
-[v _DelayTimerTicked `uc ~T0 @X0 0 e ]
-"7592 C:\Program Files\Microchip\xc8\v1.41\include\pic18f46k22.h
-[s S378 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S378 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
-"7602
-[s S379 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S379 . LB0 LB1 LB2 LB3 LB4 LB5 LB6 LB7 ]
-"7591
-[u S377 `S378 1 `S379 1 ]
-[n S377 . . . ]
-"7613
-[v _LATBbits `VS377 ~T0 @X0 0 e@3978 ]
-"16744
-[s S821 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S821 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
-"16754
-[s S822 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S822 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
-"16764
-[s S823 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S823 . . GIEL GIEH ]
-"16743
-[u S820 `S821 1 `S822 1 `S823 1 ]
-[n S820 . . . . ]
-"16770
-[v _INTCONbits `VS820 ~T0 @X0 0 e@4082 ]
-"155 MotorDriver.h
-[v _RectaAceleracion `(v ~T0 @X0 0 ef3`uc`uc`uc ]
 "79
 [v _StepMove `(uc ~T0 @X0 0 ef4`ui`uc`uc`uc ]
-"99
-[v _Motor_Stop `(v ~T0 @X0 0 ef ]
+"69
+[v _StateMEF_ini `(v ~T0 @X0 0 ef ]
+"155
+[v _RectaAceleracion `(v ~T0 @X0 0 ef3`uc`uc`uc ]
+"201
+[v _RectaFrenado `(v ~T0 @X0 0 ef3`uc`uc`uc ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -6706,100 +6674,93 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MotorDriver.h: 201: void RectaFrenado( uint8_t velocidad , uint8_t microstep_number, uint8_t direccion);
 [; ;MotorDriver.h: 250: uint8_t SwitchDirection( uint8_t actual_direction );
 [; ;MotorDriver.h: 285: void DelayTmr2(unsigned uint16_t Timeout);
-"16 main.c
-[v _StepsComplete `uc ~T0 @X0 1 e ]
-[; ;main.c: 16: uint8_t StepsComplete;
-[; ;main.c: 18: extern unsigned char Timer2Ticked;
-[; ;main.c: 19: extern unsigned char DelayTimerTicked;
-"21
-[v _parar `uc ~T0 @X0 1 e ]
-[i _parar
--> -> 0 `i `uc
-]
-[; ;main.c: 21: uint8_t parar=0;
-"23
-[v _main `(v ~T0 @X0 1 ef ]
-"24
+[; ;INLABPLUS_LinearMovement.h: 15: void goDark( void );
+[; ;INLABPLUS_LinearMovement.h: 16: void goReference( void );
+[; ;INLABPLUS_LinearMovement.h: 17: void goInitMovement( void );
+[; ;INLABPLUS_LinearMovement.h: 18: void Measure( void );
+"31 INLABPLUS_LinearMovement.c
+[v _goDark `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 23: void main(void)
-[; ;main.c: 24: {
-[e :U _main ]
+[; ;INLABPLUS_LinearMovement.c: 31: void goDark( void ){
+[e :U _goDark ]
 [f ]
-[; ;main.c: 26: SYSTEM_Initialize();
-"26
-[e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 27: StateMEF_ini();
-"27
-[e ( _StateMEF_ini ..  ]
-[; ;main.c: 28: Timer2Ticked=0;
-"28
-[e = _Timer2Ticked -> -> 0 `i `uc ]
-[; ;main.c: 29: DelayTimerTicked=0;
-"29
-[e = _DelayTimerTicked -> -> 0 `i `uc ]
-[; ;main.c: 30: do { LATBbits.LATB6 = 1; } while(0);
-"30
-[e :U 854 ]
-{
-[e = . . _LATBbits 0 6 -> -> 1 `i `uc ]
-}
+[; ;INLABPLUS_LinearMovement.c: 32: while(StepMove(50, 14 , 8 , 1 )==0);
+"32
+[e $U 852  ]
 [e :U 853 ]
-[; ;main.c: 33: StepperMotor.Velocidad = 15;
+[e :U 852 ]
+[e $ == -> ( _StepMove (4 , , , -> -> 50 `i `ui -> -> 14 `i `uc -> -> 8 `i `uc -> -> 1 `i `uc `i -> 0 `i 853  ]
+[e :U 854 ]
+[; ;INLABPLUS_LinearMovement.c: 33: StateMEF_ini();
 "33
-[e = . _StepperMotor 0 -> -> 15 `i `uc ]
-[; ;main.c: 34: StepperMotor.StepsNumber = 100;
+[e ( _StateMEF_ini ..  ]
+[; ;INLABPLUS_LinearMovement.c: 34: }
 "34
-[e = . _StepperMotor 3 -> -> 100 `i `ui ]
-[; ;main.c: 35: StepperMotor.MicroStepNumber = 16;
-"35
-[e = . _StepperMotor 1 -> -> 16 `i `uc ]
-[; ;main.c: 36: StepperMotor.Direccion = 1;
+[e :UE 851 ]
+}
 "36
-[e = . _StepperMotor 2 -> -> 1 `i `uc ]
-[; ;main.c: 39: (INTCONbits.GIE = 1);
-"39
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 42: (INTCONbits.PEIE = 1);
-"42
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-[; ;main.c: 43: while (1)
-"43
-[e :U 856 ]
-[; ;main.c: 44: {
-"44
+[v _goReference `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 58: if (parar==0){
-"58
-[e $ ! == -> _parar `i -> 0 `i 858  ]
-{
-[; ;main.c: 59: parar=1;
-"59
-[e = _parar -> -> 1 `i `uc ]
-[; ;main.c: 60: RectaAceleracion( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion );
-"60
-[e ( _RectaAceleracion (3 , , . _StepperMotor 0 . _StepperMotor 1 . _StepperMotor 2 ]
-[; ;main.c: 61: while(StepMove(StepperMotor.StepsNumber, StepperMotor.Velocidad , StepperMotor.MicroStepNumber ,StepperMotor.Direccion)==0);
-"61
-[e $U 859  ]
-[e :U 860 ]
-[e :U 859 ]
-[e $ == -> ( _StepMove (4 , , , . _StepperMotor 3 . _StepperMotor 0 . _StepperMotor 1 . _StepperMotor 2 `i -> 0 `i 860  ]
-[e :U 861 ]
-[; ;main.c: 62: Motor_Stop();
-"62
-[e ( _Motor_Stop ..  ]
-"63
-}
-[e :U 858 ]
-"68
-}
-[e :U 855 ]
-"43
+[; ;INLABPLUS_LinearMovement.c: 36: void goReference( void ){
+[e :U _goReference ]
+[f ]
+[; ;INLABPLUS_LinearMovement.c: 37: while(StepMove(450, 14 , 8 , 1 )==0);
+"37
 [e $U 856  ]
 [e :U 857 ]
-[; ;main.c: 63: }
-[; ;main.c: 68: }
-[; ;main.c: 69: }
-"69
-[e :UE 851 ]
+[e :U 856 ]
+[e $ == -> ( _StepMove (4 , , , -> -> 450 `i `ui -> -> 14 `i `uc -> -> 8 `i `uc -> -> 1 `i `uc `i -> 0 `i 857  ]
+[e :U 858 ]
+[; ;INLABPLUS_LinearMovement.c: 38: StateMEF_ini();
+"38
+[e ( _StateMEF_ini ..  ]
+[; ;INLABPLUS_LinearMovement.c: 39: }
+"39
+[e :UE 855 ]
+}
+"41
+[v _goInitMovement `(v ~T0 @X0 1 ef ]
+{
+[; ;INLABPLUS_LinearMovement.c: 41: void goInitMovement( void ){
+[e :U _goInitMovement ]
+[f ]
+[; ;INLABPLUS_LinearMovement.c: 42: while(StepMove(450, 14 , 8 , 1 )==0);
+"42
+[e $U 860  ]
+[e :U 861 ]
+[e :U 860 ]
+[e $ == -> ( _StepMove (4 , , , -> -> 450 `i `ui -> -> 14 `i `uc -> -> 8 `i `uc -> -> 1 `i `uc `i -> 0 `i 861  ]
+[e :U 862 ]
+[; ;INLABPLUS_LinearMovement.c: 43: StateMEF_ini();
+"43
+[e ( _StateMEF_ini ..  ]
+[; ;INLABPLUS_LinearMovement.c: 44: }
+"44
+[e :UE 859 ]
+}
+"46
+[v _Measure `(v ~T0 @X0 1 ef ]
+{
+[; ;INLABPLUS_LinearMovement.c: 46: void Measure( void ){
+[e :U _Measure ]
+[f ]
+[; ;INLABPLUS_LinearMovement.c: 47: RectaAceleracion( 14 , 8 , 1 );
+"47
+[e ( _RectaAceleracion (3 , , -> -> 14 `i `uc -> -> 8 `i `uc -> -> 1 `i `uc ]
+[; ;INLABPLUS_LinearMovement.c: 48: while(StepMove((2*(1600))+100, 14 , 8 , 1 )==0);
+"48
+[e $U 864  ]
+[e :U 865 ]
+[e :U 864 ]
+[e $ == -> ( _StepMove (4 , , , -> + * -> 2 `i -> 1600 `i -> 100 `i `ui -> -> 14 `i `uc -> -> 8 `i `uc -> -> 1 `i `uc `i -> 0 `i 865  ]
+[e :U 866 ]
+[; ;INLABPLUS_LinearMovement.c: 49: RectaFrenado( 14 , 8 , 1);
+"49
+[e ( _RectaFrenado (3 , , -> -> 14 `i `uc -> -> 8 `i `uc -> -> 1 `i `uc ]
+[; ;INLABPLUS_LinearMovement.c: 50: StateMEF_ini();
+"50
+[e ( _StateMEF_ini ..  ]
+[; ;INLABPLUS_LinearMovement.c: 51: }
+"51
+[e :UE 863 ]
 }

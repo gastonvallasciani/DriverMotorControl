@@ -11,11 +11,6 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj
-idloc IDLOC 0 200000 200000 8 1
-init CODE 0 AA AA 4 1
-reset_vec CODE 0 0 0 4 1
-config CONFIG 0 300000 300000 E 1
 $dist/default/production\DriverMotorControl.production.obj
 cinit CODE 0 76E 76E 5A 1
 text0 CODE 0 708 708 66 1
@@ -58,6 +53,11 @@ idataBANK0 CODE 0 566 566 A0 1
 dataBANK0 BANK0 1 60 60 A0 1
 dataCOMRAM COMRAM 1 1 1 20 1
 bssCOMRAM COMRAM 1 37 37 14 1
+$C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj
+idloc IDLOC 0 200000 200000 8 1
+init CODE 0 AA AA 4 1
+reset_vec CODE 0 0 0 4 1
+config CONFIG 0 300000 300000 E 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
@@ -428,50 +428,50 @@ A2A text4 CODE >93:C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorCo
 74A text0 CODE >61:C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\main.c
 768 text0 CODE >62:C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\main.c
 76C text0 CODE >43:C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\main.c
-76E cinit CODE >6608:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-76E cinit CODE >6610:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-76E cinit CODE >6613:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-76E cinit CODE >6679:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-770 cinit CODE >6680:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-772 cinit CODE >6681:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-774 cinit CODE >6682:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-776 cinit CODE >6683:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-778 cinit CODE >6684:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-77A cinit CODE >6685:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-77E cinit CODE >6686:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-782 cinit CODE >6687:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-782 cinit CODE >6688:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-784 cinit CODE >6689:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-788 cinit CODE >6690:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-78A cinit CODE >6691:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-78C cinit CODE >6692:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-78E cinit CODE >6696:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-790 cinit CODE >6697:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-792 cinit CODE >6698:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-794 cinit CODE >6699:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-796 cinit CODE >6700:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-798 cinit CODE >6701:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-79A cinit CODE >6702:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-79E cinit CODE >6703:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7A2 cinit CODE >6704:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7A2 cinit CODE >6705:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7A4 cinit CODE >6706:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7A8 cinit CODE >6707:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7AA cinit CODE >6708:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7AC cinit CODE >6709:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7AE cinit CODE >6713:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7B2 cinit CODE >6714:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7B4 cinit CODE >6715:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7B4 cinit CODE >6716:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7B6 cinit CODE >6717:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7B8 cinit CODE >6718:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7BA cinit CODE >6724:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7BA cinit CODE >6726:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7BC cinit CODE >6727:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7BE cinit CODE >6729:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7C0 cinit CODE >6730:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7C2 cinit CODE >6731:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
-7C4 cinit CODE >6732:C:\Users\ARIELL~1\AppData\Local\Temp\sj0.
+76E cinit CODE >7114:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+76E cinit CODE >7116:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+76E cinit CODE >7119:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+76E cinit CODE >7185:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+770 cinit CODE >7186:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+772 cinit CODE >7187:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+774 cinit CODE >7188:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+776 cinit CODE >7189:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+778 cinit CODE >7190:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+77A cinit CODE >7191:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+77E cinit CODE >7192:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+782 cinit CODE >7193:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+782 cinit CODE >7194:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+784 cinit CODE >7195:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+788 cinit CODE >7196:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+78A cinit CODE >7197:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+78C cinit CODE >7198:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+78E cinit CODE >7202:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+790 cinit CODE >7203:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+792 cinit CODE >7204:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+794 cinit CODE >7205:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+796 cinit CODE >7206:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+798 cinit CODE >7207:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+79A cinit CODE >7208:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+79E cinit CODE >7209:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7A2 cinit CODE >7210:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7A2 cinit CODE >7211:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7A4 cinit CODE >7212:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7A8 cinit CODE >7213:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7AA cinit CODE >7214:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7AC cinit CODE >7215:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7AE cinit CODE >7219:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7B2 cinit CODE >7220:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7B4 cinit CODE >7221:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7B4 cinit CODE >7222:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7B6 cinit CODE >7223:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7B8 cinit CODE >7224:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7BA cinit CODE >7230:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7BA cinit CODE >7232:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7BC cinit CODE >7233:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7BE cinit CODE >7235:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7C0 cinit CODE >7236:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7C2 cinit CODE >7237:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
+7C4 cinit CODE >7238:C:\Users\ARIELL~1\AppData\Local\Temp\s13c.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -495,7 +495,7 @@ __HidataBANK0 0 0 ABS 0 idataBANK0 dist/default/production\DriverMotorControl.pr
 _PWM1CON FB7 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
 _PWM2CON F65 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\DriverMotorControl.production.obj
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj
 __end_of_State8MEF_act 30A 0 CODE 0 text19 dist/default/production\DriverMotorControl.production.obj
 _EUSART1_Initialize 9B2 0 CODE 0 text12 dist/default/production\DriverMotorControl.production.obj
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\DriverMotorControl.production.obj
@@ -509,10 +509,10 @@ _LATE F8D 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
 _TMR2 FBC 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
 _TMR6 F4C 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
 _WPUB F61 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
-___sp 0 0 STACK 2 stack C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj
+___sp 0 0 STACK 2 stack C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj
 _main 708 0 CODE 0 text0 dist/default/production\DriverMotorControl.production.obj
 btemp 50 0 COMRAM 1 temp dist/default/production\DriverMotorControl.production.obj
-start AA 0 CODE 0 init C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj
+start AA 0 CODE 0 init C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj
 __size_of_TMR6_Initialize 0 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
 __size_of_TMR6_StartTimer 0 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
 __size_of_main 0 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
@@ -535,11 +535,11 @@ __size_of_SYSTEM_Initialize 0 0 ABS 0 - dist/default/production\DriverMotorContr
 __HdataCOMRAM 0 0 ABS 0 dataCOMRAM dist/default/production\DriverMotorControl.production.obj
 State16MEF_act@direccion 34 0 COMRAM 1 cstackCOMRAM dist/default/production\DriverMotorControl.production.obj
 _DelayTimerTicked 49 0 COMRAM 1 bssCOMRAM dist/default/production\DriverMotorControl.production.obj
-__accesstop 60 0 ABS 0 - C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj
-intlevel0 0 0 CODE 0 text C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj
-intlevel1 0 0 CODE 0 text C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj
-intlevel2 0 0 CODE 0 text C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj
-intlevel3 0 0 CODE 0 text C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj
+__accesstop 60 0 ABS 0 - C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj
+intlevel0 0 0 CODE 0 text C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj
+intlevel1 0 0 CODE 0 text C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj
+intlevel2 0 0 CODE 0 text C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj
+intlevel3 0 0 CODE 0 text C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\DriverMotorControl.production.obj
 __size_of_ADC_Initialize 0 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\DriverMotorControl.production.obj
@@ -564,8 +564,8 @@ _ANSELB F39 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
 _ANSELC F3A 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
 _ANSELD F3B 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
 _ANSELE F3C 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
-___inthi_sp 0 0 STACK 2 stack C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj
-___intlo_sp 0 0 STACK 2 stack C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj
+___inthi_sp 0 0 STACK 2 stack C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj
+___intlo_sp 0 0 STACK 2 stack C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj
 _RectaAceleracion 606 0 CODE 0 text17 dist/default/production\DriverMotorControl.production.obj
 __LdataCOMRAM 0 0 ABS 0 dataCOMRAM dist/default/production\DriverMotorControl.production.obj
 _CCPR1H FBF 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
@@ -656,7 +656,7 @@ __Hbank14 0 0 ABS 0 bank14 dist/default/production\DriverMotorControl.production
 __Hbank15 0 0 ABS 0 bank15 dist/default/production\DriverMotorControl.production.obj
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\DriverMotorControl.production.obj
 __Hbigram 0 0 ABS 0 bigram dist/default/production\DriverMotorControl.production.obj
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj
+__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj
 _BAUDCON1 FB8 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
 __size_of_State16MEF_act 0 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
 __Hcomram 0 0 ABS 0 comram dist/default/production\DriverMotorControl.production.obj
@@ -833,8 +833,8 @@ __Lfarbss 0 0 FARRAM 0 farbss dist/default/production\DriverMotorControl.product
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production\DriverMotorControl.production.obj
 __end_of_StateMEF_ini 9FC 0 CODE 0 text1 dist/default/production\DriverMotorControl.production.obj
 _LookUP_TABLE_SEN_16 60 0 BANK0 1 dataBANK0 dist/default/production\DriverMotorControl.production.obj
-stackhi F37 0 ABS 0 - C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj
-stacklo 109 0 ABS 0 - C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj
+stackhi F37 0 ABS 0 - C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj
+stacklo 109 0 ABS 0 - C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj
 __Lintcode 8 0 CODE 0 intcode dist/default/production\DriverMotorControl.production.obj
 _OSCCON2 FD2 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
 _OSCTUNE F9B 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
@@ -902,7 +902,7 @@ __Ltext28 0 0 ABS 0 text28 dist/default/production\DriverMotorControl.production
 __Ltext29 0 0 ABS 0 text29 dist/default/production\DriverMotorControl.production.obj
 __Ltext30 0 0 ABS 0 text30 dist/default/production\DriverMotorControl.production.obj
 __Ltext31 0 0 ABS 0 text31 dist/default/production\DriverMotorControl.production.obj
-__ramtop 1000 0 RAM 0 ramtop C:\Users\ARIELL~1\AppData\Local\Temp\sj0.obj
+__ramtop 1000 0 RAM 0 ramtop C:\Users\ARIELL~1\AppData\Local\Temp\s13c.obj
 __size_of_ADC_ISR 0 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj
 __end_of_CCP5_Initialize 9DC 0 CODE 0 text15 dist/default/production\DriverMotorControl.production.obj
 __size_of_TMR6_SetInterruptHandler 0 0 ABS 0 - dist/default/production\DriverMotorControl.production.obj

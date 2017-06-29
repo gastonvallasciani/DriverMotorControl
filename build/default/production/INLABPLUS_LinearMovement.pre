@@ -1,5 +1,5 @@
 
-# 1 "main.c"
+# 1 "INLABPLUS_LinearMovement.c"
 
 # 26 "C:\Program Files\Microchip\xc8\v1.41\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -8723,48 +8723,32 @@ uint8_t SwitchDirection( uint8_t actual_direction );
 # 285
 void DelayTmr2(unsigned uint16_t Timeout);
 
-# 16 "main.c"
-uint8_t StepsComplete;
+# 15 "INLABPLUS_LinearMovement.h"
+void goDark( void );
+void goReference( void );
+void goInitMovement( void );
+void Measure( void );
 
-extern unsigned char Timer2Ticked;
-extern unsigned char DelayTimerTicked;
-
-uint8_t parar=0;
-
-void main(void)
-{
-
-SYSTEM_Initialize();
+# 31 "INLABPLUS_LinearMovement.c"
+void goDark( void ){
+while(StepMove(50, 14 , 8 , 1 )==0);
 StateMEF_ini();
-Timer2Ticked=0;
-DelayTimerTicked=0;
-do { LATBbits.LATB6 = 1; } while(0);
-
-
-StepperMotor.Velocidad = 15;
-StepperMotor.StepsNumber = 100;
-StepperMotor.MicroStepNumber = 16;
-StepperMotor.Direccion = 1;
-
-
-(INTCONbits.GIE = 1);
-
-
-(INTCONbits.PEIE = 1);
-while (1)
-{
-
-# 58
-if (parar==0){
-parar=1;
-RectaAceleracion( StepperMotor.Velocidad , StepperMotor.MicroStepNumber , StepperMotor.Direccion );
-while(StepMove(StepperMotor.StepsNumber, StepperMotor.Velocidad , StepperMotor.MicroStepNumber ,StepperMotor.Direccion)==0);
-Motor_Stop();
 }
 
-
-
-
+void goReference( void ){
+while(StepMove(450, 14 , 8 , 1 )==0);
+StateMEF_ini();
 }
+
+void goInitMovement( void ){
+while(StepMove(450, 14 , 8 , 1 )==0);
+StateMEF_ini();
+}
+
+void Measure( void ){
+RectaAceleracion( 14 , 8 , 1 );
+while(StepMove((2*(1600))+100, 14 , 8 , 1 )==0);
+RectaFrenado( 14 , 8 , 1);
+StateMEF_ini();
 }
 

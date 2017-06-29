@@ -111,6 +111,8 @@ STATE4 4
 [v _Motor_Stop Motor_Stop `(v  1 e 1 0 ]
 "330
 [v _RectaAceleracion RectaAceleracion `(v  1 e 1 0 ]
+"345
+[v _RectaFrenado RectaFrenado `(v  1 e 1 0 ]
 "367
 [v _DelayTmr2 DelayTmr2 `(v  1 e 1 0 ]
 "49 C:\Program Files\Microchip\xc8\v1.41\include\pic18f46k22.h
@@ -550,7 +552,7 @@ STATE4 4
 "23 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"67
+"69
 } 0
 "62 C:\Users\Ariel L\Desktop\Gastón\Equipos\Drivers\DriverMotorControl\MotorDriver.c
 [v _StateMEF_ini StateMEF_ini `(v  1 e 1 0 ]
